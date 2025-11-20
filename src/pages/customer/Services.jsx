@@ -12,7 +12,7 @@ export default function Services() {
   return (
     <>
       <Navbar />
-      <section className="max-w-7xl mx-auto px-4 py-16">
+      <section className="px-20 py-20 bg-blend-hard-light backdrop-blur-sm text-white">
         <h1 className="text-4xl font-bold mb-10 text-center">Our Services</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           {services.map((s, i) => (
