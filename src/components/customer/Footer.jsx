@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="bg-[#2d2c2c] text-white py-12 mt-10 w-full">
+    <footer className="bg-gray-800 text-white py-12 mt-10 w-full">
       <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 px-4">
         {["Solutions", "Insights", "Company", "Support"].map((title, i) => (
           <div key={i}>
