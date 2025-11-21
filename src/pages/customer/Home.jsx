@@ -4,10 +4,18 @@ import Footer from "../../components/customer/Footer";
 import Card from "../../components/customer/Card";
 import Button from "../../components/customer/Button";
 
+import opsVideo from "../../assets/videos/operations.mp4"; // Make sure this path is correct
+
 const fadeInUp = {
   hidden: { opacity: 0, y: 50 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 };
+
+const projects = [
+  { title: "Project Alpha", description: "Next-gen RAN optimization.", video: opsVideo },
+  { title: "Project Beta", description: "AI-driven spectrum allocation.", video: opsVideo },
+  { title: "Project Gamma", description: "Firmware & embedded systems.", video: opsVideo },
+];
 
 export default function Home() {
   return (
@@ -15,8 +23,8 @@ export default function Home() {
       <Navbar />
 
       {/* Hero Section */}
-      <header className="relative .bg-gradient-to-br from-aramcoGreen/80 to-blue-800/80 text-white py-24 md:py-36 text-center overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/hero-bg.jpg')] bg-cover bg-center opacity-20"></div>
+      <header className=" text-white py-24 md:py-36 text-center overflow-hidden">
+        <div className="absolute inset-0 bg-cover bg-center opacity-20"></div>
         <div className="relative z-10">
           <motion.h1
             initial={{ opacity: 0, y: -50 }}
@@ -67,8 +75,8 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ delay: idx * 0.2 }}
             >
-              <Card 
-                title={title} 
+              <Card
+                title={title}
                 description={
                   title === "Open RAN Solutions"
                     ? "Software-defined radio access networks for modern telecom."
@@ -83,7 +91,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Portfolio Section with Hover Video */}
+      {/* Portfolio Section */}
       <section className="bg-gradient-to-tr from-black/20 via-white/5 to-black/20 py-20">
         <motion.h2
           variants={fadeInUp}
@@ -95,11 +103,7 @@ export default function Home() {
           Portfolio
         </motion.h2>
         <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-          {[
-            { title: "Project Alpha", description: "Next-gen RAN optimization.", video: "/videos/project-alpha.mp4" },
-            { title: "Project Beta", description: "AI-driven spectrum allocation.", video: "/videos/project-beta.mp4" },
-            { title: "Project Gamma", description: "Firmware & embedded systems.", video: "/videos/project-gamma.mp4" },
-          ].map((proj, idx) => (
+          {projects.map((proj, idx) => (
             <motion.div
               key={idx}
               variants={fadeInUp}
