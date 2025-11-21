@@ -107,8 +107,7 @@ export default function Home() {
             <motion.div
               key={idx}
               variants={fadeInUp}
-              initial="hidden"
-              whileInView="visible"
+              
               viewport={{ once: true }}
               transition={{ delay: idx * 0.2 }}
               className="relative group rounded-xl overflow-hidden shadow-2xl"

@@ -12,8 +12,8 @@ export default function Services() {
   return (
     <>
       <Navbar />
-      <section className="px-20 py-20 bg-blend-hard-light backdrop-blur-sm text-white">
-        <h1 className="text-4xl font-bold mb-10 text-center">Our Services</h1>
+      <section className="px-20 py-20 bg-blend-hard-light backdrop-blur-sm text-gray-800">
+        <h1 className="text-4xl font-bold mb-10 text-center text-white">Our Services</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           {services.map((s, i) => (
             <Card key={i} title={s.title} description={s.description} />
