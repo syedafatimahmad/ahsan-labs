@@ -6,8 +6,8 @@ export default function About() {
     <>
       <Navbar />
       <section className="bg-blend-hard-light backdrop-blur-sm text-white py-20 md:py-32 text-center">
-        <h1 className="text-4xl font-bold mb-6">About AhsanLabs</h1>
-        <p className="text-lg mb-4 ">
+        <h1 className="text-3xl md:text-4xl font-bold mb-6">About AhsanLabs</h1>
+        <p className="text-base md:text-lg mb-4 max-w-2xl mx-auto">
           AhsanLabs specializes in innovative solutions for wireless communication networks.
           We combine cutting-edge algorithms, firmware expertise, and AI-driven network optimization
           to help telecom operators improve efficiency and performance.

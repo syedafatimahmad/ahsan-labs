@@ -35,7 +35,7 @@ export default function Newsletter() {
       <Navbar />
 
       <section className="max-w-4xl mx-auto px-6 py-16 bg-black/50 backdrop-blur-md rounded-lg text-white">
-        <h1 className="text-4xl font-semibold mb-4 text-center">Subscribe to Our Newsletter</h1>
+        <h1 className="text--3xl md:text-4xl font-semibold mb-4 text-center">Subscribe to Our Newsletter</h1>
         <p className="mb-8 text-gray-200 text-center">
           Get the latest updates on our work AND news from Nokia’s tech world.
         </p>
