@@ -52,7 +52,7 @@ export default function Footer() {
         <div>
           <h5 className="text-white font-semibold mb-4 text-base md:text-lg">Support</h5>
           <ul className="space-y-2 text-sm text-gray-300">
-            <li><button onClick={() => scrollToSection("/newsletter", "contact")} className="hover:text-aramcoGreen transition">Contact Us</button></li>
+            <li><button onClick={() => scrollToSection("/home", "contact")} className="hover:text-aramcoGreen transition">Contact Us</button></li>
             <li><button onClick={() => scrollToSection("/about", "documentation")} className="hover:text-aramcoGreen transition">Documentation</button></li>
             <li><button onClick={() => scrollToSection("/about", "timeline")} className="hover:text-aramcoGreen transition">Test Reports</button></li>
             <li><button onClick={() => scrollToSection("/newsletter", "faq")} className="hover:text-aramcoGreen transition">FAQ</button></li>
