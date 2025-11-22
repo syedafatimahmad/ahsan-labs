@@ -1,15 +1,23 @@
+import React, { useEffect } from "react";
+import { useLocation, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Navbar from "../../components/customer/Navbar";
 import Footer from "../../components/customer/Footer";
 import Button from "../../components/customer/Button";
-import { Link } from "react-router-dom";
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 50 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-};
 
 export default function Home() {
+  const location = useLocation();
+
+  // Scroll to #contact if hash is present
+  useEffect(() => {
+    if (location.hash === "#contact") {
+      const contactSection = document.querySelector("#contact");
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [location]);
+
   const solutions = [
     {
       title: "Open RAN & Wi‑Fi 8",
@@ -33,7 +41,7 @@ export default function Home() {
       <Navbar />
 
       {/* Hero Section */}
-      <header className="relative text-white py-24 md:py-36 text-center overflow-hidden ">
+      <header className="relative text-white py-24 md:py-36 text-center overflow-hidden">
         <div className="relative z-10 px-4">
           <motion.h1
             initial={{ opacity: 0, y: -50 }}
@@ -57,23 +65,19 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.6 }}
           >
             <Link to="/services">
-              <button
-              type="submit"
-              className="
-                px-8 py-3 bg-gradient-to-r from-emerald-600 to-emerald-800 hover:from-emerald-500 hover:to-emerald-700 text-white rounded-lg font-semibold shadow-lg transition-all duration-300 hover:scale-105">
-              Our Services
-            </button>
+              <button className="px-8 py-3 bg-gradient-to-r from-emerald-600 to-emerald-800 hover:from-emerald-500 hover:to-emerald-700 text-white rounded-lg font-semibold shadow-lg transition-all duration-300 hover:scale-105">
+                Our Services
+              </button>
             </Link>
           </motion.div>
         </div>
       </header>
 
-      {/* Our Solutions Section */}
+      {/* Solutions Section */}
       <section className="bg-gradient-to-tr from-black/20 via-white/5 to-black/20 py-20">
         <motion.h2
-          variants={fadeInUp}
-          initial="hidden"
-          whileInView="visible"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-3xl md:text-4xl font-bold mb-12 text-center text-white"
         >
@@ -83,11 +87,10 @@ export default function Home() {
           {solutions.map((s, idx) => (
             <motion.div
               key={idx}
-              variants={fadeInUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.2 }}
+              viewport={{ once: true }}
               className="bg-gray-800 rounded-3xl shadow-2xl overflow-hidden hover:scale-105 transition-transform duration-300"
             >
               <div className="w-full h-48 overflow-hidden">
@@ -102,21 +105,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Contact Us Section */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-20">
-        <motion.div
-          className="max-w-7xl mx-auto flex flex-col md:flex-row gap-12"
-          variants={fadeInUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          {/* Contact Info Card */}
-          <motion.div
-            className="flex-1 p-10 bg-black/40 backdrop-blur-md rounded-3xl shadow-2xl flex flex-col justify-center hover:shadow-3xl transition-shadow duration-300"
-            variants={fadeInUp}
-          >
-            <h3 className="text-3xl font-bold text-white mb-6">Get in Touch</h3>
+      {/* Contact Section */}
+      <section id="contact" className="relative py-20 px-4 sm:px-6 lg:px-20">
+        <motion.div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-12">
+          {/* Contact Info */}
+          <motion.div className="flex-[0.8] p-10 bg-black/40 backdrop-blur-md rounded-3xl shadow-2xl flex flex-col justify-center hover:shadow-3xl transition-shadow duration-300">
+            <h2 className="text-3xl font-bold text-white mb-6">Get In Touch</h2>
             <p className="text-gray-300 mb-4">
               Email:{" "}
               <a href="mailto:sales@ahsanalabs.com" className="text-aramcoGreen underline">
@@ -135,40 +129,20 @@ export default function Home() {
             </p>
           </motion.div>
 
-          {/* Contact Form Card */}
+          {/* Contact Form */}
           <motion.form
-            className="flex-1 p-10 bg-black/40 backdrop-blur-md rounded-3xl shadow-2xl flex flex-col gap-5 hover:shadow-3xl transition-shadow duration-300"
-            variants={fadeInUp}
+            className="flex-[1.2] p-10 bg-black/40 backdrop-blur-md rounded-3xl shadow-2xl flex flex-col gap-5 hover:shadow-3xl transition-shadow duration-300"
             onSubmit={(e) => {
               e.preventDefault();
               alert("Form submitted!");
             }}
           >
-            <h3 className="text-3xl font-bold text-white mb-4">Send a Message</h3>
-            <input
-              type="text"
-              placeholder="Your Name"
-              className="p-4 rounded-xl bg-gray-700 text-white border border-gray-600 focus:border-aramcoGreen focus:ring-1 focus:ring-aramcoGreen outline-none transition-all"
-            />
-            <input
-              type="email"
-              placeholder="Your Email"
-              className="p-4 rounded-xl bg-gray-700 text-white border border-gray-600 focus:border-aramcoGreen focus:ring-1 focus:ring-aramcoGreen outline-none transition-all"
-            />
-            <input
-              type="text"
-              placeholder="Company (optional)"
-              className="p-4 rounded-xl bg-gray-700 text-white border border-gray-600 focus:border-aramcoGreen focus:ring-1 focus:ring-aramcoGreen outline-none transition-all"
-            />
-            <textarea
-              placeholder="Your Message"
-              rows={5}
-              className="p-4 rounded-xl bg-gray-700 text-white border border-gray-600 focus:border-aramcoGreen focus:ring-1 focus:ring-aramcoGreen outline-none transition-all"
-            ></textarea>
-            <Button
-              type="submit"
-              className="mt-2 px-6 py-3 bg-aramcoGreen font-semibold rounded-xl hover:scale-105 transition-transform duration-300  text-white"
-            >
+            <h2 className="text-4xl font-bold text-white mb-6">Contact Us</h2>
+            <input type="text" placeholder="Your Name" className="p-4 rounded-xl bg-gray-700 text-white border border-gray-600 focus:border-aramcoGreen focus:ring-1 focus:ring-aramcoGreen outline-none transition-all"/>
+            <input type="email" placeholder="Your Email" className="p-4 rounded-xl bg-gray-700 text-white border border-gray-600 focus:border-aramcoGreen focus:ring-1 focus:ring-aramcoGreen outline-none transition-all"/>
+            <input type="text" placeholder="Company (optional)" className="p-4 rounded-xl bg-gray-700 text-white border border-gray-600 focus:border-aramcoGreen focus:ring-1 focus:ring-aramcoGreen outline-none transition-all"/>
+            <textarea placeholder="Your Message" rows={5} className="p-4 rounded-xl bg-gray-700 text-white border border-gray-600 focus:border-aramcoGreen focus:ring-1 focus:ring-aramcoGreen outline-none transition-all"/>
+            <Button type="submit" className="mt-2 px-6 py-3 bg-aramcoGreen font-semibold rounded-xl hover:scale-105 transition-transform duration-300 text-white">
               Send Message
             </Button>
           </motion.form>
