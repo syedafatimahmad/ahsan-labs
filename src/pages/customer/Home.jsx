@@ -1,31 +1,40 @@
 import { motion } from "framer-motion";
 import Navbar from "../../components/customer/Navbar";
 import Footer from "../../components/customer/Footer";
-import Card from "../../components/customer/Card";
 import Button from "../../components/customer/Button";
-
-import opsVideo from "../../assets/videos/operations.mp4"; // Make sure this path is correct
+import { Link } from "react-router-dom";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 50 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 };
 
-const projects = [
-  { title: "Project Alpha", description: "Next-gen RAN optimization.", video: opsVideo },
-  { title: "Project Beta", description: "AI-driven spectrum allocation.", video: opsVideo },
-  { title: "Project Gamma", description: "Firmware & embedded systems.", video: opsVideo },
-];
-
 export default function Home() {
+  const solutions = [
+    {
+      title: "Open RAN & Wi‑Fi 8",
+      desc: "Software-defined radio access networks and next-gen Wi‑Fi to maximize spectral efficiency.",
+      img: "https://i.pinimg.com/736x/88/39/9a/88399a231b3022513dfe43f1769a1aec.jpg",
+    },
+    {
+      title: "Wired Network Optimization",
+      desc: "Enhanced cable and edge networking through software-defined optimization on existing infrastructure.",
+      img: "https://www.cynergytech.com/wp-content/uploads/2022/12/network-cabling.jpg",
+    },
+    {
+      title: "Satellite Link Acceleration",
+      desc: "Maximize data throughput over satellite links with our adaptive coding and transport optimizations.",
+      img: "https://antesky.com/wp-content/uploads/2024/04/satellite-internet.jpg",
+    },
+  ];
+
   return (
     <>
       <Navbar />
 
       {/* Hero Section */}
-      <header className=" text-white py-24 md:py-36 text-center overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center opacity-20"></div>
-        <div className="relative z-10">
+      <header className="relative text-white py-24 md:py-36 text-center overflow-hidden ">
+        <div className="relative z-10 px-4">
           <motion.h1
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
@@ -47,51 +56,19 @@ export default function Home() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            <Button className="px-8 py-3 bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 text-white font-semibold rounded-lg shadow-lg transition-all duration-300">
-              Learn More
-            </Button>
+            <Link to="/services">
+              <button
+              type="submit"
+              className="
+                px-8 py-3 bg-gradient-to-r from-emerald-600 to-emerald-800 hover:from-emerald-500 hover:to-emerald-700 text-white rounded-lg font-semibold shadow-lg transition-all duration-300 hover:scale-105">
+              Our Services
+            </button>
+            </Link>
           </motion.div>
         </div>
       </header>
 
-      {/* Services Section */}
-      <section className="max-w-7xl mx-auto px-4 py-20">
-        <motion.h2
-          variants={fadeInUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="text-3xl md:text-4xl font-bold mb-12 text-center text-white"
-        >
-          Our Services
-        </motion.h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-          {["Open RAN Solutions", "AI Optimized Networks", "Firmware Development"].map((title, idx) => (
-            <motion.div
-              key={idx}
-              variants={fadeInUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.2 }}
-            >
-              <Card
-                title={title}
-                description={
-                  title === "Open RAN Solutions"
-                    ? "Software-defined radio access networks for modern telecom."
-                    : title === "AI Optimized Networks"
-                    ? "Machine learning algorithms to improve spectral efficiency."
-                    : "Optimized firmware for wireless devices."
-                }
-                className="hover:scale-105 transition-transform duration-300 shadow-xl rounded-xl"
-              />
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* Portfolio Section */}
+      {/* Our Solutions Section */}
       <section className="bg-gradient-to-tr from-black/20 via-white/5 to-black/20 py-20">
         <motion.h2
           variants={fadeInUp}
@@ -100,32 +77,102 @@ export default function Home() {
           viewport={{ once: true }}
           className="text-3xl md:text-4xl font-bold mb-12 text-center text-white"
         >
-          Portfolio
+          Our Solutions
         </motion.h2>
         <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-          {projects.map((proj, idx) => (
+          {solutions.map((s, idx) => (
             <motion.div
               key={idx}
               variants={fadeInUp}
-              
+              initial="hidden"
+              whileInView="visible"
               viewport={{ once: true }}
               transition={{ delay: idx * 0.2 }}
-              className="relative group rounded-xl overflow-hidden shadow-2xl"
+              className="bg-gray-800 rounded-3xl shadow-2xl overflow-hidden hover:scale-105 transition-transform duration-300"
             >
-              <video
-                src={proj.video}
-                className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110 group-hover:opacity-80"
-                muted
-                loop
-                autoPlay
-              />
-              <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <h3 className="text-xl font-bold text-white">{proj.title}</h3>
-                <p className="text-sm text-white">{proj.description}</p>
+              <div className="w-full h-48 overflow-hidden">
+                <img src={s.img} alt={s.title} className="w-full h-full object-cover" />
+              </div>
+              <div className="p-6 flex flex-col items-center text-center">
+                <h3 className="text-xl font-bold text-white mb-2">{s.title}</h3>
+                <p className="text-gray-300">{s.desc}</p>
               </div>
             </motion.div>
           ))}
         </div>
+      </section>
+
+      {/* Contact Us Section */}
+      <section className="relative py-20 px-4 sm:px-6 lg:px-20">
+        <motion.div
+          className="max-w-7xl mx-auto flex flex-col md:flex-row gap-12"
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
+          {/* Contact Info Card */}
+          <motion.div
+            className="flex-1 p-10 bg-black/40 backdrop-blur-md rounded-3xl shadow-2xl flex flex-col justify-center hover:shadow-3xl transition-shadow duration-300"
+            variants={fadeInUp}
+          >
+            <h3 className="text-3xl font-bold text-white mb-6">Get in Touch</h3>
+            <p className="text-gray-300 mb-4">
+              Email:{" "}
+              <a href="mailto:sales@ahsanalabs.com" className="text-aramcoGreen underline">
+                sales@ahsanalabs.com
+              </a>
+            </p>
+            <p className="text-gray-300 mb-4">
+              Phone:{" "}
+              <a href="tel:+1234567890" className="text-aramcoGreen underline">
+                +1 (234) 567-890
+              </a>
+            </p>
+            <p className="text-gray-300 mb-4">Address: 123 AhsanLabs Street, Tech City, Country</p>
+            <p className="text-gray-400">
+              Our team is ready to answer your questions and guide you through trials, POCs, or custom integrations.
+            </p>
+          </motion.div>
+
+          {/* Contact Form Card */}
+          <motion.form
+            className="flex-1 p-10 bg-black/40 backdrop-blur-md rounded-3xl shadow-2xl flex flex-col gap-5 hover:shadow-3xl transition-shadow duration-300"
+            variants={fadeInUp}
+            onSubmit={(e) => {
+              e.preventDefault();
+              alert("Form submitted!");
+            }}
+          >
+            <h3 className="text-3xl font-bold text-white mb-4">Send a Message</h3>
+            <input
+              type="text"
+              placeholder="Your Name"
+              className="p-4 rounded-xl bg-gray-700 text-white border border-gray-600 focus:border-aramcoGreen focus:ring-1 focus:ring-aramcoGreen outline-none transition-all"
+            />
+            <input
+              type="email"
+              placeholder="Your Email"
+              className="p-4 rounded-xl bg-gray-700 text-white border border-gray-600 focus:border-aramcoGreen focus:ring-1 focus:ring-aramcoGreen outline-none transition-all"
+            />
+            <input
+              type="text"
+              placeholder="Company (optional)"
+              className="p-4 rounded-xl bg-gray-700 text-white border border-gray-600 focus:border-aramcoGreen focus:ring-1 focus:ring-aramcoGreen outline-none transition-all"
+            />
+            <textarea
+              placeholder="Your Message"
+              rows={5}
+              className="p-4 rounded-xl bg-gray-700 text-white border border-gray-600 focus:border-aramcoGreen focus:ring-1 focus:ring-aramcoGreen outline-none transition-all"
+            ></textarea>
+            <Button
+              type="submit"
+              className="mt-2 px-6 py-3 bg-aramcoGreen font-semibold rounded-xl hover:scale-105 transition-transform duration-300  text-white"
+            >
+              Send Message
+            </Button>
+          </motion.form>
+        </motion.div>
       </section>
 
       <Footer />
