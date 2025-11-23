@@ -22,7 +22,7 @@ export default function Home() {
     {
       title: "Open RAN & Wi‑Fi 8",
       desc: "Software-defined radio access networks and next-gen Wi‑Fi to maximize spectral efficiency.",
-      img: "https://i.pinimg.com/736x/88/39/9a/88399a231b3022513dfe43f1769a1aec.jpg",
+      img: "https://www.shutterstock.com/shutterstock/videos/3447871571/thumb/12.jpg?ip=x480",
     },
     {
       title: "Wired Network Optimization",
