@@ -41,37 +41,58 @@ export default function Home() {
       <Navbar />
 
       {/* Hero Section */}
-      <header className="relative text-white py-24 md:py-36 text-center overflow-hidden">
-        <div className="relative z-10 px-4">
+      {/* Hero Section */}
+      <header className="relative text-white py-28 md:py-40 text-center overflow-hidden bg-gradient-to-b from-black/80 via-black/40 to-black/80">
+        {/* Optional subtle animated glow */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.15),transparent_70%)]"></div>
+
+        <div className="relative z-10 px-6">
           <motion.h1
-            initial={{ opacity: 0, y: -50 }}
+            initial={{ opacity: 0, y: -40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-4xl md:text-6xl font-extrabold mb-4 drop-shadow-lg"
+            transition={{ duration: 0.7 }}
+            className="text-4xl md:text-6xl font-extrabold mb-4 drop-shadow-xl tracking-tight"
           >
             Welcome to AhsanLabs
           </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
+
+          <motion.h2
+            initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-lg md:text-xl max-w-2xl mx-auto mb-8 drop-shadow-sm"
+            transition={{ duration: 0.7, delay: 0.15 }}
+            className="text-2xl md:text-3xl font-bold mb-6 drop-shadow-md tracking-wide text-[#41b48ea9]"
           >
-            Innovative solutions in wireless communication and software-driven networks.
-          </motion.p>
+            Spectrally Efficient Communications
+          </motion.h2>
+
+          <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="text-lg md:text-xl max-w-3xl mx-auto mb-10 leading-relaxed text-gray-200 drop-shadow-sm"
+        >
+          <span className="font-semibold text-white">AhsanLabs</span> develops advanced 
+          <span className="font-semibold text-white"> software</span> and 
+          <span className="font-semibold text-white"> firmware-based technologies</span> designed to significantly enhance the capacity of modern digital networks, including Cellular, WiFi, IoT, Cable, and Satellite systems. 
+          Our innovations elevate the <span className="font-semibold text-white">spectral efficiency</span> of these networks, enabling operators to deliver faster, more reliable connectivity while reducing overall 
+          <span className="font-semibold text-white"> cost-per-bit</span>.
+        </motion.p>
+
+
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            transition={{ duration: 0.8, delay: 0.55 }}
           >
             <Link to="/services">
-              <button className="px-8 py-3 bg-gradient-to-r from-emerald-600 to-emerald-800 hover:from-emerald-500 hover:to-emerald-700 text-white rounded-lg font-semibold shadow-lg transition-all duration-300 hover:scale-105">
+              <button className="px-10 py-4 bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-500 hover:to-emerald-600 text-white rounded-xl text-lg font-semibold shadow-2xl backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:shadow-[0_0_25px_rgba(5,150,105,0.5)]">
                 Our Services
               </button>
             </Link>
           </motion.div>
         </div>
       </header>
+
 
       {/* Solutions Section */}
       <section className="bg-gradient-to-tr from-black/20 via-white/5 to-black/20 py-20">
