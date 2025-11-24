@@ -27,7 +27,7 @@ export default function About() {
   const documents = [
     { title: "Indoor 5G NR validation", description: "End-to-end validation across MCS, CQI, scheduling, and multi-user PHY interactions."},
     { title: "Outdoor FWA trials", description: "Real-world trials measuring per-UE throughput, cell-edge speed, and sector capacity improvements."},
-    { title: "Joint publications", description: "ANSpect supports joint research publications and sharing of test results with operators and vendors."},
+    { title: "Joint publications", description: "AhsanLabs supports joint research publications and sharing of test results with operators and vendors."},
   ];
 
   const timeline = [
@@ -48,7 +48,7 @@ export default function About() {
       title: "Network Solutions Architect",
       location: "Remote / Europe",
       type: "Full-Time",
-      description: "Design end-to-end network solutions leveraging ANSpect PHY capabilities and Open RAN technologies."
+      description: "Design end-to-end network solutions leveraging AhsanLabs PHY capabilities and Open RAN technologies."
     },
     {
       title: "Test & Validation Engineer",
@@ -90,7 +90,7 @@ export default function About() {
             About Ahsan Labs
           </h1>
 
-          <p className="text-base md:text-xl leading-relaxed mx-auto max-w-4xl text-gray-100/90 backdrop-blur-sm p-6 rounded-2xl bg-white/5 shadow-lg border border-white/10">
+          <p className="text-left text-base md:text-xl leading-relaxed mx-auto max-w-4xl text-gray-100/90 backdrop-blur-sm p-6 rounded-2xl bg-white/5 shadow-lg border border-white/10">
             Ahsan Labs, led by Dr. Ahsan Naim—inventor on 150+ issued patents and former CTO at multiple wireless companies—is built by wireless inventors, not just coders. Our software-defined PHY technology turns existing spectrum and hardware into dramatically higher wireless capacity. From mmWave FWA to 4G/5G RAN and DOCSIS, our team brings decades of experience turning theoretical gains into deployable products, pushing the boundaries of 4G, 5G, and future 6G systems with advanced PHY-layer intelligence and real-world research.
           </p>
         </motion.div>
@@ -156,12 +156,12 @@ export default function About() {
 
         {/* PHY Engine */}
         <section id="phy engine" aria-labelledby="phy-heading" className="text-center">
-          <h2 id="phy engine" className="text-3xl md:text-4xl font-bold mb-8">Inside the ANSpect PHY Engine</h2>
+          <h2 id="phy engine" className="text-3xl md:text-4xl font-bold mb-8">Inside AhsanLabs PHY Engine</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {phyPoints.map((item, idx) => (
               <motion.article key={idx} whileHover={{ y: -6 }} className="p-8 rounded-2xl bg-gradient-to-br from-gray-900/30 to-black/30 border border-white/6 shadow-xl">
                 <h3 className="text-lg font-semibold text-aramcoGreen mb-2">{item.title}</h3>
-                <p className="text-gray-300 text-sm leading-relaxed">{item.description}</p>
+                <p className="text-gray-300 text-left text-sm leading-relaxed">{item.description}</p>
               </motion.article>
             ))}
           </div>

@@ -23,7 +23,7 @@ export default function Home() {
     { title: "Enterprise Wireless Network", desc: "Supercharge enterprise Wi-Fi and private cellular deployments with software-defined enhancements.", img: "https://i.ytimg.com/vi/tZdwWGrzqLM/mqdefault.jpg" },
     { title: "Cable Network", desc: "Enhance DOCSIS and other cable networks through adaptive software modules.", img: "https://i.pinimg.com/736x/74/d4/9a/74d49ac3a627d1618e218d3aa5810a3e.jpg" },
     { title: "Satellite Data Network", desc: "Improve satellite broadband performance with adaptive coding and transport optimizations.", img: "https://img.yicaiglobal.com/src/image/2021/06/13986680235360256.jpg" },
-    { title: "Tiered Licensing & Add-On Revenue", desc: "Package ANSpect as a 'Super Capacity Mode' add-on that unlocks extra throughput per sector, generating higher recurring software revenue without new hardware.", img: "https://i.pinimg.com/736x/8c/a0/14/8ca014414af7c9535ad63917fa87f801.jpg" },
+    { title: "Tiered Licensing & Add-On Revenue", desc: "Package AhsanLabs as a 'Super Capacity Mode' add-on that unlocks extra throughput per sector, generating higher recurring software revenue without new hardware.", img: "https://i.pinimg.com/736x/8c/a0/14/8ca014414af7c9535ad63917fa87f801.jpg" },
     { title: "Easy Deployment / No New Hardware", desc: "Drops into existing PHY/RLC/MAC stack with no new spectrum or RF upgrades required, simplifying deployment on current infrastructure.", img: "https://i.pinimg.com/1200x/9a/79/03/9a790369ff4a5d3e9ba82b3ddfcd6153.jpg" }
   ];
 
@@ -50,7 +50,7 @@ export default function Home() {
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }}
             className="text-base md:text-xl text-left max-w-3xl mx-auto leading-relaxed bg-gradient-to-b from-black/50 to-transparent p-6 rounded-2xl text-gray-200 shadow-lg"
           >
-            AhsanLab's patented PHY engine, boosts RAN throughput by 40–60% using software-only upgrades — no new spectrum, no new antennas, just smarter bits. Built on AhsanLabs’ suite of advanced software and firmware technologies, ANSpect and our other innovations enhance the capacity and spectral efficiency of modern digital networks, including Cellular, WiFi, IoT, Cable, and Satellite systems. Operators can deliver faster, more reliable connectivity while reducing overall cost-per-bit.
+            AhsanLab's patented PHY engine, boosts RAN throughput by 40–60% using software-only upgrades — no new spectrum, no new antennas, just smarter bits. Built on AhsanLabs’ suite of advanced software and firmware technologies, AhsanLabs and our other innovations enhance the capacity and spectral efficiency of modern digital networks, including Cellular, WiFi, IoT, Cable, and Satellite systems. Operators can deliver faster, more reliable connectivity while reducing overall cost-per-bit.
           </motion.p>
 
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.55 }}>

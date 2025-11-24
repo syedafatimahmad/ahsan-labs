@@ -59,7 +59,7 @@ export default function Newsletter() {
 
       <section className="max-w-6xl mx-auto px-6 py-16 bg-black/50 backdrop-blur-lg rounded-3xl text-white shadow-xl">
         <h1 className="text-3xl md:text-4xl font-bold mb-4 text-center">Subscribe to Our Newsletter</h1>
-        <p className="mb-10 text-gray-300 text-center text-lg">
+        <p className="mb-10 text-gray-300 text-center text-lg text-left">
           Stay updated with AhsanLabs — new research, product updates, wireless technology insights, and engineering breakthroughs delivered straight to your inbox.
         </p>
 
