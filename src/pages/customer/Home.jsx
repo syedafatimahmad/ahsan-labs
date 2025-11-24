@@ -16,7 +16,7 @@ export default function Home() {
   }, [location]);
 
   const solutions = [
-    { title: "Open RAN & Wi‑Fi 8", desc: "Software-defined optimization for next-gen Wi-Fi and open RAN infrastructures.", img: "https://www.shutterstock.com/shutterstock/videos/3447871571/thumb/12.jpg?ip=x480" },
+    { title: "Open RAN & Wi‑Fi", desc: "Software-defined optimization for next-gen Wi-Fi and open RAN infrastructures.", img: "https://www.shutterstock.com/shutterstock/videos/3447871571/thumb/12.jpg?ip=x480" },
     { title: "Wired Network Optimization", desc: "Enhanced cable and edge networking through software-defined optimization on existing infrastructure.", img: "https://www.cynergytech.com/wp-content/uploads/2022/12/network-cabling.jpg" },
     { title: "Satellite Link Acceleration", desc: "Maximize data throughput over satellite links with our adaptive coding and transport optimizations.", img: "https://antesky.com/wp-content/uploads/2024/04/satellite-internet.jpg" },
     { title: "Super Capacity Mode", desc: "Boost 4G, 5G, and 6G network capacity with 40–60% more throughput per sector.", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIUQt86TVeLOGTb_I_h65r9TYl-Mh8Y0cISmeVyF6IQAEAicDx" },
@@ -48,9 +48,9 @@ export default function Home() {
           </motion.h2>
 
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-base md:text-xl max-w-3xl mx-auto leading-relaxed bg-gradient-to-b from-black/50 to-transparent p-6 rounded-2xl text-gray-200 shadow-lg"
+            className="text-base md:text-xl text-left max-w-3xl mx-auto leading-relaxed bg-gradient-to-b from-black/50 to-transparent p-6 rounded-2xl text-gray-200 shadow-lg"
           >
-            ANSpect, AhsanLabs’ patented PHY engine, boosts RAN throughput by 40–60% using software-only upgrades — no new spectrum, no new antennas, just smarter bits. Built on AhsanLabs’ suite of advanced software and firmware technologies, ANSpect and our other innovations enhance the capacity and spectral efficiency of modern digital networks, including Cellular, WiFi, IoT, Cable, and Satellite systems. Operators can deliver faster, more reliable connectivity while reducing overall cost-per-bit.
+            AhsanLab's patented PHY engine, boosts RAN throughput by 40–60% using software-only upgrades — no new spectrum, no new antennas, just smarter bits. Built on AhsanLabs’ suite of advanced software and firmware technologies, ANSpect and our other innovations enhance the capacity and spectral efficiency of modern digital networks, including Cellular, WiFi, IoT, Cable, and Satellite systems. Operators can deliver faster, more reliable connectivity while reducing overall cost-per-bit.
           </motion.p>
 
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.55 }}>
@@ -79,7 +79,7 @@ export default function Home() {
               </div>
               <div className="p-6 flex flex-col items-center text-center">
                 <h3 className="text-xl font-bold text-white mb-2">{s.title}</h3>
-                <p className="text-gray-300">{s.desc}</p>
+                <p className="text-gray-300 text-left">{s.desc}</p>
               </div>
             </motion.div>
           ))}
