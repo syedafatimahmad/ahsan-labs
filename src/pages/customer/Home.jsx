@@ -50,7 +50,7 @@ export default function Home() {
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }}
             className="text-base md:text-xl text-left max-w-3xl mx-auto leading-relaxed bg-gradient-to-b from-black/50 to-transparent p-6 rounded-2xl text-gray-200 shadow-lg"
           >
-            AhsanLab's patented PHY engine, boosts RAN throughput by 40–60% using software-only upgrades — no new spectrum, no new antennas, just smarter bits. Built on AhsanLabs’ suite of advanced software and firmware technologies, AhsanLabs and our other innovations enhance the capacity and spectral efficiency of modern digital networks, including Cellular, WiFi, IoT, Cable, and Satellite systems. Operators can deliver faster, more reliable connectivity while reducing overall cost-per-bit.
+            AhsanLabs patented PHY engine, boosts RAN throughput by 40–60% using software-only upgrades — no new spectrum, no new antennas, just smarter bits. Built on AhsanLabs suite of advanced software and firmware technologies, AhsanLabs and our other innovations enhance the capacity and spectral efficiency of modern digital networks, including Cellular, WiFi, IoT, Cable, and Satellite systems. Operators can deliver faster, more reliable connectivity while reducing overall cost-per-bit.
           </motion.p>
 
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.55 }}>
