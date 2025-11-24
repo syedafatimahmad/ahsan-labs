@@ -3,6 +3,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Settings } from "lucide-react";
 
+import logo from "../../assets/logo.svg";
+
+
 export default function Navbar() {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
@@ -19,9 +22,16 @@ export default function Navbar() {
     <nav className="bg-gray-900 text-white px-6 py-4 flex justify-between items-center z-50 relative">
       
       {/* Logo */}
-      <div className="text-2xl font-bold">
-        <Link to="/">AhsanLabs</Link>
+      <div className="flex items-center gap-2">
+        <Link to="/">
+          <img 
+            src={logo} 
+            alt="AhsanLabs Logo" 
+            className="h-10 w-auto object-contain" 
+          />
+        </Link>
       </div>
+
 
       {/* Mobile Hamburger */}
       <button
@@ -38,6 +48,7 @@ export default function Navbar() {
         <Link to="/newsletter" className="hover:text-gray-300">Newsletter</Link>
         <Link to="/about" className="hover:text-gray-300">About Us</Link>
 
+        {/*Admin Dashboard
         <div className="relative">
           {token ? (
             <>
@@ -73,7 +84,7 @@ export default function Navbar() {
               <Settings className="w-6 h-6 cursor-pointer hover:opacity-80" />
             </Link>
           )}
-        </div>
+        </div>*/}
       </div>
 
       {/* Mobile Dropdown */}
@@ -84,7 +95,7 @@ export default function Navbar() {
           <Link to="/services" onClick={() => setMenuOpen(false)} className="hover:text-gray-300">Services</Link>
           <Link to="/newsletter" onClick={() => setMenuOpen(false)} className="hover:text-gray-300">Newsletter</Link>
 
-          {token ? (
+          {/*token ? (
             <>
               <Link
                 to="/admin/dashboard"
@@ -111,7 +122,7 @@ export default function Navbar() {
             >
               Admin Login
             </Link>
-          )}
+          )*/}
         </div>
       )}
     </nav>
