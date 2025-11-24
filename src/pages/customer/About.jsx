@@ -11,6 +11,7 @@ import TimelineItem from "../../components/customer/TimelineItem";
 import opsVideo from "../../assets/videos/operations.mp4";
 import sustVideo from "../../assets/videos/sustainability.mp4";
 
+
 export default function About() {
   const stats = [
     { title: "Issued US & international patents", value: "150+" },
@@ -155,7 +156,7 @@ export default function About() {
         </section>
 
         {/* PHY Engine */}
-        <section id="phy engine" aria-labelledby="phy-heading" className="text-center">
+        <section id="phyengine" aria-labelledby="phy-heading" className="text-center">
           <h2 id="phy engine" className="text-3xl md:text-4xl font-bold mb-8">Inside AhsanLabs PHY Engine</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {phyPoints.map((item, idx) => (
@@ -196,7 +197,7 @@ export default function About() {
             </div>
           </div>
 
-          <aside className="space-y-6">
+          <aside id ="research" className="space-y-6">
             <h3 className="text-xl font-semibold">Proven on Real 5G Testbeds</h3>
             <div className="space-y-4">
               {documents.map((d, i) => (

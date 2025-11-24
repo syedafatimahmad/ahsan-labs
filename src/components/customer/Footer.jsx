@@ -38,7 +38,7 @@ export default function Footer() {
                 </li>
                 <li>
                   <button
-                    onClick={() => scrollToSection("/about", "phy engine")}
+                    onClick={() => scrollToSection("/about", "phyengine")}
                     className="hover:text-aramcoGreen transition"
                   >
                     PHY Engine
