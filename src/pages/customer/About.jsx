@@ -98,7 +98,6 @@ export default function About() {
 
       <main className="space-y-28 px-4 md:px-8 lg:px-20 py-16">
 
-        {/* Premium Stats Section */}
         <section aria-labelledby="stats-heading">
           <h2 id="stats-heading" className="sr-only">At a Glance</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
