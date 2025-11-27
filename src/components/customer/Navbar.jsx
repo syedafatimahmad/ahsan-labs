@@ -68,7 +68,7 @@ export default function Navbar() {
   return (
     <nav
       ref={navRef}
-      className="text-white px-10 py-3 flex items-center justify-between z-50 fix top-0 left-0 w-full bg-black/10"
+      className="text-white px-10 py-3 flex items-center justify-between z-50 fixed top-0 left-0 w-full bg-black/10"
       
     >
 
@@ -162,7 +162,8 @@ export default function Navbar() {
 
       {/* MOBILE DROPDOWN */}
       {open && (
-        <div className="absolute top-full left-0 w-full bg-gray-900 md:hidden shadow-lg">
+        <div className="absolute top-full left-0 w-full bg-gradient-to-r from-blue-800 to-gray-900 md:hidden shadow-xl z-50">
+
           <div className="flex flex-col px-6 py-4 gap-3 text-lg">
             <Link
               to="/services"

@@ -32,7 +32,7 @@ export default function Home() {
       <Navbar />
 
       {/* Hero Section with gradient text shadow */}
-      <header className="relative text-white py-32 md:py-25 text-center overflow-hidden">
+      <header className="relative text-white py-32 md:py-35 text-center overflow-hidden">
         <div className="absolute inset-0"></div> {/* Dark overlay to improve readability */}
         <div className="relative z-10 px-6">
           <motion.h1 initial={{ opacity: 0, y: -40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}
