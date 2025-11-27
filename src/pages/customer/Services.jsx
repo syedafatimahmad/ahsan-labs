@@ -19,7 +19,7 @@ const services = [
     icon: CpuChipIcon,
     title: "Advanced PHY-Layer Intelligence",
     subtitle: "Smarter modulation, higher capacity.",
-    desc: "AhsanLabs enhances the physical layer with advanced signal processing techniques that unlock hidden efficiency in existing wireless systems — no hardware refresh required."
+    desc: "ANSpect enhances the physical layer with advanced signal processing techniques that unlock hidden efficiency in existing wireless systems — no hardware refresh required."
   },
   {
     id: "constellation",
@@ -62,39 +62,41 @@ export default function Services() {
   return (
     <>
       <Navbar />
-      <section className="relative py-16 text-gray-100">
-        <div className="container mx-auto px-6 lg:px-12">
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <h2 className="text-3xl sm:text-4xl font-extrabold leading-tight">Our Services</h2>
-            <p className="text-left mt-4 text-gray-200">
-              AhsanLabs builds software and firmware that push networks beyond their expected limits — cellular, WiFi, IoT, cable and satellite. We improve spectral efficiency so operators deliver more capacity at a lower cost-per-bit.
-            </p>
-          </div>
+      
+        <section className="relative py-16 text-gray-100">
+          <div className="container mx-auto px-6 lg:px-12">
+            <div className="text-center max-w-3xl mx-auto mb-12">
+              <h2 className="text-3xl sm:text-4xl font-extrabold leading-tight">Our Services</h2>
+              <p className="text-left mt-4 text-gray-200">
+                AhsanLabs builds software and firmware that push networks beyond their expected limits — cellular, WiFi, IoT, cable and satellite. We improve spectral efficiency so operators deliver more capacity at a lower cost-per-bit.
+              </p>
+            </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((s) => (
-              <article
-                key={s.id}
-                className="bg-opacity-70 backdrop-blur-lg rounded-2xl p-6 flex flex-col shadow-lg hover:shadow-2xl transition-shadow duration-200"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="flex-none w-14 h-14 bg-gradient-to-br from-aramcoGreen to-green-500 rounded-xl flex items-center justify-center">
-                    <s.icon className="w-7 h-7 text-white" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {services.map((s) => (
+                <article
+                  key={s.id}
+                  className="bg-opacity-70 backdrop-blur-lg rounded-2xl p-6 flex flex-col shadow-lg hover:shadow-2xl transition-shadow duration-200"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="flex-none w-14 h-14 bg-gradient-to-br from-blue-700 to-blue-950 rounded-xl flex items-center justify-center">
+                      <s.icon className="w-7 h-7 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold">{s.title}</h3>
+                      <p className="text-sm text-aramcoGreen mt-1">{s.subtitle}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-lg font-semibold">{s.title}</h3>
-                    <p className="text-sm text-aramcoGreen mt-1">{s.subtitle}</p>
-                  </div>
-                </div>
 
-                <p className="mt-4 text-sm text-gray-200 flex-1">{s.desc}</p>
+                  <p className="mt-4 text-sm text-gray-200 flex-1">{s.desc}</p>
 
 
-              </article>
-            ))}
+                </article>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+    
       <Footer />
     </>
   );

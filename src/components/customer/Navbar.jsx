@@ -1,196 +1,262 @@
-// src/components/Navbar.jsx
-import { Link, useNavigate, useLocation } from "react-router-dom";
-import { useState } from "react";
-import logo from "../../assets/logo.svg";
+import React, { useEffect, useRef, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import logo from "../../assets/images/logo.png"; // adjust if needed
 
 export default function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+  const navRef = useRef(null);
 
-  const scrollToSection = (path, id) => {
-    navigate(path + "#" + id);
+  const blueGradient =
+    "after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[3px] after:bg-gradient-to-r after:from-[#7cb5ff] after:to-[#438dff] after:rounded-full";
 
-    setTimeout(() => {
-      const el = document.getElementById(id);
-      if (el) el.scrollIntoView({ behavior: "smooth" });
-    }, 150);
+  const isPathActive = (path) => location.pathname === path;
+  const isHashActive = (hash) => location.hash === `#${hash}`;
+
+  const underline = (active) =>
+  `relative after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[3px]
+   after:bg-gradient-to-r after:from-blue-600 after:to-blue-950 after:rounded-full
+   after:transition-opacity after:duration-300
+   ${active ? "after:opacity-100" : "after:opacity-0 hover:after:opacity-100"}`;
+
+
+  const goTo = (path, id = "") => {
+    navigate(id ? `${path}#${id}` : path);
   };
 
-  const isActive = (path) => location.pathname === path;
+  // Hash-based scrolling
+  useEffect(() => {
+    if (!location.hash) return;
+    const id = location.hash.replace("#", "");
 
-  // Helper for mobile active styling
-  const mobileActive = (condition) =>
-    condition ? "border-l-4 border-green-500 pl-3 text-green-400" : "text-white";
+    const scrollToElement = () => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+        return true;
+      }
+      return false;
+    };
+
+    if (scrollToElement()) return;
+
+    const observer = new MutationObserver(() => {
+      if (scrollToElement()) observer.disconnect();
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+    const timeout = setTimeout(() => observer.disconnect(), 2000);
+    return () => {
+      observer.disconnect();
+      clearTimeout(timeout);
+    };
+  }, [location]);
+
+  useEffect(() => setOpen(false), [location.pathname, location.hash]);
+
+  useEffect(() => {
+    const clickOutside = (e) => {
+      if (open && navRef.current && !navRef.current.contains(e.target)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", clickOutside);
+    return () => document.removeEventListener("mousedown", clickOutside);
+  }, [open]);
 
   return (
-    <nav className="bg-gray-900 text-white px-6 py-4 flex justify-between items-center z-50 relative">
+    <nav
+      ref={navRef}
+      className="text-white px-10 py-3 flex items-center justify-between z-50 fix top-0 left-0 w-full bg-black/10"
+      
+    >
 
       {/* Logo */}
       <Link to="/" className="flex items-center">
-        <img src={logo} alt="Logo" className="h-10 object-contain" />
+        <img
+          src={logo}
+          alt="Logo"
+          className="h-12 px-4 w-auto object-contain transform scale-250" // Increased size
+        />
       </Link>
 
-      {/* Mobile Menu Button */}
-      <button
-        className="md:hidden text-white text-3xl focus:outline-none"
-        onClick={() => setMenuOpen(!menuOpen)}
-      >
-        ☰
-      </button>
-
-      {/* Desktop Menu */}
-      <div className="hidden md:flex space-x-6 items-center">
-
+      {/* Desktop Navigation (right-aligned) */}
+      <div className="hidden md:flex items-center gap-8 ml-auto">
         <Link
           to="/services"
-          className={`hover:text-gray-300 relative ${
-            isActive("/services")
-              ? "after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[3px] after:bg-gradient-to-r after:from-green-400 after:to-green-600 after:rounded-full"
-              : ""
-          }`}
+          className={underline(isPathActive("/services"))}
         >
           Products
         </Link>
 
         <button
-          onClick={() => scrollToSection("/", "solutions")}
-          className={`hover:text-gray-300 relative ${
-            location.hash === "#solutions"
-              ? "after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[3px] after:bg-gradient-to-r after:from-green-400 after:to-green-600 after:rounded-full"
-              : ""
-          }`}
+          onClick={() => goTo("/", "solutions")}
+          className={underline(isHashActive("solutions"))}
         >
           Solutions
         </button>
 
         <button
-          onClick={() => scrollToSection("/about", "phyengine")}
-          className={`hover:text-gray-300 relative ${
-            location.hash === "#phyengine"
-              ? "after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[3px] after:bg-gradient-to-r after:from-green-400 after:to-green-600 after:rounded-full"
-              : ""
-          }`}
+          onClick={() => goTo("/about", "phyengine")}
+          className={underline(isHashActive("phyengine"))}
         >
           Technology
         </button>
 
         <button
-          onClick={() => scrollToSection("/about", "research")}
-          className={`hover:text-gray-300 relative ${
-            location.hash === "#research"
-              ? "after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[3px] after:bg-gradient-to-r after:from-green-400 after:to-green-600 after:rounded-full"
-              : ""
-          }`}
+          onClick={() => goTo("/about", "research")}
+          className={underline(isHashActive("research"))}
         >
           Research
         </button>
 
         <button
-          onClick={() => scrollToSection("/about", "top")}
-          className={`hover:text-gray-300 relative ${
+          onClick={() => navigate("/about#top")}
+          className={underline(
             location.pathname === "/about" &&
             (location.hash === "" || location.hash === "#top")
-              ? "after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[3px] after:bg-gradient-to-r after:from-green-400 after:to-green-600 after:rounded-full"
-              : ""
-          }`}
-        >
+          )}>
           Company
         </button>
 
+
+
         <Link
           to="/newsletter"
-          className={`hover:text-gray-300 relative ${
-            isActive("/newsletter")
-              ? "after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[3px] after:bg-gradient-to-r after:from-green-400 after:to-green-600 after:rounded-full"
-              : ""
-          }`}
+          className={underline(isPathActive("/newsletter"))}
         >
           Newsletter
         </Link>
 
         <button
-          onClick={() => scrollToSection("/", "contact")}
-          className={`hover:text-gray-300 relative ${
-            location.hash === "#contact"
-              ? "after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[3px] after:bg-gradient-to-r after:from-green-400 after:to-green-600 after:rounded-full"
-              : ""
-          }`}
+          onClick={() => goTo("/", "contact")}
+          className={underline(isHashActive("contact"))}
         >
           Talk to Us
         </button>
       </div>
 
-      {/* Mobile Dropdown */}
-      {menuOpen && (
-        <div className="absolute top-16 left-0 w-full bg-gray-900 flex flex-col space-y-3 px-6 py-5 md:hidden z-50 animate-slide-down">
+      {/* MOBILE MENU BUTTON */}
+      <button
+        className="md:hidden relative w-10 h-10 flex items-center justify-center"
+        onClick={() => setOpen(!open)}
+        aria-label="Toggle menu"
+      >
+        <span
+          className={`block absolute h-[2px] w-6 bg-white transition duration-300 ${
+            open ? "rotate-45" : "-translate-y-2"
+          }`}
+        />
+        <span
+          className={`block absolute h-[2px] w-6 bg-white transition duration-300 ${
+            open ? "opacity-0" : ""
+          }`}
+        />
+        <span
+          className={`block absolute h-[2px] w-6 bg-white transition duration-300 ${
+            open ? "-rotate-45" : "translate-y-2"
+          }`}
+        />
+      </button>
 
-          <Link
-            to="/services"
-            onClick={() => setMenuOpen(false)}
-            className={`py-2 text-lg font-medium ${mobileActive(isActive("/services"))}`}
-          >
-            Products
-          </Link>
+      {/* MOBILE DROPDOWN */}
+      {open && (
+        <div className="absolute top-full left-0 w-full bg-gray-900 md:hidden shadow-lg">
+          <div className="flex flex-col px-6 py-4 gap-3 text-lg">
+            <Link
+              to="/services"
+              onClick={() => setOpen(false)}
+              className={`py-2 ${
+                isPathActive("/services")
+                  ? "border-l-4 border-[#7cb5ff] pl-3 text-[#cfe2ff]"
+                  : "text-white"
+              }`}
+            >
+              Products
+            </Link>
 
-          <button
-            onClick={() => {
-              scrollToSection("/", "solutions");
-              setMenuOpen(false);
-            }}
-            className={`py-2 text-lg font-medium text-left ${mobileActive(location.hash === "#solutions")}`}
-          >
-            Solutions
-          </button>
+            <button
+              onClick={() => {
+                goTo("/", "solutions");
+                setOpen(false);
+              }}
+              className={`py-2 text-left ${
+                isHashActive("solutions")
+                  ? "border-l-4 border-[#7cb5ff] pl-3 text-[#cfe2ff]"
+                  : "text-white"
+              }`}
+            >
+              Solutions
+            </button>
 
-          <button
-            onClick={() => {
-              scrollToSection("/about", "phyengine");
-              setMenuOpen(false);
-            }}
-            className={`py-2 text-lg font-medium text-left ${mobileActive(location.hash === "#phyengine")}`}
-          >
-            Technology
-          </button>
+            <button
+              onClick={() => {
+                goTo("/about", "phyengine");
+                setOpen(false);
+              }}
+              className={`py-2 text-left ${
+                isHashActive("phyengine")
+                  ? "border-l-4 border-[#7cb5ff] pl-3 text-[#cfe2ff]"
+                  : "text-white"
+              }`}
+            >
+              Technology
+            </button>
 
-          <button
-            onClick={() => {
-              scrollToSection("/about", "research");
-              setMenuOpen(false);
-            }}
-            className={`py-2 text-lg font-medium text-left ${mobileActive(location.hash === "#research")}`}
-          >
-            Research
-          </button>
+            <button
+              onClick={() => {
+                goTo("/about", "research");
+                setOpen(false);
+              }}
+              className={`py-2 text-left ${
+                isHashActive("research")
+                  ? "border-l-4 border-[#7cb5ff] pl-3 text-[#cfe2ff]"
+                  : "text-white"
+              }`}
+            >
+              Research
+            </button>
 
-          <Link
-            to="/about"
-            onClick={() => setMenuOpen(false)}
-            className={`py-2 text-lg font-medium ${mobileActive(
-              location.pathname === "/about" &&
-              (location.hash === "" || location.hash === "#top")
-            )}`}
-          >
-            Company
-          </Link>
+            <Link
+              to="/about"
+              onClick={() => setOpen(false)}
+              className={`py-2 ${
+                location.pathname === "/about" &&
+                (location.hash === "" || location.hash === "#top")
+                  ? "border-l-4 border-[#7cb5ff] pl-3 text-[#cfe2ff]"
+                  : "text-white"
+              }`}
+            >
+              Company
+            </Link>
 
-          <Link
-            to="/newsletter"
-            onClick={() => setMenuOpen(false)}
-            className={`py-2 text-lg font-medium ${mobileActive(isActive("/newsletter"))}`}
-          >
-            Newsletter
-          </Link>
+            <Link
+              to="/newsletter"
+              onClick={() => setOpen(false)}
+              className={`py-2 ${
+                isPathActive("/newsletter")
+                  ? "border-l-4 border-[#7cb5ff] pl-3 text-[#cfe2ff]"
+                  : "text-white"
+              }`}
+            >
+              Newsletter
+            </Link>
 
-          <button
-            onClick={() => {
-              scrollToSection("/", "contact");
-              setMenuOpen(false);
-            }}
-            className={`py-2 text-lg font-medium text-left ${mobileActive(location.hash === "#contact")}`}
-          >
-            Talk to Us
-          </button>
+            <button
+              onClick={() => {
+                goTo("/", "contact");
+                setOpen(false);
+              }}
+              className={`py-2 text-left ${
+                isHashActive("contact")
+                  ? "border-l-4 border-[#7cb5ff] pl-3 text-[#cfe2ff]"
+                  : "text-white"
+              }`}
+            >
+              Talk to Us
+            </button>
+          </div>
         </div>
       )}
     </nav>

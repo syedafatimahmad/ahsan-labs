@@ -28,14 +28,14 @@ export default function About() {
   const documents = [
     { title: "Indoor 5G NR validation", description: "End-to-end validation across MCS, CQI, scheduling, and multi-user PHY interactions."},
     { title: "Outdoor FWA trials", description: "Real-world trials measuring per-UE throughput, cell-edge speed, and sector capacity improvements."},
-    { title: "Joint publications", description: "AhsanLabs supports joint research publications and sharing of test results with operators and vendors."},
+    { title: "Joint publications", description: "ANSpect supports joint research publications and sharing of test results with operators and vendors."},
   ];
 
   const timeline = [
     { year: "Early Work", title: "Foundations in Wireless Engineering", description: "Initial research in modulation, channel estimation, and PHY-layer innovation begins, forming the basis for high-capacity wireless systems." },
     { year: "Breakthroughs", title: "Advanced PHY Techniques", description: "Development of block-sparse constellation mapping and cross-user capacity embedding — techniques later validated on real 5G NR testbeds." },
     { year: "Collaboration", title: "Academic & Industry Testbeds", description: "Extensive indoor and outdoor 5G trials conducted with partners to validate throughput gains, scheduler behavior, and cell-edge performance." },
-    { year: "Today", title: "Scaling Next-Gen Wireless", description: "AhsanLabs continues advancing PHY-layer software for cellular, WiFi, DOCSIS, and mmWave systems, enabling operators to achieve higher capacity without new hardware." },
+    { year: "Today", title: "Scaling Next-Gen Wireless", description: "ANSpect continues advancing PHY-layer software for cellular, WiFi, DOCSIS, and mmWave systems, enabling operators to achieve higher capacity without new hardware." },
   ];
 
   const careers = [
@@ -49,7 +49,7 @@ export default function About() {
       title: "Network Solutions Architect",
       location: "Remote / Europe",
       type: "Full-Time",
-      description: "Design end-to-end network solutions leveraging AhsanLabs PHY capabilities and Open RAN technologies."
+      description: "Design end-to-end network solutions leveraging ANSpect PHY capabilities and Open RAN technologies."
     },
     {
       title: "Test & Validation Engineer",
@@ -68,7 +68,7 @@ export default function About() {
   return (
     <div className="min-h-screen bg-black text-white font-body">
       <Navbar />
-
+      
       {/* Premium Hero */}
       <header className="relative w-full h-[72vh] flex items-center justify-center text-white overflow-hidden">
         <video
@@ -157,7 +157,7 @@ export default function About() {
 
         {/* PHY Engine */}
         <section id="phyengine" aria-labelledby="phy-heading" className="text-center">
-          <h2 id="phy engine" className="text-3xl md:text-4xl font-bold mb-8">Inside AhsanLabs PHY Engine</h2>
+          <h2 id="phy engine" className="text-3xl md:text-4xl font-bold mb-8">Inside ANSpect PHY Engine</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {phyPoints.map((item, idx) => (
               <motion.article key={idx} whileHover={{ y: -6 }} className="p-8 rounded-2xl bg-gradient-to-br from-gray-900/30 to-black/30 border border-white/6 shadow-xl">

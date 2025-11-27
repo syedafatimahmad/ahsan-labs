@@ -23,7 +23,7 @@ export default function Home() {
     { title: "Enterprise Wireless Network", desc: "Supercharge enterprise Wi-Fi and private cellular deployments with software-defined enhancements.", img: "https://i.ytimg.com/vi/tZdwWGrzqLM/mqdefault.jpg" },
     { title: "Cable Network", desc: "Enhance DOCSIS and other cable networks through adaptive software modules.", img: "https://i.pinimg.com/736x/74/d4/9a/74d49ac3a627d1618e218d3aa5810a3e.jpg" },
     { title: "Satellite Data Network", desc: "Improve satellite broadband performance with adaptive coding and transport optimizations.", img: "https://img.yicaiglobal.com/src/image/2021/06/13986680235360256.jpg" },
-    { title: "Tiered Licensing & Add-On Revenue", desc: "Package AhsanLabs as a 'Super Capacity Mode' add-on that unlocks extra throughput per sector, generating higher recurring software revenue without new hardware.", img: "https://i.pinimg.com/736x/8c/a0/14/8ca014414af7c9535ad63917fa87f801.jpg" },
+    { title: "Tiered Licensing & Add-On Revenue", desc: "Package ANSpect as a 'Super Capacity Mode' add-on that unlocks extra throughput per sector, generating higher recurring software revenue without new hardware.", img: "https://i.pinimg.com/736x/8c/a0/14/8ca014414af7c9535ad63917fa87f801.jpg" },
     { title: "Easy Deployment / No New Hardware", desc: "Drops into existing PHY/RLC/MAC stack with no new spectrum or RF upgrades required, simplifying deployment on current infrastructure.", img: "https://i.pinimg.com/1200x/9a/79/03/9a790369ff4a5d3e9ba82b3ddfcd6153.jpg" }
   ];
 
@@ -32,13 +32,13 @@ export default function Home() {
       <Navbar />
 
       {/* Hero Section with gradient text shadow */}
-      <header className="relative text-white py-32 md:py-48 text-center overflow-hidden">
+      <header className="relative text-white py-32 md:py-25 text-center overflow-hidden">
         <div className="absolute inset-0"></div> {/* Dark overlay to improve readability */}
         <div className="relative z-10 px-6">
           <motion.h1 initial={{ opacity: 0, y: -40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}
             className="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight text-white drop-shadow-[0_15px_15px_rgba(0,0,0,0.6)]"
           >
-            Welcome to AhsanLabs
+            Welcome to ANSpect
           </motion.h1>
 
           <motion.h2 initial={{ opacity: 0, y: -30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.15 }}
@@ -50,14 +50,14 @@ export default function Home() {
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }}
             className="text-base md:text-xl text-left max-w-3xl mx-auto leading-relaxed bg-gradient-to-b from-black/50 to-transparent p-6 rounded-2xl text-gray-200 shadow-lg"
           >
-            AhsanLabs patented PHY engine, boosts RAN throughput by 40–60% using software-only upgrades — no new spectrum, no new antennas, just smarter bits. Built on AhsanLabs suite of advanced software and firmware technologies, AhsanLabs and our other innovations enhance the capacity and spectral efficiency of modern digital networks, including Cellular, WiFi, IoT, Cable, and Satellite systems. Operators can deliver faster, more reliable connectivity while reducing overall cost-per-bit.
+            ANSpect patented PHY engine, boosts RAN throughput by 40–60% using software-only upgrades — no new spectrum, no new antennas, just smarter bits. Built on ANSpect suite of advanced software and firmware technologies, ANSpect and our other innovations enhance the capacity and spectral efficiency of modern digital networks, including Cellular, WiFi, IoT, Cable, and Satellite systems. Operators can deliver faster, more reliable connectivity while reducing overall cost-per-bit.
           </motion.p>
 
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.55 }}>
             <Link to="/services">
-              <button className="px-10 py-4 bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-500 hover:to-emerald-600 text-white rounded-xl text-lg font-semibold shadow-2xl backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:shadow-[0_0_25px_rgba(5,150,105,0.5)]">
+              <Button className="px-10 py-4 text-white rounded-xl text-lg font-semibold shadow-2xl backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:shadow-[0_0_25px_rgba(5,150,105,0.5)]">
                 Our Services
-              </button>
+              </Button>
             </Link>
           </motion.div>
         </div>
@@ -91,9 +91,9 @@ export default function Home() {
         <motion.div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-12">
           <motion.div className="flex-[0.8] p-10 bg-black/40 backdrop-blur-md rounded-3xl shadow-2xl flex flex-col justify-center hover:shadow-3xl transition-shadow duration-300">
             <h2 className="text-3xl font-bold text-white mb-6">Get In Touch</h2>
-            <p className="text-gray-300 mb-4">Email: <a href="mailto:sales@ahsanalabs.com" className="text-aramcoGreen underline">sales@ahsanalabs.com</a></p>
+            <p className="text-gray-300 mb-4">Email: <a href="mailto:sales@ANSpect.com" className="text-aramcoGreen underline">sales@anspect.com</a></p>
             <p className="text-gray-300 mb-4">Phone: <a href="tel:+1234567890" className="text-aramcoGreen underline">+1 (234) 567-890</a></p>
-            <p className="text-gray-300 mb-4">Address: 123 AhsanLabs Street, Tech City, Country</p>
+            <p className="text-gray-300 mb-4">Address: 123 ANSpect Street, Tech City, Country</p>
             <p className="text-gray-400">Our team is ready to answer your questions and guide you through trials, POCs, or custom integrations.</p>
           </motion.div>
 

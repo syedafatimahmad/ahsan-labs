@@ -5,6 +5,7 @@ import About from "../pages/customer/About";
 import Services from "../pages/customer/Services";
 import Newsletter from "../pages/customer/Newsletter";
 import tech from "../assets/tech.mp4";
+import ScrollToTop from "../components/customer/ScrollToTop";  // <-- import it
 
 export default function CustomerRoutes() {
   return (
@@ -23,6 +24,7 @@ export default function CustomerRoutes() {
 
       {/* Content overlay */}
       <div className="relative z-10">
+        <ScrollToTop />   {/* <-- drop it right here */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
