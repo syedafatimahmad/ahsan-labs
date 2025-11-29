@@ -1,140 +1,180 @@
-import { useEffect, useRef } from "react";
+import React, { useRef, useMemo } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
-import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer.js";
-import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js";
-import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass.js";
 
-export default function TechBackground() {
-  const mountRef = useRef(null);
+/**
+ * TechBackground
+ *
+ * A full-screen, Tailwind-styled background component that renders a "network globe":
+ * - points (nodes) distributed on a sphere
+ * - line segments connecting nearby nodes to create a network/web look
+ * - subtle atmosphere glow and slow rotation
+ *
+ * Usage:
+ * - Place <TechBackground /> near the top of your app layout so it sits behind content.
+ * - Default: non-interactive (pointer-events-none). To enable pointer events for interactivity,
+ *   pass allowPointerEvents={true}.
+ *
+ * Performance tips:
+ * - Reduce nodeCount (default 300) for mobile / low-end devices.
+ * - Increase connectionDistance to create more lines; reduce for fewer.
+ */
 
-  useEffect(() => {
-    // Safety check: do nothing if ref doesn't exist yet
-    if (!mountRef.current) return;
+function generateNetworkData(nodeCount = 600, radius = 1, connectionDistance = 0.35) {
+  // Generate points uniformly on a sphere
+  const positions = new Float32Array(nodeCount * 3);
+  const points = []; // keep as Vector3 for distance checks
 
-    let renderer, scene, camera, composer, particles, wireframe;
+  for (let i = 0; i < nodeCount; i++) {
+    // Sample using spherical coordinates with uniform distribution
+    const u = Math.random();
+    const v = Math.random();
+    const theta = 2 * Math.PI * u;
+    const phi = Math.acos(2 * v - 1);
+    const x = Math.sin(phi) * Math.cos(theta);
+    const y = Math.sin(phi) * Math.sin(theta);
+    const z = Math.cos(phi);
 
-    // Scene
-    scene = new THREE.Scene();
+    positions[i * 3] = x * radius;
+    positions[i * 3 + 1] = y * radius;
+    positions[i * 3 + 2] = z * radius;
 
-    
+    points.push(new THREE.Vector3(x * radius, y * radius, z * radius));
+  }
 
-    // Camera
-    camera = new THREE.PerspectiveCamera(
-      60,
-      window.innerWidth / window.innerHeight,
-      0.1,
-      1000
-    );
-    camera.position.set(0, 0, 3);
-    
-    
-
-    // Renderer
-    renderer = new THREE.WebGLRenderer({ antialias: true });
-    
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(window.devicePixelRatio);
-    
-
-    // Append only if mountRef is valid
-    if (mountRef.current) {
-      mountRef.current.appendChild(renderer.domElement);
-    }
-
-    // Controls
-    const controls = new OrbitControls(camera, renderer.domElement);
-    controls.enableZoom = false;
-    controls.enablePan = false;
-
-    // Particle Globe
-    const particleCount = 3000;
-    const positions = new Float32Array(particleCount * 3);
-
-    for (let i = 0; i < particleCount; i++) {
-      const theta = Math.random() * Math.PI * 2;
-      const phi = Math.acos(2 * Math.random() - 1);
-      const radius = 1.5;
-
-      const x = radius * Math.sin(phi) * Math.cos(theta);
-      const y = radius * Math.sin(phi) * Math.sin(theta);
-      const z = radius * Math.cos(phi);
-
-      positions.set([x, y, z], i * 3);
-    }
-
-    const particleGeo = new THREE.BufferGeometry();
-    particleGeo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-
-    const particleMat = new THREE.PointsMaterial({
-      color: 0x4da3ff,
-      size: 0.02,
-      transparent: true
-    });
-
-    particles = new THREE.Points(particleGeo, particleMat);
-    scene.add(particles);
-
-    // Wireframe
-    particles.position.y = -1;
-
-    const sphereGeo = new THREE.SphereGeometry(1.5, 32, 32);
-    const wireMat = new THREE.MeshBasicMaterial({
-      color: 0x2b82ff,
-      wireframe: true,
-      transparent: true,
-      opacity: 0.2
-    });
-
-    wireframe = new THREE.Mesh(sphereGeo, wireMat);
-    scene.add(wireframe);
-
-    // Bloom
-    wireframe.position.y = -1;
-    composer = new EffectComposer(renderer);
-    composer.addPass(new RenderPass(scene, camera));
-
-    const bloom = new UnrealBloomPass(
-      new THREE.Vector2(window.innerWidth, window.innerHeight),
-      1.8,
-      0.4,
-      0.05
-    );
-    composer.addPass(bloom);
-
-    // Animation loop
-    const animate = () => {
-      requestAnimationFrame(animate);
-      particles.rotation.y += 0.001;
-      wireframe.rotation.y += 0.0009;
-      composer.render();
-    };
-    animate();
-
-    // Resize
-    const handleResize = () => {
-      if (!renderer) return;
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      composer.setSize(window.innerWidth, window.innerHeight);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    // Cleanup
-    return () => {
-      window.removeEventListener("resize", handleResize);
-
-      if (renderer) renderer.dispose();
-
-      if (mountRef.current && renderer?.domElement) {
-        if (mountRef.current.contains(renderer.domElement)) {
-          mountRef.current.removeChild(renderer.domElement);
-        }
+  // Create line segments by connecting pairs that are within connectionDistance
+  const maxPairs = 20000; // safety cap
+  const linePositions = [];
+  for (let i = 0; i < nodeCount; i++) {
+    for (let j = i + 1; j < nodeCount; j++) {
+      const d = points[i].distanceTo(points[j]);
+      if (d <= connectionDistance) {
+        // push both endpoints
+        linePositions.push(points[i].x, points[i].y, points[i].z);
+        linePositions.push(points[j].x, points[j].y, points[j].z);
+        if (linePositions.length / 3 >= maxPairs * 2) break;
       }
-    };
-  }, []); // Don't forget this!
+    }
+    if (linePositions.length / 3 >= maxPairs * 2) break;
+  }
 
-  return <div ref={mountRef} className="fixed inset-0 -z-10" />;
+  return {
+    pointsBuffer: positions,
+    linesBuffer: new Float32Array(linePositions),
+    nodeCount,
+  };
+}
+
+function NetworkGlobe({
+  nodeCount = 300,
+  radius = 1,
+  connectionDistance = 0.28,
+  nodeColor = new THREE.Color("#aee8ff"),
+  lineColor = new THREE.Color("#70d1ff"),
+}) {
+  const group = useRef();
+
+  // Memoize network geometry so it isn't regenerated on every render
+  const { pointsBuffer, linesBuffer } = useMemo(
+    () => generateNetworkData(nodeCount, radius, connectionDistance),
+    [nodeCount, radius, connectionDistance]
+  );
+
+  // Create BufferGeometries
+  const pointsGeo = useMemo(() => {
+    const g = new THREE.BufferGeometry();
+    g.setAttribute("position", new THREE.BufferAttribute(pointsBuffer, 3));
+    return g;
+  }, [pointsBuffer]);
+
+  const linesGeo = useMemo(() => {
+    const g = new THREE.BufferGeometry();
+    g.setAttribute("position", new THREE.BufferAttribute(linesBuffer, 3));
+    return g;
+  }, [linesBuffer]);
+
+  useFrame(({ clock }) => {
+    const t = clock.getElapsedTime();
+    if (group.current) {
+      // slow rotation + slight tilt oscillation
+      group.current.rotation.y = t * 0.06;
+      group.current.rotation.x = Math.sin(t * 0.12) * 0.02;
+      // small breathing scale to give life
+      const s = 1 + Math.sin(t * 0.5) * 0.005;
+      group.current.scale.set(s, s, s);
+    }
+  });
+
+  return (
+    <group ref={group} position={[0, -0.6, 0]}>
+      {/* subtle atmosphere / glow - slightly larger transparent sphere */}
+      <mesh scale={[1.035, 1.035, 1.035]}>
+        <sphereGeometry args={[radius, 64, 64]} />
+        <meshBasicMaterial
+          color={"#9bd1ff"}
+          transparent
+          opacity={0.03}
+          blending={THREE.AdditiveBlending}
+          depthWrite={false}
+        />
+      </mesh>
+
+      {/* Lines connecting nodes */}
+      <lineSegments geometry={linesGeo}>
+        <lineBasicMaterial
+          attach="material"
+          color={lineColor}
+          linewidth={1}
+          transparent
+          opacity={0.6}
+        />
+      </lineSegments>
+
+      {/* Nodes (points) */}
+      <points geometry={pointsGeo}>
+        <pointsMaterial
+          attach="material"
+          color={nodeColor}
+          size={0.02}
+          sizeAttenuation={true}
+          depthWrite={false}
+          transparent
+          opacity={0.95}
+        />
+      </points>
+
+      {/* optional faint inner mesh to add silhouette depth */}
+      <mesh>
+        <sphereGeometry args={[radius * 0.995, 64, 64]} />
+        <meshStandardMaterial color={"#001826"} roughness={1} metalness={0} opacity={0.08} transparent />
+      </mesh>
+    </group>
+  );
+}
+
+export default function TechBackground({
+  nodeCount = 300,
+  connectionDistance = 0.28,
+  allowPointerEvents = false,
+}) {
+  // Tailwind classes used for layout and gradient background
+  const pointerClass = allowPointerEvents ? "pointer-events-auto" : "pointer-events-none";
+
+  return (
+    <div
+      className={`fixed inset-0 ${pointerClass} z-0 bg-gradient-to-br from-blue-200 via-blue-600 to-black`}
+      aria-hidden="true"
+    >
+      <Canvas className="w-screen h-screen block" camera={{ position: [0, 0, 3.2], fov: 35 }} gl={{ antialias: true, alpha: true }}>
+        <ambientLight intensity={0.6} />
+        <directionalLight position={[5, 5, 5]} intensity={0.8} />
+        <directionalLight position={[-5, -3, -5]} intensity={0.4} />
+
+        {/* You can include <Stars /> from @react-three/drei if installed, optional */}
+        <NetworkGlobe nodeCount={nodeCount} connectionDistance={connectionDistance} />
+
+        {/* Keep OrbitControls disabled for background; enable only if allowPointerEvents */}
+      </Canvas>
+    </div>
+  );
 }

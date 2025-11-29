@@ -68,7 +68,7 @@ export default function Navbar() {
   return (
     <nav
       ref={navRef}
-      className="fixed top-0 left-0 w-full text-white px-10 py-3 flex items-center justify-between z-50 bg-gradient-to-r from-blue-200/60 to-black/30"
+      className="fixed top-0 left-0 w-full text-white px-10 py-3 flex items-center justify-between z-50 bg-gradient-to-r from-blue-200/5 to-black/30"
       
     >
 
