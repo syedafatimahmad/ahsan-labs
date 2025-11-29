@@ -11,11 +11,14 @@ import Content from "./pages/admin/Content";
 import AdminRoutes from "./routes/AdminRoutes";
 import CustomerRoutes from "./routes/CustomerRoutes";
 
+
+
+
 export default function App() {
   return (
     <Router>
       <Routes>
-        {/* Public admin route */}
+        {/* Public admin route 
         <Route path="/admin/login" element={<Login />} />
 
         {/* Protected admin routes */}

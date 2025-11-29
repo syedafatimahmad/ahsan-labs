@@ -64,7 +64,7 @@ export default function Home() {
       </header>
 
       {/* Solutions Section */}
-      <section id="solutions" className="bg-gradient-to-tr from-black/20 via-white/5 to-black/20 py-20">
+      <section id="solutions" className="py-20">
         <motion.h2 initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
           className="text-3xl md:text-4xl font-bold mb-12 text-center text-white"
         >Our Solutions</motion.h2>

@@ -20,7 +20,7 @@ export default function Footer() {
 
           {/* Logo */}
           <div className="flex-shrink-0">
-            <img src={logo} alt="ANSpect Logo" className="h-12 transform scale-500" />
+            <img src={logo} alt="ANSpect Logo" className="h-20 " />
           </div>
 
           {/* Links */}
