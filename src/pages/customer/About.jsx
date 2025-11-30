@@ -1,6 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
-import Navbar from "../../components/customer/Navbar";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+
 import Footer from "../../components/customer/Footer";
 
 import StatsCard from "../../components/customer/StatsCard";
@@ -64,10 +66,20 @@ export default function About() {
     { title: "Cross-user capacity embedding", description: "Leverages channel quality differences between UEs to 'piggyback' extra bits during transmissions dominated by weaker links." },
     { title: "Drop-in PHY module", description: "Integrates as a software module alongside existing 4G/5G PHY blocks with minimal changes to RFIC or scheduler." }
   ];
+  const location = useLocation();
 
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.replace("#", "");
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [location]);
+  
   return (
     <div className="min-h-screen bg-black text-white font-body">
-      <Navbar />
       
       {/* Premium Hero */}
       <header className="relative w-full h-[72vh] flex items-center justify-center text-white overflow-hidden">

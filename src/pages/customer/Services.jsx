@@ -63,7 +63,7 @@ export default function Services() {
     <>
       <Navbar />
       
-        <section className="relative py-16 md:py-35 text-gray-100">
+        <section className="relative py-16 md:py-10 text-gray-100">
           <div className="container mx-auto px-6 lg:px-12">
             <div className="text-center max-w-3xl mx-auto mb-12">
               <h2 className="text-3xl sm:text-4xl font-extrabold leading-tight">Our Services</h2>

@@ -1,17 +1,19 @@
 import React, { useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import Navbar from "../../components/customer/Navbar";
-import Footer from "../../components/customer/Footer";
 import Button from "../../components/customer/Button";
+import Footer from "../../components/customer/Footer";
 
 export default function Home() {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.hash === "#contact") {
-      const contactSection = document.querySelector("#contact");
-      if (contactSection) contactSection.scrollIntoView({ behavior: "smooth" });
+    if (location.hash) {
+      const id = location.hash.replace("#", "");
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
     }
   }, [location]);
 
@@ -29,7 +31,8 @@ export default function Home() {
 
   return (
     <>
-      <Navbar />
+    
+    
 
       {/* Hero Section with gradient text shadow */}
       <header className="relative text-white py-32 md:py-35 text-center overflow-hidden">

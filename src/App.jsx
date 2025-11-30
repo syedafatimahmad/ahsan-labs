@@ -11,7 +11,7 @@ import Content from "./pages/admin/Content";
 import AdminRoutes from "./routes/AdminRoutes";
 import CustomerRoutes from "./routes/CustomerRoutes";
 
-
+import CustomerLayout from "./routes/CustomerLayout";
 
 
 export default function App() {
@@ -30,7 +30,7 @@ export default function App() {
         </Route>
 
         {/* Customer routes */}
-        <Route path="/*" element={<CustomerRoutes />} />
+        <Route path="/*" element={<CustomerLayout />} />
       </Routes>
     </Router>
   );

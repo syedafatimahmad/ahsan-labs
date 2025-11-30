@@ -1,32 +1,23 @@
-import React, { useRef, useMemo } from "react";
+import React, { useRef, useMemo, useEffect, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
 /**
- * TechBackground
+ * TechBackground - Network globe background component
+ * - Responsive nodeCount (reduces on small screens)
+ * - pointer-events-none by default, aria-hidden
  *
- * A full-screen, Tailwind-styled background component that renders a "network globe":
- * - points (nodes) distributed on a sphere
- * - line segments connecting nearby nodes to create a network/web look
- * - subtle atmosphere glow and slow rotation
- *
- * Usage:
- * - Place <TechBackground /> near the top of your app layout so it sits behind content.
- * - Default: non-interactive (pointer-events-none). To enable pointer events for interactivity,
- *   pass allowPointerEvents={true}.
- *
- * Performance tips:
- * - Reduce nodeCount (default 300) for mobile / low-end devices.
- * - Increase connectionDistance to create more lines; reduce for fewer.
+ * Props:
+ *  - nodeCount (number) default 400 (desktop)
+ *  - connectionDistance (number) default 0.33
+ *  - allowPointerEvents (boolean) default false
  */
 
-function generateNetworkData(nodeCount = 600, radius = 1, connectionDistance = 0.35) {
-  // Generate points uniformly on a sphere
+function generateNetworkData(nodeCount = 300, radius = 1, connectionDistance = 0.28) {
   const positions = new Float32Array(nodeCount * 3);
-  const points = []; // keep as Vector3 for distance checks
+  const points = [];
 
   for (let i = 0; i < nodeCount; i++) {
-    // Sample using spherical coordinates with uniform distribution
     const u = Math.random();
     const v = Math.random();
     const theta = 2 * Math.PI * u;
@@ -42,14 +33,12 @@ function generateNetworkData(nodeCount = 600, radius = 1, connectionDistance = 0
     points.push(new THREE.Vector3(x * radius, y * radius, z * radius));
   }
 
-  // Create line segments by connecting pairs that are within connectionDistance
-  const maxPairs = 20000; // safety cap
+  const maxPairs = 20000;
   const linePositions = [];
   for (let i = 0; i < nodeCount; i++) {
     for (let j = i + 1; j < nodeCount; j++) {
       const d = points[i].distanceTo(points[j]);
       if (d <= connectionDistance) {
-        // push both endpoints
         linePositions.push(points[i].x, points[i].y, points[i].z);
         linePositions.push(points[j].x, points[j].y, points[j].z);
         if (linePositions.length / 3 >= maxPairs * 2) break;
@@ -74,13 +63,11 @@ function NetworkGlobe({
 }) {
   const group = useRef();
 
-  // Memoize network geometry so it isn't regenerated on every render
   const { pointsBuffer, linesBuffer } = useMemo(
     () => generateNetworkData(nodeCount, radius, connectionDistance),
     [nodeCount, radius, connectionDistance]
   );
 
-  // Create BufferGeometries
   const pointsGeo = useMemo(() => {
     const g = new THREE.BufferGeometry();
     g.setAttribute("position", new THREE.BufferAttribute(pointsBuffer, 3));
@@ -96,10 +83,8 @@ function NetworkGlobe({
   useFrame(({ clock }) => {
     const t = clock.getElapsedTime();
     if (group.current) {
-      // slow rotation + slight tilt oscillation
       group.current.rotation.y = t * 0.06;
       group.current.rotation.x = Math.sin(t * 0.12) * 0.02;
-      // small breathing scale to give life
       const s = 1 + Math.sin(t * 0.5) * 0.005;
       group.current.scale.set(s, s, s);
     }
@@ -107,7 +92,6 @@ function NetworkGlobe({
 
   return (
     <group ref={group} position={[0, -0.6, 0]}>
-      {/* subtle atmosphere / glow - slightly larger transparent sphere */}
       <mesh scale={[1.035, 1.035, 1.035]}>
         <sphereGeometry args={[radius, 64, 64]} />
         <meshBasicMaterial
@@ -119,18 +103,10 @@ function NetworkGlobe({
         />
       </mesh>
 
-      {/* Lines connecting nodes */}
       <lineSegments geometry={linesGeo}>
-        <lineBasicMaterial
-          attach="material"
-          color={lineColor}
-          linewidth={1}
-          transparent
-          opacity={0.6}
-        />
+        <lineBasicMaterial attach="material" color={lineColor} linewidth={1} transparent opacity={0.6} />
       </lineSegments>
 
-      {/* Nodes (points) */}
       <points geometry={pointsGeo}>
         <pointsMaterial
           attach="material"
@@ -143,7 +119,6 @@ function NetworkGlobe({
         />
       </points>
 
-      {/* optional faint inner mesh to add silhouette depth */}
       <mesh>
         <sphereGeometry args={[radius * 0.995, 64, 64]} />
         <meshStandardMaterial color={"#001826"} roughness={1} metalness={0} opacity={0.08} transparent />
@@ -153,12 +128,25 @@ function NetworkGlobe({
 }
 
 export default function TechBackground({
-  nodeCount = 300,
-  connectionDistance = 0.28,
+  nodeCount = 400,
+  connectionDistance = 0.33,
   allowPointerEvents = false,
 }) {
-  // Tailwind classes used for layout and gradient background
   const pointerClass = allowPointerEvents ? "pointer-events-auto" : "pointer-events-none";
+
+  // Responsive node count - reduce for small screens automatically
+  const [effectiveNodes, setEffectiveNodes] = useState(nodeCount);
+  useEffect(() => {
+    const update = () => {
+      const w = typeof window !== "undefined" ? window.innerWidth : 1024;
+      if (w < 640) setEffectiveNodes(Math.max(120, Math.floor(nodeCount * 0.35)));
+      else if (w < 1024) setEffectiveNodes(Math.max(180, Math.floor(nodeCount * 0.6)));
+      else setEffectiveNodes(nodeCount);
+    };
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, [nodeCount]);
 
   return (
     <div
@@ -170,10 +158,8 @@ export default function TechBackground({
         <directionalLight position={[5, 5, 5]} intensity={0.8} />
         <directionalLight position={[-5, -3, -5]} intensity={0.4} />
 
-        {/* You can include <Stars /> from @react-three/drei if installed, optional */}
-        <NetworkGlobe nodeCount={nodeCount} connectionDistance={connectionDistance} />
-
-        {/* Keep OrbitControls disabled for background; enable only if allowPointerEvents */}
+        {/* Network globe (responsive node count) */}
+        <NetworkGlobe nodeCount={effectiveNodes} connectionDistance={connectionDistance} />
       </Canvas>
     </div>
   );
