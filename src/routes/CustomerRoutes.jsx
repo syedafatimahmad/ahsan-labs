@@ -12,7 +12,7 @@ import ScrollToTop from "../components/customer/ScrollToTop";  // <-- import it
 export default function CustomerRoutes() {
   return (
     <>
-    <tech />
+    
        Persistent Background Video 
       <video
         autoPlay
