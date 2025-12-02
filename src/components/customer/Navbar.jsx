@@ -26,12 +26,12 @@ export default function Navbar() {
 
 
   // Add scrolled class when user scrolls down
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  //useEffect(() => {
+   // const onScroll = () => setScrolled(window.scrollY > 8);
+    //onScroll();
+   // window.addEventListener("scroll", onScroll, { passive: true });
+   // return () => window.removeEventListener("scroll", onScroll);
+  //}, []);
 
   // Click outside to close mobile menu
   useEffect(() => {
@@ -64,16 +64,16 @@ export default function Navbar() {
   const underline = (active) =>
     `relative after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[3px]
      after:bg-gradient-to-r after:from-[#7cb5ff] after:to-[#438dff] after:rounded-full
-     after:transition-opacity after:duration-300
+     after:transition-opacity after:duration-1
      ${active ? "after:opacity-100" : "after:opacity-0 hover:after:opacity-100"}`;
 
   return (
     <header
       ref={navRef}
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 w-full z-50 transition-all ${
         scrolled
-          ? "backdrop-blur-md bg-black/45 shadow-lg"
-          : "bg-gradient-to-r from-blue-200/5 to-black/30"
+          ? "backdrop-blur-md bg-white shadow-lg"
+          : "bg-gradient-to-r from-white to-white"
       }`}
       role="banner"
     >
@@ -91,20 +91,20 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-8 ml-auto">
           <Link
             to="/"
-            className={`${underline(isPathActive("/"))} text-white`}
+            className={`${underline(isPathActive("/"))} text-black`}
           >
             Home
           </Link>
           <Link
             to="/services"
-            className={`${underline(isPathActive("/services"))} text-white`}
+            className={`${underline(isPathActive("/services"))} text-black`}
           >
             Products
           </Link>
 
           <button
             onClick={() => goTo("/", "solutions")}
-            className={`${underline(isHashActive("solutions"))} text-white `}
+            className={`${underline(isHashActive("solutions"))} text-black `}
           >
             Solutions
           </button>
@@ -112,21 +112,21 @@ export default function Navbar() {
           <div className="relative group">
             <button
               onClick={() => goTo("about")}
-              className={`${underline(location.pathname === "/about")} text-white`}
+              className={`${underline(location.pathname === "/about")} text-black`}
             >
               Company
             </button>
-            <div className="absolute hidden group-hover:flex flex-col bg-black/80 backdrop-blur-md rounded-md mt-2 p-3 w-40 gap-2">
+            <div className="absolute hidden group-hover:flex flex-col bg-white/80 backdrop-blur-md rounded-md mt-2 p-3 w-40 gap-2">
                 <button
                   onClick={() => goTo("/about", "phyengine")}
-                  className="text-white hover:text-[#7cb5ff] text-left"
+                  className="text-black hover:text-[#7cb5ff] text-left"
                 >
                   Technology
                 </button>
 
                 <button
                   onClick={() => goTo("/about", "research")}
-                  className="text-white hover:text-[#7cb5ff] text-left"
+                  className="text-black hover:text-[#7cb5ff] text-left"
                 >
                   Research
                 </button>
@@ -135,7 +135,7 @@ export default function Navbar() {
 
           <Link
             to="/newsletter"
-            className={`${underline(isPathActive("/newsletter"))} text-white`}
+            className={`${underline(isPathActive("/newsletter"))} text-black`}
           >
             Newsletter
           </Link>
@@ -156,17 +156,17 @@ export default function Navbar() {
         aria-label="Toggle menu"
       >
         <span
-          className={`block absolute h-[2px] w-6 bg-white transition duration-300 ${
+          className={`block absolute h-[2px] w-6 bg-black transition duration-300 ${
             open ? "rotate-45" : "-translate-y-2"
           }`}
         />
         <span
-          className={`block absolute h-[2px] w-6 bg-white transition duration-300 ${
+          className={`block absolute h-[2px] w-6 bg-black transition duration-300 ${
             open ? "opacity-0" : ""
           }`}
         />
         <span
-          className={`block absolute h-[2px] w-6 bg-white transition duration-300 ${
+          className={`block absolute h-[2px] w-6 bg-black transition duration-300 ${
             open ? "-rotate-45" : "translate-y-2"
           }`}
         />

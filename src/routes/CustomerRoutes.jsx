@@ -4,16 +4,16 @@ import Home from "../pages/customer/Home";
 import About from "../pages/customer/About";
 import Services from "../pages/customer/Services";
 import Newsletter from "../pages/customer/Newsletter";
-//import tech from "../assets/tech.mp4";
+import tech from "../assets/tech.mp4";
 import ScrollToTop from "../components/customer/ScrollToTop";  // <-- import it
 
-import TechBackground from "../components/customer/TechBackground";
+//import TechBackground from "../components/customer/TechBackground";
 
 export default function CustomerRoutes() {
   return (
     <>
-    <TechBackground />
-      {/* Persistent Background Video 
+    <tech />
+       Persistent Background Video 
       <video
         autoPlay
         muted
@@ -23,7 +23,7 @@ export default function CustomerRoutes() {
         className="fixed top-0 left-0 w-screen h-screen object-cover -z-10"
       >
         <source src={tech} type="video/mp4" />
-      </video>*/}
+      </video>
 
       {/* Content overlay */}
       <div className="relative z-10">

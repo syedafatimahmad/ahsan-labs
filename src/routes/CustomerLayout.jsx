@@ -1,5 +1,5 @@
 import React from "react";
-import TechBackground from "../components/customer/TechBackground";
+//import TechBackground from "../components/customer/TechBackground";
 import Navbar from "../components/customer/Navbar";
 
 import CustomerRoutes from "./CustomerRoutes";
@@ -10,8 +10,8 @@ import CustomerRoutes from "./CustomerRoutes";
 export default function CustomerLayout() {
   return (
     <>
-      {/* Background (non-interactive by default) */}
-      <TechBackground nodeCount={400} connectionDistance={0.33} />
+      {/* Background (non-interactive by default) 
+      <TechBackground nodeCount={400} connectionDistance={0.33} />*/}
 
       {/* Foreground UI */}
       <div className="relative z-10 min-h-screen">

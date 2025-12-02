@@ -1,6 +1,6 @@
-import React, { useRef, useMemo, useEffect, useState } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import * as THREE from "three";
+//import React, { useRef, useMemo, useEffect, useState } from "react";
+//import { Canvas, useFrame } from "@react-three/fiber";
+//import * as THREE from "three";
 
 /**
  * TechBackground - Network globe background component
@@ -13,7 +13,7 @@ import * as THREE from "three";
  *  - allowPointerEvents (boolean) default false
  */
 
-function generateNetworkData(nodeCount = 300, radius = 1, connectionDistance = 0.28) {
+{/*function generateNetworkData(nodeCount = 300, radius = 1, connectionDistance = 0.28) {
   const positions = new Float32Array(nodeCount * 3);
   const points = [];
 
@@ -158,9 +158,9 @@ export default function TechBackground({
         <directionalLight position={[5, 5, 5]} intensity={0.8} />
         <directionalLight position={[-5, -3, -5]} intensity={0.4} />
 
-        {/* Network globe (responsive node count) */}
+            {/* Network globe (responsive node count) 
         <NetworkGlobe nodeCount={effectiveNodes} connectionDistance={connectionDistance} />
       </Canvas>
     </div>
   );
-}
+} */}
