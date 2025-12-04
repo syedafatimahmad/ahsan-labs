@@ -4,30 +4,18 @@ import Home from "../pages/customer/Home";
 import About from "../pages/customer/About";
 import Services from "../pages/customer/Services";
 import Newsletter from "../pages/customer/Newsletter";
-import tech from "../assets/tech.mp4";
-import ScrollToTop from "../components/customer/ScrollToTop";  // <-- import it
 
-//import TechBackground from "../components/customer/TechBackground";
+import ScrollToTop from "../components/customer/ScrollToTop";
+import Navbar from "../components/customer/Navbar";
+
 
 export default function CustomerRoutes() {
   return (
     <>
-    
-       Persistent Background Video 
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
-        className="fixed top-0 left-0 w-screen h-screen object-cover -z-10"
-      >
-        <source src={tech} type="video/mp4" />
-      </video>
-
-      {/* Content overlay */}
+    <Navbar />
       <div className="relative z-10">
-        <ScrollToTop />   {/* <-- drop it right here */}
+        
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />

@@ -70,13 +70,10 @@ export default function Navbar() {
   return (
     <header
       ref={navRef}
-      className={`fixed top-0 left-0 w-full z-50 transition-all ${
-        scrolled
-          ? "backdrop-blur-md bg-white shadow-lg"
-          : "bg-gradient-to-r from-white to-white"
-      }`}
+      className="fixed top-0 left-0 w-full z-50 transition-all bg-white shadow-md"
       role="banner"
     >
+
       <nav
         className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 h-16"
         role="navigation"
@@ -84,7 +81,7 @@ export default function Navbar() {
       >
         {/* Logo */}
         <Link to="/" className="flex items-center shrink-0" aria-label="Home">
-          <img src={logo} alt="ANSpect logo" className="h-10 w-auto object-contain" />
+          <img src={logo} alt="ANSpect logo" className="h-12 w-auto object-contain" />
         </Link>
 
         {/* Desktop nav */}
@@ -137,14 +134,14 @@ export default function Navbar() {
             to="/newsletter"
             className={`${underline(isPathActive("/newsletter"))} text-black`}
           >
-            Newsletter
+            News
           </Link>
 
           <button
             onClick={() => goTo("/", "contact")}
             className="ml-3 inline-flex items-center rounded-full bg-gradient-to-r from-blue-600 to-slate-900 px-4 py-2 text-white font-semibold shadow hover:scale-[1.02] transition transform"
           >
-            Talk to Us
+            Contact Us
           </button>
          </div>
         

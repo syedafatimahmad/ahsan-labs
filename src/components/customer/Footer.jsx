@@ -13,7 +13,8 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-white text-black py-12 mt-10 w-full">
+    <footer className="bg-white text-black py-12 mt-10 w-full shadow-[0_-4px_10px_rgba(0,0,0,0.1)]">
+
       <div className="max-w-7xl mx-auto px-4">
         {/* Top row: Logo left, Links right */}
         <div className="flex flex-col md:flex-row md:justify-between items-center md:items-start text-center md:text-left gap-12">

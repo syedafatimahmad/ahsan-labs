@@ -1,9 +1,5 @@
 import React from "react";
-import Navbar from "../../components/customer/Navbar";
 import Footer from "../../components/customer/Footer";
-import { Link } from "react-router-dom";
-
-// Heroicons
 import {
   CpuChipIcon,
   ChartBarIcon,
@@ -26,77 +22,94 @@ const services = [
     icon: ChartBarIcon,
     title: "Optimized Constellation Mapping",
     subtitle: "More data without changing radios.",
-    desc: "We embed additional information into unused or low-activity areas of the constellation diagram, improving spectral efficiency while staying fully within RF and EVM limits."
+    desc: "We embed additional information into unused regions of the constellation diagram, improving spectral efficiency while staying within RF and EVM limits."
   },
   {
     id: "embedding",
     icon: UsersIcon,
     title: "Multi-User Capacity Boosting",
     subtitle: "Use channel diversity to your advantage.",
-    desc: "Our engine intelligently leverages differences in device channel quality to transmit extra data, increasing throughput even when the network is limited by weaker users."
+    desc: "The engine leverages channel quality variations between devices to transmit extra data, increasing throughput even under weakest-user limitations."
   },
   {
     id: "phy-module",
     icon: PuzzlePieceIcon,
     title: "Drop-In Software PHY Module",
     subtitle: "Integrates with existing network stacks.",
-    desc: "A lightweight PHY add-on designed to work alongside existing 4G/5G components — modulation, coding, channel estimation — with minimal integration effort."
+    desc: "A lightweight PHY add-on designed to work alongside existing 4G/5G components — modulation, coding, estimation — with minimal integration effort."
   },
   {
     id: "solutions",
     icon: RocketLaunchIcon,
-    title: "Capacity Expansion as a Software Upgrade",
+    title: "Capacity Expansion via Software",
     subtitle: "A new value tier for operators.",
-    desc: "Enable a “Super Capacity Mode” that instantly increases sector throughput using software. Operators get more performance from the same spectrum and hardware."
+    desc: "Unlock a “Super Capacity Mode” that instantly increases sector throughput using software. No spectrum additions or RF upgrades needed."
   },
   {
     id: "benefits",
     icon: TrophyIcon,
     title: "Operator & Vendor Advantages",
     subtitle: "Higher performance, lower cost-per-bit.",
-    desc: "Typical deployments see 40–60% more usable capacity, zero spectrum additions, no RF upgrades, and an easy path to tiered licensing or premium performance plans."
+    desc: "Deployments commonly see 40–60% more usable capacity, zero spectrum additions, and new opportunities for tiered licensing."
   }
 ];
 
 export default function Services() {
   return (
     <>
-      <Navbar />
-      
-        <section className="relative py-16 md:py-10 text-gray-100">
-          <div className="container mx-auto px-6 lg:px-12">
-            <div className="text-center max-w-3xl mx-auto mb-12">
-              <h2 className="text-3xl sm:text-4xl font-extrabold leading-tight">Our Services</h2>
-              <p className="text-left mt-4 text-gray-200">
-                AhsanLabs builds software and firmware that push networks beyond their expected limits — cellular, WiFi, IoT, cable and satellite. We improve spectral efficiency so operators deliver more capacity at a lower cost-per-bit.
-              </p>
-            </div>
+      {/* TOP SECTION */}
+      <section className="relative py-20 bg-gradient-to-b from-blue-50 to-white">
+        <div className="container mx-auto px-6 lg:px-12">
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {services.map((s) => (
-                <article
-                  key={s.id}
-                  className="bg-opacity-70 backdrop-blur-lg rounded-2xl p-6 flex flex-col shadow-lg hover:shadow-2xl transition-shadow duration-200"
-                >
-                  <div className="flex items-start gap-4">
-                    <div className="flex-none w-14 h-14 bg-gradient-to-br from-blue-700 to-blue-950 rounded-xl flex items-center justify-center">
-                      <s.icon className="w-7 h-7 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold">{s.title}</h3>
-                      <p className="text-sm text-aramcoGreen mt-1">{s.subtitle}</p>
-                    </div>
-                  </div>
+          {/* HEADER */}
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h4 className="text-blue-600 font-semibold tracking-wide uppercase">
+              What We Offer
+            </h4>
 
-                  <p className="mt-4 text-sm text-gray-200 flex-1">{s.desc}</p>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mt-2">
+              Our Services
+            </h2>
 
-
-                </article>
-              ))}
-            </div>
+            <p className="mt-5 text-gray-600 leading-relaxed text-lg">
+              AhsanLabs builds software and firmware that push networks beyond
+              their expected limits — WiFi, Cellular, IoT, satellite or cable.
+              We unlock spectral efficiency so operators deliver more capacity at
+              a lower cost-per-bit.
+            </p>
           </div>
-        </section>
-    
+
+          {/* GRID SECTION */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {services.map((s) => (
+              <article
+                key={s.id}
+                className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-8 border border-gray-100"
+              >
+                {/* ICON */}
+                <div className="w-16 h-16 bg-blue-600/10 rounded-2xl flex items-center justify-center mb-6">
+                  <s.icon className="w-9 h-9 text-blue-700" />
+                </div>
+
+                {/* TITLE */}
+                <h3 className="text-xl font-semibold text-gray-900">
+                  {s.title}
+                </h3>
+
+                <p className="text-blue-700 font-medium mt-1 text-sm">
+                  {s.subtitle}
+                </p>
+
+                {/* DESCRIPTION */}
+                <p className="mt-4 text-gray-600 leading-relaxed text-sm">
+                  {s.desc}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <Footer />
     </>
   );

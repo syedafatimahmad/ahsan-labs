@@ -1,21 +1,54 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Button from "../../components/customer/Button";
 import Footer from "../../components/customer/Footer";
+import techVideo from "../../assets/tech.mp4";
+import ProductBanner from "../../components/customer/ProductBanner";
+
+import Contact from "../../components/customer/Contact";
 
 export default function Home() {
   const location = useLocation();
+  const [currentSlide, setCurrentSlide] = useState(0);
 
+  // Scroll to anchor if hash is present
   useEffect(() => {
     if (location.hash) {
       const id = location.hash.replace("#", "");
       const el = document.getElementById(id);
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth" });
-      }
+      if (el) el.scrollIntoView({ behavior: "smooth" });
     }
   }, [location]);
+
+  const heroSlides = [
+    {
+      title: "Welcome to ANSpect",
+      subtitle: "Supercharge Network Capacity — Pure Software. Zero Hardware.",
+      desc: "ANSpect patented PHY engine boosts RAN throughput by 40–60% using software-only upgrades — no new spectrum, no new antennas, just smarter bits."
+    },
+    {
+      title: "Optimized Networking",
+      subtitle: "Next-gen Wired & Wireless Solutions",
+      desc: "Built on ANSpect suite of advanced software and firmware technologies, ANSpect enhances capacity and spectral efficiency of modern networks."
+    },
+    {
+      title: "Satellite Acceleration",
+      subtitle: "Maximize throughput over satellite links",
+      desc: "Operators can deliver faster, more reliable connectivity while reducing overall cost-per-bit."
+    }
+  ];
+
+  const nextSlide = () =>
+    setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+  const prevSlide = () =>
+    setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
+
+  // Auto-slide every 6 seconds
+  useEffect(() => {
+    const timer = setInterval(nextSlide, 6000);
+    return () => clearInterval(timer);
+  }, []);
 
   const solutions = [
     { title: "Open RAN & Wi‑Fi", desc: "Software-defined optimization for next-gen Wi-Fi and open RAN infrastructures.", img: "https://www.shutterstock.com/shutterstock/videos/3447871571/thumb/12.jpg?ip=x480" },
@@ -31,87 +64,190 @@ export default function Home() {
 
   return (
     <>
-    
-    
+      {/* Hero Section */}
+      <header className="relative w-full h-[700px] md:h-[600px] text-white overflow-hidden mt-16">
+        {/* Video Background */}
+        <video autoPlay loop muted className="w-full h-full object-cover">
+          <source src={techVideo} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
 
-      {/* Hero Section with gradient text shadow */}
-      <header className="relative text-white py-32 md:py-35 text-center overflow-hidden">
-        <div className="absolute inset-0"></div> {/* Dark overlay to improve readability */}
-        <div className="relative z-10 px-6">
-          <motion.h1 initial={{ opacity: 0, y: -40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}
-            className="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight text-white drop-shadow-[0_15px_15px_rgba(0,0,0,0.6)]"
-          >
-            Welcome to ANSpect
-          </motion.h1>
-
-          <motion.h2 initial={{ opacity: 0, y: -30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.15 }}
-            className="text-xl md:text-3xl font-semibold mb-10 tracking-wide text-white drop-shadow-[0_10px_10px_rgba(0,0,0,0.5)]"
-          >
-            Supercharge Wireless Capacity — Pure Software. Zero Hardware.
-          </motion.h2>
-
-          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-base md:text-xl text-left max-w-3xl mx-auto leading-relaxed bg-gradient-to-b from-black/50 to-transparent p-6 rounded-2xl text-gray-200 shadow-lg"
-          >
-            ANSpect patented PHY engine, boosts RAN throughput by 40–60% using software-only upgrades — no new spectrum, no new antennas, just smarter bits. Built on ANSpect suite of advanced software and firmware technologies, ANSpect and our other innovations enhance the capacity and spectral efficiency of modern digital networks, including Cellular, WiFi, IoT, Cable, and Satellite systems. Operators can deliver faster, more reliable connectivity while reducing overall cost-per-bit.
-          </motion.p>
-
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.55 }}>
+        {/* Overlay with carousel text */}
+        <motion.div
+          key={currentSlide} // force animation on slide change
+          className="absolute inset-0 flex flex-col justify-center items-center text-center px-6 md:px-20"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+        >
+          <h1 className="text-4xl md:text-6xl font-extrabold mb-4 drop-shadow-[0_15px_15px_rgba(0,0,0,0.6)]">
+            {heroSlides[currentSlide].title}
+          </h1>
+          <h2 className="text-xl md:text-3xl font-semibold mb-6 drop-shadow-[0_10px_10px_rgba(0,0,0,0.5)]">
+            {heroSlides[currentSlide].subtitle}
+          </h2>
+          <p className="max-w-3xl text-gray-200 text-left md:text-center bg-black/50 p-6 rounded-2xl shadow-lg">
+            {heroSlides[currentSlide].desc}
+          </p>
+          <div className="mt-6">
             <Link to="/services">
-              <Button className="px-10 py-4 text-white rounded-xl text-lg font-semibold shadow-2xl backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:shadow-[0_0_25px_rgba(5,150,105,0.5)]">
+              <Button className="px-10 py-4 text-white rounded-xl text-lg font-semibold shadow-2xl backdrop-blur-sm hover:scale-110 transition-transform duration-300 hover:shadow-[0_0_25px_rgba(5,150,105,0.5)]">
                 Our Services
               </Button>
             </Link>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
+
+        {/* Arrows */}
+        <button
+          onClick={prevSlide}
+          className="absolute top-1/2 left-5 transform -translate-y-1/2 text-white text-3xl font-bold p-2 rounded-full hover:bg-black/60"
+        >
+          &#8592;
+        </button>
+        <button
+          onClick={nextSlide}
+          className="absolute top-1/2 right-5 transform -translate-y-1/2 text-white text-3xl font-bold p-2 rounded-full hover:bg-black/60"
+        >
+          &#8594;
+        </button>
       </header>
 
       {/* Solutions Section */}
+      {/* Solutions Section */}
       <section id="solutions" className="py-20">
-        <motion.h2 initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-          className="text-3xl md:text-4xl font-bold mb-12 text-center text-white"
-        >Our Solutions</motion.h2>
+        <motion.h2
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-3xl md:text-4xl font-bold mb-12 text-center text-black"
+        >
+          Our Solutions
+        </motion.h2>
 
         <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           {solutions.map((s, idx) => (
-            <motion.div key={idx} initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: idx * 0.2 }} viewport={{ once: true }}
-              className="bg-gray-800 rounded-3xl shadow-2xl overflow-hidden hover:scale-105 transition-transform duration-300"
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: idx * 0.15 }}
+              viewport={{ once: true }}
+              className="relative rounded-3xl overflow-hidden shadow-xl group cursor-pointer h-[300px] flex items-end"
             >
-              <div className="w-full h-48 overflow-hidden">
-                <img src={s.img} alt={s.title} className="w-full h-full object-cover" />
-              </div>
-              <div className="p-6 flex flex-col items-center text-center">
-                <h3 className="text-xl font-bold text-white mb-2">{s.title}</h3>
-                <p className="text-gray-300 text-left">{s.desc}</p>
+              {/* Background Image */}
+              <div
+                className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                style={{ backgroundImage: `url(${s.img})` }}
+              />
+
+              {/* Dark Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+
+              {/* Text Content */}
+              <div className="relative z-10 p-6 text-white">
+                <h3 className="text-2xl font-bold mb-3">{s.title}</h3>
+                <p className="text-gray-200 text-sm leading-relaxed">
+                  {s.desc}
+                </p>
               </div>
             </motion.div>
           ))}
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="relative py-20 px-4 sm:px-6 lg:px-20">
-        <motion.div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-12">
-          <motion.div className="flex-[0.8] p-10 bg-black/40 backdrop-blur-md rounded-3xl shadow-2xl flex flex-col justify-center hover:shadow-3xl transition-shadow duration-300">
-            <h2 className="text-3xl font-bold text-white mb-6">Get In Touch</h2>
-            <p className="text-gray-300 mb-4">Email: <a href="mailto:sales@ANSpect.com" className="text-aramcoGreen underline">sales@anspect.com</a></p>
-            <p className="text-gray-300 mb-4">Phone: <a href="tel:+1234567890" className="text-aramcoGreen underline">+1 (234) 567-890</a></p>
-            <p className="text-gray-300 mb-4">Address: 123 ANSpect Street, Tech City, Country</p>
-            <p className="text-gray-400">Our team is ready to answer your questions and guide you through trials, POCs, or custom integrations.</p>
-          </motion.div>
 
-          <motion.form className="flex-[1.2] p-10 bg-black/40 backdrop-blur-md rounded-3xl shadow-2xl flex flex-col gap-5 hover:shadow-3xl transition-shadow duration-300"
-            onSubmit={(e) => { e.preventDefault(); alert("Form submitted!"); }}
+      <ProductBanner />
+
+
+
+      {/* Contact Section */}
+      {/* Contact Section 
+      <section id="contact" className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20 grid grid-cols-1 md:grid-cols-2 gap-12">
+
+          
+          <div className="p-10 bg-gray-100 rounded-3xl shadow-lg flex flex-col justify-center border border-gray-200">
+            <h2 className="text-3xl font-bold text-gray-900 mb-6">Get in Touch</h2>
+
+            <p className="text-gray-700 mb-4">
+              Email:{" "}
+              <a
+                href="mailto:sales@anspect.com"
+                className="text-aramcoGreen font-medium underline"
+              >
+                sales@anspect.com
+              </a>
+            </p>
+
+            <p className="text-gray-700 mb-4">
+              Phone:{" "}
+              <a
+                href="tel:+1234567890"
+                className="text-aramcoGreen font-medium underline"
+              >
+                +1 (234) 567-890
+              </a>
+            </p>
+
+            <p className="text-gray-700 mb-4">
+              Address: 123 ANSpect Street, Tech City, Country
+            </p>
+
+            <p className="text-gray-600 leading-relaxed">
+              Our team is ready to assist with inquiries, trials, POCs, and enterprise deployments.
+            </p>
+          </div>
+
+          
+          <form
+            className="p-10 bg-white rounded-3xl shadow-lg border border-gray-200 flex flex-col gap-5"
+            onSubmit={(e) => {
+              e.preventDefault();
+              alert("Form submitted!");
+            }}
           >
-            <h2 className="text-4xl font-bold text-white mb-6">Contact Us</h2>
-            <input type="text" placeholder="Your Name" className="p-4 rounded-xl bg-gray-700 text-white border border-gray-600 focus:border-aramcoGreen focus:ring-1 focus:ring-aramcoGreen outline-none transition-all" />
-            <input type="email" placeholder="Your Email" className="p-4 rounded-xl bg-gray-700 text-white border border-gray-600 focus:border-aramcoGreen focus:ring-1 focus:ring-aramcoGreen outline-none transition-all" />
-            <input type="text" placeholder="Company (optional)" className="p-4 rounded-xl bg-gray-700 text-white border border-gray-600 focus:border-aramcoGreen focus:ring-1 focus:ring-aramcoGreen outline-none transition-all" />
-            <textarea placeholder="Your Message" rows={5} className="p-4 rounded-xl bg-gray-700 text-white border border-gray-600 focus:border-aramcoGreen focus:ring-1 focus:ring-aramcoGreen outline-none transition-all" />
-            <Button type="submit" className="mt-2 px-6 py-3 bg-aramcoGreen font-semibold rounded-xl hover:scale-105 transition-transform duration-300 text-white">Send Message</Button>
-          </motion.form>
-        </motion.div>
-      </section>
+            <h2 className="text-3xl font-bold text-gray-900 mb-2">Contact Us</h2>
+            <p className="text-gray-600 mb-4">
+              Send us a message and our team will get back to you shortly.
+            </p>
+
+            <input
+              type="text"
+              placeholder="Your Name"
+              className="p-4 rounded-xl border border-gray-300 focus:border-aramcoGreen focus:ring-aramcoGreen outline-none transition-all"
+            />
+
+            <input
+              type="email"
+              placeholder="Your Email"
+              className="p-4 rounded-xl border border-gray-300 focus:border-aramcoGreen focus:ring-aramcoGreen outline-none transition-all"
+            />
+
+            <input
+              type="text"
+              placeholder="Company (optional)"
+              className="p-4 rounded-xl border border-gray-300 focus:border-aramcoGreen focus:ring-aramcoGreen outline-none transition-all"
+            />
+
+            <textarea
+              rows={6}
+              placeholder="Your Message"
+              className="p-4 rounded-xl border border-gray-300 focus:border-aramcoGreen focus:ring-aramcoGreen outline-none transition-all"
+            />
+
+            <Button
+              type="submit"
+              className="mt-2 px-6 py-3 bg-aramcoGreen font-semibold rounded-xl hover:scale-105 transition-transform duration-300 text-white"
+            >
+              Send Message
+            </Button>
+          </form>
+
+        </div>
+      </section>*/}
+
+      <Contact/>
 
       <Footer />
     </>

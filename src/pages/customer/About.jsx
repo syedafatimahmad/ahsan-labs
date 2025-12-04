@@ -1,18 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
-import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 import Footer from "../../components/customer/Footer";
 
-import StatsCard from "../../components/customer/StatsCard";
 import VideoCard from "../../components/customer/VideoCard";
 import DocumentCard from "../../components/customer/DocumentCard";
 import TimelineItem from "../../components/customer/TimelineItem";
+import StatsCard from "../../components/customer/StatsCard";
 
 import opsVideo from "../../assets/videos/operations.mp4";
 import sustVideo from "../../assets/videos/sustainability.mp4";
+import techVideo from "../../assets/tech.mp4";
 
+/**
+ * Bold Innovation About page — modern hero, gradients, glass cards, neon accents.
+ */
 
 export default function About() {
   const stats = [
@@ -28,180 +31,279 @@ export default function About() {
   ];
 
   const documents = [
-    { title: "Indoor 5G NR validation", description: "End-to-end validation across MCS, CQI, scheduling, and multi-user PHY interactions."},
-    { title: "Outdoor FWA trials", description: "Real-world trials measuring per-UE throughput, cell-edge speed, and sector capacity improvements."},
-    { title: "Joint publications", description: "ANSpect supports joint research publications and sharing of test results with operators and vendors."},
+    {
+      title: "Indoor 5G NR validation",
+      description:
+        "End-to-end validation across MCS, CQI, scheduling, and multi-user PHY interactions.",
+    },
+    {
+      title: "Outdoor FWA trials",
+      description:
+        "Real-world trials measuring per-UE throughput, cell-edge speed, and sector capacity improvements.",
+    },
+    {
+      title: "Joint publications",
+      description:
+        "ANSpect supports joint research publications and sharing of test results with operators and vendors.",
+    },
   ];
 
   const timeline = [
-    { year: "Early Work", title: "Foundations in Wireless Engineering", description: "Initial research in modulation, channel estimation, and PHY-layer innovation begins, forming the basis for high-capacity wireless systems." },
-    { year: "Breakthroughs", title: "Advanced PHY Techniques", description: "Development of block-sparse constellation mapping and cross-user capacity embedding — techniques later validated on real 5G NR testbeds." },
-    { year: "Collaboration", title: "Academic & Industry Testbeds", description: "Extensive indoor and outdoor 5G trials conducted with partners to validate throughput gains, scheduler behavior, and cell-edge performance." },
-    { year: "Today", title: "Scaling Next-Gen Wireless", description: "ANSpect continues advancing PHY-layer software for cellular, WiFi, DOCSIS, and mmWave systems, enabling operators to achieve higher capacity without new hardware." },
-  ];
-
-  const careers = [
     {
-      title: "Software Engineer - PHY",
-      location: "Remote / California, USA",
-      type: "Full-Time",
-      description: "Develop and optimize our software-defined PHY engine to maximize wireless capacity on 4G, 5G, and beyond."
+      year: "Early Work",
+      title: "Foundations in Wireless Engineering",
+      description:
+        "Initial research in modulation, channel estimation, and PHY-layer innovation begins.",
     },
     {
-      title: "Network Solutions Architect",
-      location: "Remote / Europe",
-      type: "Full-Time",
-      description: "Design end-to-end network solutions leveraging ANSpect PHY capabilities and Open RAN technologies."
+      year: "Breakthroughs",
+      title: "Advanced PHY Techniques",
+      description:
+        "Development of block-sparse constellation mapping and cross-user capacity embedding.",
     },
     {
-      title: "Test & Validation Engineer",
-      location: "Remote / APAC",
-      type: "Contract",
-      description: "Perform real-world 5G testbed validations, measuring throughput, latency, and spectral efficiency."
-    }
+      year: "Collaboration",
+      title: "Academic & Industry Testbeds",
+      description:
+        "Indoor & outdoor 5G trials validating throughput gains and scheduler behavior.",
+    },
+    {
+      year: "Today",
+      title: "Scaling Next-Gen Wireless",
+      description:
+        "ANSpect advances PHY-layer software for cellular, WiFi, DOCSIS, and mmWave systems.",
+    },
   ];
 
-  const phyPoints = [
-    { title: "Block-sparse constellation mapping", description: "Encodes extra information into under-utilized regions of the QAM constellation while staying within EVM targets and RF linearity constraints." },
-    { title: "Cross-user capacity embedding", description: "Leverages channel quality differences between UEs to 'piggyback' extra bits during transmissions dominated by weaker links." },
-    { title: "Drop-in PHY module", description: "Integrates as a software module alongside existing 4G/5G PHY blocks with minimal changes to RFIC or scheduler." }
+  const team = [
+    {
+      name: "Dr. Ahsan Naim",
+      role: "Founder & Chief Scientist",
+      img: "https://static.vecteezy.com/system/resources/thumbnails/041/641/689/small/3d-character-people-close-up-portrait-smiling-nice-3d-avartar-or-icon-png.png",
+      desc: "Inventor on 150+ patents, former CTO, expert in multi-RAT PHY design.",
+    },
+    {
+      name: "Sarah Malik",
+      role: "Lead Systems Engineer",
+      img: "https://static.vecteezy.com/system/resources/thumbnails/041/641/689/small/3d-character-people-close-up-portrait-smiling-nice-3d-avartar-or-icon-png.png",
+      desc: "Specializes in RF optimization and testbed validation for real-world deployments.",
+    },
+    {
+      name: "Daniel Lee",
+      role: "Senior PHY Developer",
+      img: "https://static.vecteezy.com/system/resources/thumbnails/041/641/689/small/3d-character-people-close-up-portrait-smiling-nice-3d-avartar-or-icon-png.png",
+      desc: "Works on SD-PHY modules for 4G/5G and mmWave platforms.",
+    },
   ];
+
   const location = useLocation();
-
   useEffect(() => {
     if (location.hash) {
       const id = location.hash.replace("#", "");
       const el = document.getElementById(id);
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth" });
-      }
+      if (el) el.scrollIntoView({ behavior: "smooth" });
     }
   }, [location]);
-  
+
   return (
-    <div className="min-h-screen bg-black text-white font-body">
-      
-      {/* Premium Hero */}
-      <header className="relative w-full h-[72vh] flex items-center justify-center text-white overflow-hidden">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute w-full h-full object-cover opacity-30"
-        >
-          <source src={opsVideo} type="video/mp4" />
+    <div className="min-h-screen bg-white text-slate-900 antialiased font-body">
+      {/* HERO */}
+      <section className="relative w-full h-[70vh] overflow-hidden">
+        {/* Background Video */}
+        <video autoPlay muted loop className="absolute w-full h-full object-cover">
+          <source src={techVideo} type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black" />
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="relative z-10 text-center px-6 max-w-5xl mx-auto"
-        >
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 tracking-tight bg-gradient-to-br from-white via-gray-200 to-gray-400 bg-clip-text text-transparent drop-shadow-sm">
+
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
+
+        {/* Neon Accent Circles */}
+        <div className="absolute -bottom-10 right-10 w-40 h-40 rounded-full bg-gradient-to-br from-blue-200/40 to-transparent blur-3xl pointer-events-none" />
+        <div className="absolute -top-10 left-8 w-32 h-32 rounded-full bg-gradient-to-br from-indigo-300/30 to-transparent blur-2xl pointer-events-none" />
+
+        {/* Text Content */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-8 max-w-5xl mx-auto gap-4">
+          {/* Small Green Label */}
+          <motion.span
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-sm bg-aramcoGreen px-4 py-1 rounded-full mb-3 inline-block shadow-md"
+          >
+            ANSpect Newsletter
+          </motion.span>
+
+          {/* Heading */}
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight"
+          >
             About Ahsan Labs
-          </h1>
+          </motion.h1>
 
-          <p className="text-left text-base md:text-xl leading-relaxed mx-auto max-w-4xl text-gray-100/90 backdrop-blur-sm p-6 rounded-2xl bg-white/5 shadow-lg border border-white/10">
-            Ahsan Labs, led by Dr. Ahsan Naim—inventor on 150+ issued patents and former CTO at multiple wireless companies—is built by wireless inventors, not just coders. Our software-defined PHY technology turns existing spectrum and hardware into dramatically higher wireless capacity. From mmWave FWA to 4G/5G RAN and DOCSIS, our team brings decades of experience turning theoretical gains into deployable products, pushing the boundaries of 4G, 5G, and future 6G systems with advanced PHY-layer intelligence and real-world research.
-          </p>
-        </motion.div>
-      </header>
+          {/* Paragraph */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1, duration: 0.8 }}
+            className="mt-4 text-lg md:text-xl text-gray-200 max-w-3xl"
+          >
+            Ahsan Labs, led by Dr. Ahsan Naim — inventor on 150+ patents — brings research-grade PHY techniques into production-grade software. We push spectrum and hardware to new capacity limits using intelligent PHY algorithms.
+          </motion.p>
+        </div>
+      </section>
 
-      <main className="space-y-28 px-4 md:px-8 lg:px-20 py-16">
+      <main className="space-y-24 px-6 md:px-12 lg:px-24 py-16">
+        {/* STATS */}
+        <section className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          {stats.map((s, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <StatsCard
+                title={s.title}
+                value={s.value}
+                icon={
+                  <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" aria-hidden>
+                    <path d="M3 12h18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                  </svg>
+                }
+              />
+            </motion.div>
+          ))}
+        </section>
 
-        <section aria-labelledby="stats-heading">
-          <h2 id="stats-heading" className="sr-only">At a Glance</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {stats.map((stat, idx) => (
-              <motion.div
+        {/* Our Story */}
+        <section
+          id="ourstory"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center bg-gradient-to-br from-white to-[#F6FBFF] rounded-3xl p-8 border border-blue-50 shadow-sm"
+        >
+          <div className="grid grid-cols-2 gap-4">
+            {[...Array(4)].map((_, idx) => (
+              <motion.img
                 key={idx}
                 whileHover={{ scale: 1.03 }}
-                className="backdrop-blur-xl bg-gradient-to-br from-white/3 to-black/20 border border-white/10 p-8 rounded-3xl shadow-2xl text-center"
+                src="https://i.pinimg.com/1200x/03/99/37/0399373ce8bd6aafccbf4507e919c6d7.jpg"
+                className={`rounded-xl shadow-[0_10px_40px_rgba(59,130,246,0.${8 - idx})]`}
+                alt={`story ${idx + 1}`}
+              />
+            ))}
+          </div>
+
+          <div>
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 inline-block">Our Story</h2>
+            <div className="mt-3 w-16 h-1 rounded-full bg-gradient-to-r from-blue-600 to-indigo-400" />
+            <p className="mt-6 text-gray-700 leading-relaxed">
+              From early academic work to real-world testbeds, our story is about converting theory into deployable software that delivers measurable capacity gains for networks worldwide.
+            </p>
+            <div className="mt-6 flex gap-3">
+              <button className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r from-blue-600 to-indigo-500 text-white shadow-lg hover:scale-105 transition">
+                View Research
+              </button>
+              <button className="px-5 py-2 rounded-full border border-gray-200 text-slate-900 hover:bg-blue-50 transition">
+                Contact Sales
+              </button>
+            </div>
+          </div>
+        </section>
+
+        {/* Team */}
+        <section id="team" className="space-y-8">
+          <div className="flex items-center justify-between">
+            <h2 className="text-3xl md:text-4xl font-bold">Meet The Team</h2>
+            <div className="text-sm text-gray-600">We hire curious domain experts — remotely and globally</div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {team.map((m, i) => (
+              <motion.div
+                key={i}
+                whileHover={{ scale: 1.02, translateY: -6 }}
+                className="relative bg-white rounded-2xl p-6 border border-gray-100 shadow-md"
               >
-                <p className="text-3xl md:text-4xl font-bold text-aramcoGreen mb-2">{stat.value}</p>
-                <p className="text-gray-300 text-sm md:text-base">{stat.title}</p>
+                <div className="absolute -top-8 left-6 w-[72px] h-[72px] rounded-full overflow-hidden shadow-lg ring-2 ring-white">
+                  <img src={m.img} alt={m.name} className="w-full h-full object-cover" />
+                </div>
+
+                <div className="mt-8 pt-2">
+                  <h3 className="text-lg font-semibold text-slate-900">{m.name}</h3>
+                  <p className="text-sm text-blue-700">{m.role}</p>
+                  <p className="text-gray-600 mt-3 text-sm">{m.desc}</p>
+                </div>
+
+                <div className="mt-4 flex gap-2">
+                  <button className="text-sm px-3 py-1 rounded-full border border-blue-100 text-blue-700">
+                    Profile
+                  </button>
+                  <button className="text-sm px-3 py-1 rounded-full border border-gray-100">Message</button>
+                </div>
               </motion.div>
             ))}
           </div>
         </section>
 
-        {/* How It Works */}
-        <section id="How it works"aria-labelledby="how-heading" className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 id="how-heading" className="text-3xl md:text-4xl font-bold mb-4">How It Works</h2>
-            <p className="text-gray-300 mb-6">
-              Our advanced PHY-layer software unlocks capacity from existing spectrum and hardware. We validate ideas in simulation first, then prove them with real testbeds.
-            </p>
-            <div className="space-y-4">
+        {/* How It Works + LAB */}
+        <section className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+          <div className="rounded-2xl p-6 bg-white border border-gray-100 shadow-md">
+            <h2 className="text-2xl font-bold">How it Works</h2>
+            <div className="mt-4 space-y-4">
               {[
-                {
-                  title: "PHY-Layer Optimization",
-                  desc: "Modulation, mapping and capacity embedding that operates within RF limits."
-                },
-                {
-                  title: "Simulation & Validation",
-                  desc: "End-to-end validation across link-level and system-level testbeds."
-                },
-                {
-                  title: "Deployment",
-                  desc: "Drop-in software modules compatible with existing PHY stacks."
-                }
-              ].map((item, i) => (
-                <div key={i} className="flex gap-4 items-start">
-                  <div className="w-3 h-3 rounded-full bg-aramcoGreen mt-2" />
+                { title: "PHY-Layer Optimization", desc: "Mapping & modulation that cooperates with RF limits." },
+                { title: "Simulation & Validation", desc: "From link-level to multi-cell system testbeds." },
+                { title: "Deployment", desc: "Drop-in software that integrates with existing stacks." },
+              ].map((it, idx) => (
+                <div key={idx} className="flex gap-4 items-start">
+                  <div className="w-3 h-3 rounded-full bg-gradient-to-r from-blue-500 to-indigo-400 mt-2 shadow-[0_6px_18px_rgba(59,130,246,0.12)]" />
                   <div>
-                    <h3 className="font-semibold text-white">{item.title}</h3>
-                    <p className="text-gray-300 text-sm">{item.desc}</p>
+                    <h4 className="font-semibold text-slate-900">{it.title}</h4>
+                    <p className="text-gray-600 text-sm">{it.desc}</p>
                   </div>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="rounded-2xl overflow-hidden shadow-2xl">
-            <video autoPlay muted loop playsInline className="w-full h-64 md:h-full object-cover">
-              <source src={sustVideo} type="video/mp4" />
-            </video>
+          <div className="rounded-2xl overflow-hidden border border-gray-100 shadow-md">
+            <VideoCard title="Inside the LAB — testbeds & trials" src={opsVideo} />
           </div>
         </section>
 
-        {/* PHY Engine */}
-        <section id="phyengine" aria-labelledby="phy-heading" className="text-center">
-          <h2 id="phy engine" className="text-3xl md:text-4xl font-bold mb-8">Inside ANSpect PHY Engine</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {phyPoints.map((item, idx) => (
-              <motion.article key={idx} whileHover={{ y: -6 }} className="p-8 rounded-2xl bg-gradient-to-br from-gray-900/30 to-black/30 border border-white/6 shadow-xl">
-                <h3 className="text-lg font-semibold text-aramcoGreen mb-2">{item.title}</h3>
-                <p className="text-gray-300 text-left text-sm leading-relaxed">{item.description}</p>
-              </motion.article>
-            ))}
+        {/* Results */}
+        <section id="results" className="space-y-6">
+          <div className="flex items-center justify-between">
+            <h2 className="text-3xl font-bold">Results That Matter</h2>
+            <div className="text-sm text-gray-600">Measured improvements on real deployments</div>
           </div>
-        </section>
 
-        {/* Careers */}
-        <section id="careers" aria-labelledby="careers">
-          <h2 id="careers" className="text-3xl md:text-4xl font-bold text-center mb-8">Careers</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {careers.map((job, idx) => (
-              <motion.div key={idx} whileHover={{ scale: 1.02 }} className="p-6 rounded-2xl bg-white/4 border border-white/8 shadow-lg">
-                <div className="flex justify-between items-start gap-4">
-                  <div>
-                    <h3 className="text-xl font-semibold text-aramcoGreen">{job.title}</h3>
-                    <p className="text-gray-400 text-sm">{job.location} • {job.type}</p>
-                  </div>
-                  <div className="text-sm text-gray-300 max-w-lg">{job.description}</div>
-                </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              { stat: "+45%", title: "Sector Capacity Gain", color: "from-blue-600 to-indigo-400" },
+              { stat: "30%", title: "Higher Spectral Efficiency", color: "from-cyan-500 to-blue-600" },
+              { stat: "22%", title: "Improved Cell-edge Speeds", color: "from-indigo-500 to-violet-500" },
+            ].map((r, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className={`rounded-2xl p-8 bg-white border border-gray-100 shadow-md relative overflow-hidden`}
+              >
+                <div className={`absolute -right-8 -top-12 w-56 h-56 rounded-full blur-3xl bg-gradient-to-br ${r.color} opacity-20`} />
+                <p className="text-4xl font-extrabold text-slate-900">{r.stat}</p>
+                <p className="text-gray-600 mt-2">{r.title}</p>
               </motion.div>
             ))}
           </div>
         </section>
 
-        {/* Documents & Videos */}
-        <section className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {/* Stories + Documents */}
+        <section className="grid grid-cols-1 lg:grid-cols-3 gap-10">
           <div className="lg:col-span-2 space-y-6">
-            <h2 className="text-3xl font-bold">Our Stories</h2>
+            <h2 className="text-2xl font-bold text-slate-900">Our Stories</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {videos.map((v, i) => (
                 <VideoCard key={i} title={v.title} src={v.src} />
@@ -209,20 +311,18 @@ export default function About() {
             </div>
           </div>
 
-          <aside id ="research" className="space-y-6">
-            <h3 className="text-xl font-semibold">Proven on Real 5G Testbeds</h3>
-            <div className="space-y-4">
-              {documents.map((d, i) => (
-                <DocumentCard key={i} title={d.title} description={d.description} />
-              ))}
-            </div>
+          <aside className="space-y-4">
+            <h3 className="text-lg font-semibold text-slate-900">Proven on Real 5G Testbeds</h3>
+            {documents.map((d, i) => (
+              <DocumentCard key={i} title={d.title} description={d.description} />
+            ))}
           </aside>
         </section>
 
         {/* Timeline */}
         <section>
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">Our History</h2>
-          <div className="space-y-4">
+          <h2 className="text-3xl font-bold text-center mb-8">Our History</h2>
+          <div className="max-w-4xl mx-auto space-y-6">
             {timeline.map((t, i) => (
               <TimelineItem key={i} year={t.year} title={t.title} description={t.description} />
             ))}
@@ -230,11 +330,10 @@ export default function About() {
         </section>
 
         {/* CTA */}
-        <section className="mt-8 p-8 rounded-2xl bg-gradient-to-r from-black/50 via-gray-900/40 to-black/50 border border-white/6 text-center">
-          <h3 className="text-2xl font-bold mb-2">Join Us on Our Mission</h3>
-          <p className="text-gray-300">We combine deep wireless expertise with real-world experimentation to build the next generation of high-capacity software-defined networks.</p>
+        <section className="mt-8 p-10 rounded-2xl bg-gradient-to-r from-[#F8FBFF] to-white border border-gray-100 shadow-md text-center">
+          <h3 className="text-2xl font-bold text-slate-900 mb-2">Join Us on Our Mission</h3>
+          <p className="text-gray-700">We build the next generation of high-capacity software-defined networks.</p>
         </section>
-
       </main>
 
       <Footer />
