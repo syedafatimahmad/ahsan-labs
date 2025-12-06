@@ -9,7 +9,7 @@ import DocumentCard from "../../components/customer/DocumentCard";
 import TimelineItem from "../../components/customer/TimelineItem";
 import StatsCard from "../../components/customer/StatsCard";
 
-import opsVideo from "../../assets/videos/ansvid.mp4";
+import ansVid from "../../assets/videos/ansvid.mp4";
 import techVideo from "../../assets/tech.mp4";
 import { Link } from "react-router-dom";
 
@@ -26,7 +26,7 @@ export default function About() {
   ];
 
   const videos = [
-    { title: "Our Mission", src: opsVideo },
+    { title: "Our Mission", src: ansVid },
   ];
 
   const documents = [
@@ -189,7 +189,7 @@ export default function About() {
                 className="rounded-xl overflow-hidden shadow-[0_10px_40px_rgba(59,130,246,0.5)]"
               >
                 <video
-                  src={opsVideo}
+                  src={ansVid}
                   controls
                   className="w-full h-full object-cover"
                 />
@@ -276,7 +276,7 @@ export default function About() {
           </div>
 
           <div className="rounded-2xl overflow-hidden border border-gray-100 shadow-md">
-            <VideoCard title="Inside the LAB — testbeds & trials" src={opsVideo} />
+            <VideoCard title="Inside the LAB — testbeds & trials" src={ansVid} />
           </div>
         </section>
 
@@ -347,4 +347,4 @@ export default function About() {
       <Footer />
     </div>
   );
-}
+} 

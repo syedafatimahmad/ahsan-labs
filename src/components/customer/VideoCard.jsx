@@ -1,13 +1,9 @@
-export default function VideoCard({ title, src }) {
+export default function VideoCard({title, src }) {
   return (
     <div className="relative h-64 sm:h-80 md:h-96 overflow-hidden rounded-2xl shadow-lg border border-gray-200 group">
       <video
         src={src}
         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-        muted
-        loop
-        autoPlay
-        playsInline
       />
 
       <div className="absolute inset-0 bg-white/40 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
