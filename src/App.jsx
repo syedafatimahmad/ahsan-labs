@@ -18,7 +18,7 @@ export default function App() {
   return (
     <Router>
       <Routes>
-        {/* Public admin route 
+        {/* Public admin route */}
         <Route path="/admin/login" element={<Login />} />
 
         {/* Protected admin routes */}
