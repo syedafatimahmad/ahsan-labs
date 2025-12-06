@@ -4,6 +4,6 @@ import react from '@vitejs/plugin-react'
 export default defineConfig(({ command }) => {
   return {
     plugins: [react()],
-    base: command === 'serve' ? '/' : '/ahsan-labs/', // dev vs prod
+    base: '/ahsan-labs/'
   }
 })
