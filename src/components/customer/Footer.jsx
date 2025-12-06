@@ -27,7 +27,7 @@ export default function Footer() {
         {/* Top row: Logo left, Links right */}
         <div className="flex flex-col md:flex-row md:justify-between items-center md:items-start text-center md:text-left gap-12">
           {/* Logo */}
-          <div className="flex-shrink-0">
+          <div className="shrink-0">
             <img src={logo} alt="ANSpect Logo" className="h-20 " />
           </div>
 
