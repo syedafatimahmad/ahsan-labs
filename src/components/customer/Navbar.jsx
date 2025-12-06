@@ -46,10 +46,19 @@ export default function Navbar() {
   const isHashActive = (hash) => location.hash === `#${hash}`;
 
   const goTo = (path, id = "") => {
+    // navigate using pathname + hash so the URL updates and you can deep-link
     navigate(path + (id ? `#${id}` : ""));
+    // try to scroll to the element if it exists (works when already on page)
     if (id) {
       const el = document.getElementById(id);
       if (el) el.scrollIntoView({ behavior: "smooth" });
+      // if the element is rendered after navigation (async content), you may need
+      // to retry after a tick — keep this small to avoid jank:
+      else
+        setTimeout(() => {
+          const retryEl = document.getElementById(id);
+          if (retryEl) retryEl.scrollIntoView({ behavior: "smooth" });
+        }, 150);
     }
   };
 
@@ -66,15 +75,18 @@ export default function Navbar() {
         <Link to="/" className={`${underline(isPathActive("/"))} text-black`}>
           Home
         </Link>
-        <div className="absolute hidden group-hover:flex flex-col bg-white/90 backdrop-blur-md rounded-md mt-2 p-3 w-40 gap-2 shadow-lg z-50">
-          <button
-            onClick={() => goTo("/", "solutions")}
-            className={`text-black hover:text-[#7cb5ff] text-left ${
-              isHashActive("solutions") ? "font-semibold" : ""
-            }`}
+
+        {/* Changed to use Link (anchor-like) instead of button on desktop.
+            Also reduced the vertical gap (mt-1 instead of mt-2) to avoid a
+            tiny hover gap that can make the submenu disappear when moving the cursor
+            from the parent item to the dropdown. Added pointer-events-auto and a higher z-index. */}
+        <div className="absolute hidden group-hover:flex flex-col bg-white/90 backdrop-blur-md rounded-md mt-1 p-3 w-40 gap-2 shadow-lg z-[60] pointer-events-auto">
+          <Link
+            to="/#solutions"
+            className={`text-black hover:text-[#7cb5ff] text-left ${isHashActive("solutions") ? "font-semibold" : ""}`}
           >
             Solutions
-          </button>
+          </Link>
         </div>
       </div>
 
@@ -87,17 +99,15 @@ export default function Navbar() {
         <Link to="/about" className={`${underline(isPathActive("/about"))} text-black`}>
           Company
         </Link>
-        <div className="absolute hidden group-hover:flex flex-col bg-white/90 backdrop-blur-md rounded-md mt-2 p-3 w-40 gap-2 shadow-lg z-50">
+        <div className="absolute hidden group-hover:flex flex-col bg-white/90 backdrop-blur-md rounded-md mt-1 p-3 w-40 gap-2 shadow-lg z-[60] pointer-events-auto">
           {["team", "ourstory", "phyengine", "results"].map((id) => (
-            <button
+            <Link
               key={id}
-              onClick={() => goTo("/about", id)}
-              className={`text-black hover:text-[#7cb5ff] text-left ${
-                isHashActive(id) ? "font-semibold" : ""
-              }`}
+              to={`/about#${id}`}
+              className={`text-black hover:text-[#7cb5ff] text-left ${isHashActive(id) ? "font-semibold" : ""}`}
             >
               {id === "phyengine" ? "LAB" : id.charAt(0).toUpperCase() + id.slice(1)}
-            </button>
+            </Link>
           ))}
         </div>
       </div>
@@ -142,9 +152,7 @@ export default function Navbar() {
                 setOpen(false);
                 setMobileDropdown(null);
               }}
-              className={`text-white hover:text-[#7cb5ff] ${
-                isHashActive("solutions") ? "font-semibold" : ""
-              }`}
+              className={`text-white hover:text-[#7cb5ff] ${isHashActive("solutions") ? "font-semibold" : ""}`}
             >
               Solutions
             </button>
@@ -185,9 +193,7 @@ export default function Navbar() {
                   setOpen(false);
                   setMobileDropdown(null);
                 }}
-                className={`text-white hover:text-[#7cb5ff] ${
-                  isHashActive(id) ? "font-semibold" : ""
-                }`}
+                className={`text-white hover:text-[#7cb5ff] ${isHashActive(id) ? "font-semibold" : ""}`}
               >
                 {id === "phyengine" ? "LAB" : id.charAt(0).toUpperCase() + id.slice(1)}
               </button>
