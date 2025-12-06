@@ -9,7 +9,7 @@ import DocumentCard from "../../components/customer/DocumentCard";
 import TimelineItem from "../../components/customer/TimelineItem";
 import StatsCard from "../../components/customer/StatsCard";
 
-import ansVid from "../../assets/videos/ansvid.mp4";
+import ansVid from "../../assets/videos/ansvidd.mp4";
 import techVideo from "../../assets/tech.mp4";
 import { Link } from "react-router-dom";
 
