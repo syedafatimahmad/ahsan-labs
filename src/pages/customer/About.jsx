@@ -9,9 +9,9 @@ import DocumentCard from "../../components/customer/DocumentCard";
 import TimelineItem from "../../components/customer/TimelineItem";
 import StatsCard from "../../components/customer/StatsCard";
 
-import opsVideo from "../../assets/videos/operations.mp4";
-import sustVideo from "../../assets/videos/sustainability.mp4";
+import opsVideo from "../../assets/videos/ansvid.mp4";
 import techVideo from "../../assets/tech.mp4";
+import { Link } from "react-router-dom";
 
 /**
  * Bold Innovation About page — modern hero, gradients, glass cards, neon accents.
@@ -26,8 +26,7 @@ export default function About() {
   ];
 
   const videos = [
-    { title: "Our Operations", src: opsVideo },
-    { title: "Sustainability Journey", src: sustVideo },
+    { title: "Our Mission", src: opsVideo },
   ];
 
   const documents = [
@@ -129,7 +128,7 @@ export default function About() {
             animate={{ opacity: 1, y: 0 }}
             className="text-sm bg-aramcoGreen px-4 py-1 rounded-full mb-3 inline-block shadow-md"
           >
-            ANSpect Newsletter
+            About ANSpect
           </motion.span>
 
           {/* Heading */}
@@ -139,7 +138,7 @@ export default function About() {
             transition={{ duration: 0.8 }}
             className="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight"
           >
-            About Ahsan Labs
+            Our Mission
           </motion.h1>
 
           {/* Paragraph */}
@@ -147,9 +146,9 @@ export default function About() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, duration: 0.8 }}
-            className="mt-4 text-lg md:text-xl text-gray-200 max-w-3xl"
+            className="mt-4 text-lg md:text-xl text-left text-gray-200 max-w-3xl"
           >
-            Ahsan Labs, led by Dr. Ahsan Naim — inventor on 150+ patents — brings research-grade PHY techniques into production-grade software. We push spectrum and hardware to new capacity limits using intelligent PHY algorithms.
+            ANSpect, led by Dr. Ahsan Naim — inventor on 150+ patents — brings research-grade PHY techniques into production-grade software. We push spectrum and hardware to new capacity limits using intelligent PHY algorithms.
           </motion.p>
         </div>
       </section>
@@ -182,15 +181,21 @@ export default function About() {
           id="ourstory"
           className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center bg-gradient-to-br from-white to-[#F6FBFF] rounded-3xl p-8 border border-blue-50 shadow-sm"
         >
-          <div className="grid grid-cols-2 gap-4">
-            {[...Array(4)].map((_, idx) => (
-              <motion.img
+          <div className="w-full">
+            {[...Array(1)].map((_, idx) => (
+              <motion.div
                 key={idx}
                 whileHover={{ scale: 1.03 }}
-                src="https://i.pinimg.com/1200x/03/99/37/0399373ce8bd6aafccbf4507e919c6d7.jpg"
-                className={`rounded-xl shadow-[0_10px_40px_rgba(59,130,246,0.${8 - idx})]`}
-                alt={`story ${idx + 1}`}
-              />
+                className="rounded-xl overflow-hidden shadow-[0_10px_40px_rgba(59,130,246,0.5)]"
+              >
+                <video
+                  src={opsVideo}
+                  controls
+                  className="w-full h-full object-cover"
+                />
+              </motion.div>
+
+
             ))}
           </div>
 
@@ -204,9 +209,12 @@ export default function About() {
               <button className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r from-blue-600 to-indigo-500 text-white shadow-lg hover:scale-105 transition">
                 View Research
               </button>
-              <button className="px-5 py-2 rounded-full border border-gray-200 text-slate-900 hover:bg-blue-50 transition">
-                Contact Sales
-              </button>
+              <Link
+                to="/#contact"
+                className="px-5 py-2 rounded-full border border-gray-200 text-slate-900 hover:bg-blue-50 transition"
+              >
+                Contact Us
+              </Link>
             </div>
           </div>
         </section>
@@ -247,7 +255,7 @@ export default function About() {
         </section>
 
         {/* How It Works + LAB */}
-        <section className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+        <section id = "phyengine" className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
           <div className="rounded-2xl p-6 bg-white border border-gray-100 shadow-md">
             <h2 className="text-2xl font-bold">How it Works</h2>
             <div className="mt-4 space-y-4">
@@ -304,7 +312,7 @@ export default function About() {
         <section className="grid grid-cols-1 lg:grid-cols-3 gap-10">
           <div className="lg:col-span-2 space-y-6">
             <h2 className="text-2xl font-bold text-slate-900">Our Stories</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="w-full">
               {videos.map((v, i) => (
                 <VideoCard key={i} title={v.title} src={v.src} />
               ))}
@@ -330,9 +338,9 @@ export default function About() {
         </section>
 
         {/* CTA */}
-        <section className="mt-8 p-10 rounded-2xl bg-gradient-to-r from-[#F8FBFF] to-white border border-gray-100 shadow-md text-center">
-          <h3 className="text-2xl font-bold text-slate-900 mb-2">Join Us on Our Mission</h3>
-          <p className="text-gray-700">We build the next generation of high-capacity software-defined networks.</p>
+        <section className="mt-8 p-10 rounded-2xl bg-gradient-to-r from-gray-50 to-blue-50 border-gray-100 shadow-md text-center">
+          <h3 className="text-2xl font-bold text-shadow-slate-950 mb-2">Join Us on Our Mission</h3>
+          <p className="text-gray-900">We build the next generation of high-capacity software-defined networks.</p>
         </section>
       </main>
 

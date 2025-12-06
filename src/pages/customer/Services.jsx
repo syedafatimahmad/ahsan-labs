@@ -1,5 +1,8 @@
 import React from "react";
 import Footer from "../../components/customer/Footer";
+import tech from "../../assets/tech.mp4";
+import { motion } from "framer-motion";
+
 import {
   CpuChipIcon,
   ChartBarIcon,
@@ -58,29 +61,53 @@ export default function Services() {
   return (
     <>
       {/* TOP SECTION */}
-      <section className="relative py-20 bg-gradient-to-b from-blue-50 to-white">
-        <div className="container mx-auto px-6 lg:px-12">
+      
+          {/* Hero */}
+          <section className="relative w-full h-[520px] overflow-hidden">
+            <video autoPlay muted loop className="absolute w-full h-full object-cover">
+              <source src={tech} type="video/mp4" />
+            </video>
 
-          {/* HEADER */}
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h4 className="text-blue-600 font-semibold tracking-wide uppercase">
-              What We Offer
-            </h4>
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
 
-            <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mt-2">
-              Our Services
-            </h2>
+            {/* Text */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-8">
+              <motion.span
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="text-sm bg-aramcoGreen px-4 py-1 rounded-full mb-3 inline-block"
+              >
+                What We Offer
+              </motion.span>
 
-            <p className="mt-5 text-gray-600 leading-relaxed text-lg">
-              AhsanLabs builds software and firmware that push networks beyond
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight"
+              >
+                Our Services <br/>
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1, duration: 0.8 }}
+                className="mt-4 text-lg md:text-xl text-left text-gray-200 max-w-3xl"
+              >
+                ANSpect builds software and firmware that push networks beyond
               their expected limits — WiFi, Cellular, IoT, satellite or cable.
               We unlock spectral efficiency so operators deliver more capacity at
               a lower cost-per-bit.
-            </p>
-          </div>
+
+              </motion.p>
+            </div>
+          </section>
+          
 
           {/* GRID SECTION */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="p-28 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((s) => (
               <article
                 key={s.id}
@@ -107,8 +134,8 @@ export default function Services() {
               </article>
             ))}
           </div>
-        </div>
-      </section>
+       
+   
 
       <Footer />
     </>

@@ -2,52 +2,41 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 
-/**
- * Improved Navbar (mobile & desktop tweaks)
- *
- * Updates:
- * - Mobile menu uses text + underline highlight (no square / left-border)
- * - Desktop links highlight text and show underline on hover/active
- * - Escape key closes mobile menu
- * - Keeps backdrop blur, scroll lock, and focus rings for accessibility
- */
-
 export default function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
-  const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const navRef = useRef(null);
-
-  // Close mobile menu on route change
-  useEffect(() => setOpen(false), [location.pathname, location.hash]);
+  const [open, setOpen] = useState(false);
+  const [mobileDropdown, setMobileDropdown] = useState(null);
 
   // Lock body scroll when mobile menu is open
-
-
-  // Add scrolled class when user scrolls down
-  //useEffect(() => {
-   // const onScroll = () => setScrolled(window.scrollY > 8);
-    //onScroll();
-   // window.addEventListener("scroll", onScroll, { passive: true });
-   // return () => window.removeEventListener("scroll", onScroll);
-  //}, []);
-
-  // Click outside to close mobile menu
   useEffect(() => {
-    const clickOutside = (e) => {
-      if (open && navRef.current && !navRef.current.contains(e.target)) {
-        setOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", clickOutside);
-    return () => document.removeEventListener("mousedown", clickOutside);
+    document.body.style.overflow = open ? "hidden" : "auto";
+    return () => (document.body.style.overflow = "auto");
   }, [open]);
 
-  // Close on Escape
+  // Close mobile menu on route/hash change
+  useEffect(() => setOpen(false), [location.pathname, location.hash]);
+
+  // Click outside
+  useEffect(() => {
+    const handleClick = (e) => {
+      if (open && navRef.current && !navRef.current.contains(e.target)) {
+        setOpen(false);
+        setMobileDropdown(null);
+      }
+    };
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, [open]);
+
+  // Escape key
   useEffect(() => {
     const onKey = (e) => {
-      if (e.key === "Escape" && open) setOpen(false);
+      if (e.key === "Escape" && open) {
+        setOpen(false);
+        setMobileDropdown(null);
+      }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -57,220 +46,204 @@ export default function Navbar() {
   const isHashActive = (hash) => location.hash === `#${hash}`;
 
   const goTo = (path, id = "") => {
-    navigate(id ? `${path}#${id}` : path);
+    navigate(path + (id ? `#${id}` : ""));
+    if (id) {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
-  // Shared underline helper (uses after: utilities for gradient underline)
   const underline = (active) =>
     `relative after:absolute after:-bottom-1 after:left-0 after:w-full after:h-[3px]
      after:bg-gradient-to-r after:from-[#7cb5ff] after:to-[#438dff] after:rounded-full
-     after:transition-opacity after:duration-1
+     after:transition-opacity after:duration-300
      ${active ? "after:opacity-100" : "after:opacity-0 hover:after:opacity-100"}`;
 
-  return (
-    <header
-      ref={navRef}
-      className="fixed top-0 left-0 w-full z-50 transition-all bg-white shadow-md"
-      role="banner"
-    >
-
-      <nav
-        className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 h-16"
-        role="navigation"
-        aria-label="Main navigation"
-      >
-        {/* Logo */}
-        <Link to="/" className="flex items-center shrink-0" aria-label="Home">
-          <img src={logo} alt="ANSpect logo" className="h-12 w-auto object-contain" />
+  const desktopMenu = (
+    <div className="hidden md:flex items-center gap-8 ml-auto">
+      {/* Home + Solutions */}
+      <div className="relative group">
+        <Link to="/" className={`${underline(isPathActive("/"))} text-black`}>
+          Home
         </Link>
-
-        {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-8 ml-auto">
-          <Link
-            to="/"
-            className={`${underline(isPathActive("/"))} text-black`}
-          >
-            Home
-          </Link>
-          <Link
-            to="/services"
-            className={`${underline(isPathActive("/services"))} text-black`}
-          >
-            Products
-          </Link>
-
+        <div className="absolute hidden group-hover:flex flex-col bg-white/90 backdrop-blur-md rounded-md mt-2 p-3 w-40 gap-2 shadow-lg z-50">
           <button
             onClick={() => goTo("/", "solutions")}
-            className={`${underline(isHashActive("solutions"))} text-black `}
+            className={`text-black hover:text-[#7cb5ff] text-left ${
+              isHashActive("solutions") ? "font-semibold" : ""
+            }`}
           >
             Solutions
           </button>
+        </div>
+      </div>
 
-          <div className="relative group">
+      <Link to="/services" className={`${underline(isPathActive("/services"))} text-black`}>
+        Products
+      </Link>
+
+      {/* Company + submenu */}
+      <div className="relative group">
+        <Link to="/about" className={`${underline(isPathActive("/about"))} text-black`}>
+          Company
+        </Link>
+        <div className="absolute hidden group-hover:flex flex-col bg-white/90 backdrop-blur-md rounded-md mt-2 p-3 w-40 gap-2 shadow-lg z-50">
+          {["team", "ourstory", "phyengine", "results"].map((id) => (
             <button
-              onClick={() => goTo("about")}
-              className={`${underline(location.pathname === "/about")} text-black`}
-            >
-              Company
-            </button>
-            <div className="absolute hidden group-hover:flex flex-col bg-white/80 backdrop-blur-md rounded-md mt-2 p-3 w-40 gap-2">
-                <button
-                  onClick={() => goTo("/about", "phyengine")}
-                  className="text-black hover:text-[#7cb5ff] text-left"
-                >
-                  Technology
-                </button>
-
-                <button
-                  onClick={() => goTo("/about", "research")}
-                  className="text-black hover:text-[#7cb5ff] text-left"
-                >
-                  Research
-                </button>
-            </div>
-          </div>
-
-          <Link
-            to="/newsletter"
-            className={`${underline(isPathActive("/newsletter"))} text-black`}
-          >
-            News
-          </Link>
-
-          <button
-            onClick={() => goTo("/", "contact")}
-            className="ml-3 inline-flex items-center rounded-full bg-gradient-to-r from-blue-600 to-slate-900 px-4 py-2 text-white font-semibold shadow hover:scale-[1.02] transition transform"
-          >
-            Contact Us
-          </button>
-         </div>
-        
-
-        {/* MOBILE MENU BUTTON */}
-      <button
-        className="md:hidden relative w-10 h-10 flex items-center justify-center"
-        onClick={() => setOpen(!open)}
-        aria-label="Toggle menu"
-      >
-        <span
-          className={`block absolute h-[2px] w-6 bg-black transition duration-300 ${
-            open ? "rotate-45" : "-translate-y-2"
-          }`}
-        />
-        <span
-          className={`block absolute h-[2px] w-6 bg-black transition duration-300 ${
-            open ? "opacity-0" : ""
-          }`}
-        />
-        <span
-          className={`block absolute h-[2px] w-6 bg-black transition duration-300 ${
-            open ? "-rotate-45" : "translate-y-2"
-          }`}
-        />
-      </button>
-
-      {/* MOBILE DROPDOWN (kept original behavior) */}
-      {open && (
-        <div className="absolute top-full left-0 w-full bg-gradient-to-r from-blue-900 to-gray-900 md:hidden shadow-xl z-50">
-
-          <div className="flex flex-col px-6 py-4 gap-3 text-lg">
-            <Link
-              to="/services"
-              onClick={() => setOpen(false)}
-              className={`py-2 ${
-                isPathActive("/services")
-                  ? "border-l-4 border-[#7cb5ff] pl-3 text-[#cfe2ff]"
-                  : "text-white"
+              key={id}
+              onClick={() => goTo("/about", id)}
+              className={`text-black hover:text-[#7cb5ff] text-left ${
+                isHashActive(id) ? "font-semibold" : ""
               }`}
             >
-              Products
-            </Link>
+              {id === "phyengine" ? "LAB" : id.charAt(0).toUpperCase() + id.slice(1)}
+            </button>
+          ))}
+        </div>
+      </div>
 
+      <Link to="/newsletter" className={`${underline(isPathActive("/newsletter"))} text-black`}>
+        News
+      </Link>
+
+      <Link
+        to="/#contact"
+        className="ml-3 inline-flex items-center rounded-full bg-gradient-to-r from-blue-600 to-slate-900 px-4 py-2 text-white font-semibold shadow hover:scale-[1.02] transition transform"
+      >
+        Contact Us
+      </Link>
+    </div>
+  );
+
+  const mobileMenu = (
+    <div
+      className={`absolute top-full left-0 w-full md:hidden shadow-xl z-50 transform transition-all duration-300 ${
+        open ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"
+      } bg-gradient-to-r from-blue-900 to-gray-900`}
+    >
+      <div className="flex flex-col px-6 py-4 gap-2 text-lg">
+        {/* Home + Solutions */}
+        <button
+          onClick={() => setMobileDropdown(mobileDropdown === "home" ? null : "home")}
+          className={`py-2 text-left flex justify-between items-center ${
+            isPathActive("/") ? "border-l-4 border-[#7cb5ff] pl-3 text-[#cfe2ff]" : "text-white"
+          }`}
+        >
+          Home
+          <span className="ml-2 transform transition-transform duration-300">
+            {mobileDropdown === "home" ? "▲" : "▼"}
+          </span>
+        </button>
+        {mobileDropdown === "home" && (
+          <div className="flex flex-col pl-4 gap-1">
             <button
               onClick={() => {
                 goTo("/", "solutions");
                 setOpen(false);
+                setMobileDropdown(null);
               }}
-              className={`py-2 text-left ${
-                isHashActive("solutions")
-                  ? "border-l-4 border-[#7cb5ff] pl-3 text-[#cfe2ff]"
-                  : "text-white"
+              className={`text-white hover:text-[#7cb5ff] ${
+                isHashActive("solutions") ? "font-semibold" : ""
               }`}
             >
               Solutions
             </button>
-
-            <button
-              onClick={() => {
-                goTo("/about", "phyengine");
-                setOpen(false);
-              }}
-              className={`py-2 text-left ${
-                isHashActive("phyengine")
-                  ? "border-l-4 border-[#7cb5ff] pl-3 text-[#cfe2ff]"
-                  : "text-white"
-              }`}
-            >
-              Technology
-            </button>
-
-            <button
-              onClick={() => {
-                goTo("/about", "research");
-                setOpen(false);
-              }}
-              className={`py-2 text-left ${
-                isHashActive("research")
-                  ? "border-l-4 border-[#7cb5ff] pl-3 text-[#cfe2ff]"
-                  : "text-white"
-              }`}
-            >
-              Research
-            </button>
-
-            <Link
-              to="/about"
-              onClick={() => setOpen(false)}
-              className={`py-2 ${
-                location.pathname === "/about" &&
-                (location.hash === "" || location.hash === "#top")
-                  ? "border-l-4 border-[#7cb5ff] pl-3 text-[#cfe2ff]"
-                  : "text-white"
-              }`}
-            >
-              Company
-            </Link>
-
-            <Link
-              to="/newsletter"
-              onClick={() => setOpen(false)}
-              className={`py-2 ${
-                isPathActive("/newsletter")
-                  ? "border-l-4 border-[#7cb5ff] pl-3 text-[#cfe2ff]"
-                  : "text-white"
-              }`}
-            >
-              Newsletter
-            </Link>
-
-            <button
-              onClick={() => {
-                goTo("/", "contact");
-                setOpen(false);
-              }}
-              className={`py-2 text-left ${
-                isHashActive("contact")
-                  ? "border-l-4 border-[#7cb5ff] pl-3 text-[#cfe2ff]"
-                  : "text-white"
-              }`}
-            >
-              Talk to Us
-            </button>
           </div>
-        </div>
-      )}
+        )}
 
+        <Link
+          to="/services"
+          onClick={() => setOpen(false)}
+          className={`py-2 ${
+            isPathActive("/services")
+              ? "border-l-4 border-[#7cb5ff] pl-3 text-[#cfe2ff]"
+              : "text-white"
+          }`}
+        >
+          Products
+        </Link>
 
+        {/* Company + submenu */}
+        <button
+          onClick={() => setMobileDropdown(mobileDropdown === "company" ? null : "company")}
+          className={`py-2 text-left flex justify-between items-center ${
+            isPathActive("/about") ? "border-l-4 border-[#7cb5ff] pl-3 text-[#cfe2ff]" : "text-white"
+          }`}
+        >
+          Company
+          <span className="ml-2 transform transition-transform duration-300">
+            {mobileDropdown === "company" ? "▲" : "▼"}
+          </span>
+        </button>
+        {mobileDropdown === "company" && (
+          <div className="flex flex-col pl-4 gap-1">
+            {["team", "ourstory", "phyengine", "results"].map((id) => (
+              <button
+                key={id}
+                onClick={() => {
+                  goTo("/about", id);
+                  setOpen(false);
+                  setMobileDropdown(null);
+                }}
+                className={`text-white hover:text-[#7cb5ff] ${
+                  isHashActive(id) ? "font-semibold" : ""
+                }`}
+              >
+                {id === "phyengine" ? "LAB" : id.charAt(0).toUpperCase() + id.slice(1)}
+              </button>
+            ))}
+          </div>
+        )}
+
+        <Link
+          to="/newsletter"
+          onClick={() => setOpen(false)}
+          className={`py-2 ${
+            isPathActive("/newsletter")
+              ? "border-l-4 border-[#7cb5ff] pl-3 text-[#cfe2ff]"
+              : "text-white"
+          }`}
+        >
+          News
+        </Link>
+
+        <button
+          onClick={() => {
+            goTo("/", "contact");
+            setOpen(false);
+            setMobileDropdown(null);
+          }}
+          className={`py-2 text-left ${
+            isHashActive("contact") ? "border-l-4 border-[#7cb5ff] pl-3 text-[#cfe2ff]" : "text-white"
+          }`}
+        >
+          Contact Us
+        </button>
+      </div>
+    </div>
+  );
+
+  return (
+    <header ref={navRef} className="fixed top-0 left-0 w-full z-50 bg-white shadow-md">
+      <nav className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 h-16">
+        <Link to="/" className="flex items-center shrink-0" aria-label="Home">
+          <img src={logo} alt="ANSpect logo" className="h-10 md:h-12 w-auto object-contain" />
+        </Link>
+
+        {desktopMenu}
+
+        {/* Mobile toggle */}
+        <button
+          className="md:hidden relative w-10 h-10 flex items-center justify-center"
+          onClick={() => setOpen(!open)}
+          aria-label="Toggle menu"
+        >
+          <span className={`block absolute h-[2px] w-6 bg-black transition duration-300 ${open ? "rotate-45" : "-translate-y-2"}`} />
+          <span className={`block absolute h-[2px] w-6 bg-black transition duration-300 ${open ? "opacity-0" : ""}`} />
+          <span className={`block absolute h-[2px] w-6 bg-black transition duration-300 ${open ? "-rotate-45" : "translate-y-2"}`} />
+        </button>
+
+        {mobileMenu}
       </nav>
     </header>
   );

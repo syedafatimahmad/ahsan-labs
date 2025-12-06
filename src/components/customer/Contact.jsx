@@ -21,7 +21,7 @@ export default function Contact() {
   };
 
   return (
-    <div className="w-full">
+    <div id = "contact" className="w-full">
 
       {/* Hero Section */}
       <div className="w-full h-[300px] bg-blue-950 flex items-center justify-center relative">

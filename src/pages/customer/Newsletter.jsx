@@ -106,9 +106,9 @@ export default function Newsletter() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-4xl md:text-6xl font-semibold leading-tight"
+            className="text-4xl md:text-6xl text-left font-semibold leading-tight"
           >
-            Wireless Capacity Innovation —  
+            Wireless Capacity Innovation <br/>
             <span className="text-aramcoGreen"> Straight to Your Inbox</span>
           </motion.h1>
 
@@ -116,7 +116,7 @@ export default function Newsletter() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-gray-200 max-w-2xl mt-4 text-lg"
+            className="text-gray-200 text-left max-w-2xl mt-4 text-lg"
           >
             Get updates on PHY-layer breakthroughs, research collaborations, 
             and behind-the-scenes engineering insights powering the future of wireless.

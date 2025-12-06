@@ -75,7 +75,7 @@ export default function Home() {
         {/* Overlay with carousel text */}
         <motion.div
           key={currentSlide} // force animation on slide change
-          className="absolute inset-0 flex flex-col justify-center items-center text-center px-6 md:px-20"
+          className="absolute inset-0 flex flex-col justify-center bg-blue-950/35 items-center text-center px-6 md:px-20"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
@@ -86,7 +86,7 @@ export default function Home() {
           <h2 className="text-xl md:text-3xl font-semibold mb-6 drop-shadow-[0_10px_10px_rgba(0,0,0,0.5)]">
             {heroSlides[currentSlide].subtitle}
           </h2>
-          <p className="max-w-3xl text-gray-200 text-left md:text-center bg-black/50 p-6 rounded-2xl shadow-lg">
+          <p className="max-w-3xl text-gray-200 text-left md:text-left ">
             {heroSlides[currentSlide].desc}
           </p>
           <div className="mt-6">
