@@ -8,15 +8,6 @@
   </head>
   <body>
     <div id="root"></div>
-
-    <!-- DEV: load source directly -->
-    <script type="module">
-      if (import.meta.env.DEV) {
-        import('/src/main.jsx');
-      }
-    </script>
-
-    <!-- PROD: Vite will inject the built JS automatically -->
-    <!-- No need to manually add /dist/assets/index-xxxx.js -->
+    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
