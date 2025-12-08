@@ -1,6 +1,8 @@
 import { useState } from "react";
 import tech from "../../assets/tech.mp4";
-import Button from "../customer/Button"
+import Button from "../customer/Button";
+
+import Swal from 'sweetalert2'
 
 export default function Contact() {
   const [form, setForm] = useState({
@@ -10,35 +12,71 @@ export default function Contact() {
     phone: "",
     message: "",
   });
+  const [result, setResult] = useState("");
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", form);
+
+    try {
+      const formData = new FormData();
+      formData.append("firstName", form.firstName);
+      formData.append("lastName", form.lastName);
+      formData.append("email", form.email);
+      formData.append("phone", form.phone);
+      formData.append("message", form.message);
+      formData.append("access_key", "1e42bcb0-96fc-44ba-b49a-9dfcfac354dc");
+
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        Swal.fire({
+          title: "Success!",
+          text: "Message sent Successfully!",
+          icon: "success"
+        });
+        setForm({ firstName: "", lastName: "", email: "", phone: "", message: "" });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+        });
+      }
+    } catch (error) {
+      console.error(error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Network Error!",
+      });
+    }
   };
 
   return (
-    <div id = "contact" className="w-full">
-
+    <div id="contact" className="w-full">
       {/* Hero Section */}
       <div className="w-full h-[300px] bg-blue-950 flex items-center justify-center relative">
         <video
-            src={tech}
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover opacity-40"
-            />
+          src={tech}
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover opacity-40"
+        />
         <h1 className="text-4xl font-bold text-white relative">Contact Us</h1>
       </div>
 
       {/* Contact + Form */}
       <div className="container mx-auto px-5 py-16 grid lg:grid-cols-2 gap-10">
-
         {/* Left Card */}
         <div className="bg-gray-900 text-white p-10 rounded-xl shadow-lg">
           <p className="text-blue-400 mb-2 font-semibold">Contact Us</p>
@@ -83,14 +121,18 @@ export default function Contact() {
               type="text"
               name="firstName"
               placeholder="First Name*"
+              value={form.firstName}
               onChange={handleChange}
+              required
               className="border p-3 rounded-md w-full"
             />
             <input
               type="text"
               name="lastName"
               placeholder="Last Name*"
+              value={form.lastName}
               onChange={handleChange}
+              required
               className="border p-3 rounded-md w-full"
             />
           </div>
@@ -100,14 +142,18 @@ export default function Contact() {
               type="email"
               name="email"
               placeholder="Email*"
+              value={form.email}
               onChange={handleChange}
+              required
               className="border p-3 rounded-md w-full"
             />
             <input
               type="text"
               name="phone"
               placeholder="Phone*"
+              value={form.phone}
               onChange={handleChange}
+              required
               className="border p-3 rounded-md w-full"
             />
           </div>
@@ -115,7 +161,9 @@ export default function Contact() {
           <textarea
             name="message"
             placeholder="Write Message"
+            value={form.message}
             onChange={handleChange}
+            required
             className="border p-3 rounded-md w-full h-32 mb-6"
           />
 
@@ -125,26 +173,10 @@ export default function Contact() {
           >
             Send Message
           </Button>
+
+          {result && <p className="mt-3 text-sm">{result}</p>}
         </form>
       </div>
-
-      {/* Trusted Companies 
-      <div className="py-12 bg-gray-50">
-        <div className="container mx-auto px-5">
-          <p className="text-center text-gray-600 font-medium mb-6">
-            Trusted by 50+ top companies
-          </p>
-
-          <div className="flex flex-wrap justify-center gap-10 opacity-70">
-            {Array.from({ length: 6 }).map((_, i) => (
-              <div
-                key={i}
-                className="w-32 h-10 bg-gray-300 rounded-md animate-pulse"
-              />
-            ))}
-          </div>
-        </div>
-      </div>*/}
 
       {/* Map Section */}
       <div className="w-full h-[400px]">
