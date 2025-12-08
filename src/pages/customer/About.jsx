@@ -9,7 +9,7 @@ import DocumentCard from "../../components/customer/DocumentCard";
 import TimelineItem from "../../components/customer/TimelineItem";
 import StatsCard from "../../components/customer/StatsCard";
 
-import ansVid from "../../assets/videos/ansvidd.mp4";
+import ansVid from "../../assets/videos/femaleanspect.mp4";
 import techVideo from "../../assets/tech.mp4";
 import { Link } from "react-router-dom";
 
@@ -176,7 +176,7 @@ export default function About() {
           ))}
         </section>
 
-        {/* Our Story */}
+        {/* Our Story
         <section
           id="ourstory"
           className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center bg-gradient-to-br from-white to-[#F6FBFF] rounded-3xl p-8 border border-blue-50 shadow-sm"
@@ -217,7 +217,7 @@ export default function About() {
               </Link>
             </div>
           </div>
-        </section>
+        </section>*/}
 
         {/* Team */}
         <section id="team" className="space-y-8">
@@ -309,18 +309,10 @@ export default function About() {
         </section>
 
         {/* Stories + Documents */}
-        <section className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-          <div className="lg:col-span-2 space-y-6">
-            <h2 className="text-2xl font-bold text-slate-900">Our Stories</h2>
-            <div className="w-full">
-              {videos.map((v, i) => (
-                <VideoCard key={i} title={v.title} src={v.src} />
-              ))}
-            </div>
-          </div>
-
+        <section className="grid grid-cols-1 lg:grid-cols-1 gap-10">
+          
           <aside className="space-y-4">
-            <h3 className="text-lg font-semibold text-slate-900">Proven on Real 5G Testbeds</h3>
+            <h3 className="text-3xl text-center font-bold mb-8 text-slate-900">Proven on Real 5G Testbeds</h3>
             {documents.map((d, i) => (
               <DocumentCard key={i} title={d.title} description={d.description} />
             ))}

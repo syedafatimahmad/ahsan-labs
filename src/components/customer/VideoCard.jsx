@@ -3,6 +3,7 @@ export default function VideoCard({title, src }) {
     <div className="relative h-64 sm:h-80 md:h-96 overflow-hidden rounded-2xl shadow-lg border border-gray-200 group">
       <video
         src={src}
+        
         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
       />
 

@@ -87,6 +87,12 @@ export default function Navbar() {
           >
             Solutions
           </Link>
+          <Link
+            to="/#ourstory"
+            className={`text-black hover:text-[#7cb5ff] text-left ${isHashActive("ourstory") ? "font-semibold" : ""}`}
+          >
+            Our Story
+          </Link>
         </div>
       </div>
 
@@ -100,7 +106,7 @@ export default function Navbar() {
           Company
         </Link>
         <div className="absolute hidden group-hover:flex flex-col bg-white/90 backdrop-blur-md rounded-md mt-1 p-3 w-40 gap-2 shadow-lg z-[60] pointer-events-auto">
-          {["team", "ourstory", "phyengine", "results"].map((id) => (
+          {["team", "phyengine", "results"].map((id) => (
             <Link
               key={id}
               to={`/about#${id}`}
@@ -156,6 +162,16 @@ export default function Navbar() {
             >
               Solutions
             </button>
+            <button
+              onClick={() => {
+                goTo("/", "ourstory");
+                setOpen(false);
+                setMobileDropdown(null);
+              }}
+              className={`text-white hover:text-[#7cb5ff] ${isHashActive("ourstory") ? "font-semibold" : ""}`}
+            >
+              Our Story
+            </button>
           </div>
         )}
 
@@ -185,7 +201,7 @@ export default function Navbar() {
         </button>
         {mobileDropdown === "company" && (
           <div className="flex flex-col pl-4 gap-1">
-            {["team", "ourstory", "phyengine", "results"].map((id) => (
+            {["team", "phyengine", "results"].map((id) => (
               <button
                 key={id}
                 onClick={() => {

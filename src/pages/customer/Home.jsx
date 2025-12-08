@@ -6,6 +6,8 @@ import Footer from "../../components/customer/Footer";
 import techVideo from "../../assets/tech.mp4";
 import ProductBanner from "../../components/customer/ProductBanner";
 
+import ansVid from "../../assets/videos/femaleanspect.mp4";
+
 import Contact from "../../components/customer/Contact";
 
 export default function Home() {
@@ -160,6 +162,51 @@ export default function Home() {
       <ProductBanner />
 
 
+      {/* Our Story */}
+      <section
+        id="ourstory"
+        className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center bg-gradient-to-br from-white to-[#F6FBFF] rounded-3xl p-8 border border-blue-50 shadow-sm"
+      >
+        <div className="w-full">
+          {[...Array(1)].map((_, idx) => (
+            <motion.div
+              key={idx}
+              whileHover={{ scale: 1.03 }}
+              className="rounded-xl overflow-hidden shadow-[0_10px_40px_rgba(59,130,246,0.5)]"
+            >
+              <video
+                src={ansVid}
+                controls
+                className="w-full h-full object-cover"
+              />
+            </motion.div>
+
+
+          ))}
+        </div>
+
+        <div>
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 inline-block">Our Story</h2>
+          <div className="mt-3 w-16 h-1 rounded-full bg-gradient-to-r from-blue-600 to-indigo-400" />
+          <p className="mt-6 text-gray-700 leading-relaxed">
+            From early academic work to real-world testbeds, our story is about converting theory into deployable software that delivers measurable capacity gains for networks worldwide.
+          </p>
+          <div className="mt-6 flex gap-3">
+            <Link
+            to = "/about#company"
+            className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r from-blue-600 to-gray-900 text-white shadow-lg hover:scale-105 transition">
+              Our Mission
+            </Link>
+            <Link
+              to="/#contact"
+              className="px-5 py-2 rounded-full border border-gray-200 text-slate-900 hover:bg-blue-50 transition"
+            >
+              Contact Us
+            </Link>
+          </div>
+        </div>
+      </section>
+
 
       {/* Contact Section */}
       {/* Contact Section 
@@ -247,7 +294,7 @@ export default function Home() {
         </div>
       </section>*/}
 
-      <Contact/>
+      <Contact />
 
       <Footer />
     </>
