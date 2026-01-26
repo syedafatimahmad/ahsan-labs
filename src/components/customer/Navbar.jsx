@@ -116,7 +116,7 @@ export default function Navbar() {
     </div>
   );
 
-{/* Mobile Menu */ }
+
 const mobileMenu = (
   <div
     className={`fixed inset-0 bg-white/95 backdrop-blur-md z-50 flex flex-col p-6 md:hidden transform transition-transform duration-300 ${
@@ -190,7 +190,7 @@ return (
   <header ref={navRef} className="fixed top-0 left-0 w-full z-50 bg-white shadow-md">
     <nav className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 h-16">
       <Link to="/" className="flex items-center shrink-0" aria-label="Home">
-        <img src="/images/logo.png"  alt="ANSpect logo" className="h-10 md:h-12 w-auto object-contain" />
+        <img src="/logo.png"  alt="ANSpect logo" className="h-10 md:h-12 w-auto object-contain" />
       </Link>
 
       {desktopMenu}
