@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import logo from "../../assets/images/logo.png";
+//import logo from "public/images/logo.png";
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -190,7 +190,7 @@ return (
   <header ref={navRef} className="fixed top-0 left-0 w-full z-50 bg-white shadow-md">
     <nav className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 h-16">
       <Link to="/" className="flex items-center shrink-0" aria-label="Home">
-        <img src={logo} alt="ANSpect logo" className="h-10 md:h-12 w-auto object-contain" />
+        <img src="/images/logo.png"  alt="ANSpect logo" className="h-10 md:h-12 w-auto object-contain" />
       </Link>
 
       {desktopMenu}
