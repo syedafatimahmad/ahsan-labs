@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import logo from "../../assets/images/logo.png";
+
 
 export default function Footer() {
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row md:justify-between items-center md:items-start text-center md:text-left gap-12">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <img src={logo} alt="ANSpect Logo" className="h-20" />
+            <img src="/logo.png" alt="ANSpect Logo" className="h-20" />
           </div>
 
           {/* Links */}
