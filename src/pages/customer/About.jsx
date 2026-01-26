@@ -1,23 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 
 import Footer from "../../components/customer/Footer";
-
-import VideoCard from "../../components/customer/VideoCard";
+import ImageCard from "../../components/customer/ImageCard";
 import DocumentCard from "../../components/customer/DocumentCard";
-import TimelineItem from "../../components/customer/TimelineItem";
-import StatsCard from "../../components/customer/StatsCard";
 
 import ansVid from "../../assets/videos/femaleanspect.mp4";
+import ahsan from "../../assets/images/ahsan.jpeg";
 import techVideo from "../../assets/tech.mp4";
-import { Link } from "react-router-dom";
-
-/**
- * Bold Innovation About page — modern hero, gradients, glass cards, neon accents.
- */
 
 export default function About() {
+  const [isExpanded, setIsExpanded] = useState(false);
   const stats = [
     { title: "Issued US & international patents", value: "150+" },
     { title: "Years in wireless systems design", value: "20+" },
@@ -31,19 +25,24 @@ export default function About() {
 
   const documents = [
     {
-      title: "Indoor 5G NR validation",
+      title: "Why software-defined PHY matters now",
       description:
-        "End-to-end validation across MCS, CQI, scheduling, and multi-user PHY interactions.",
+        "Network load is rising faster than spectrum and hardware refresh cycles. Here's why efficiency is the next frontier.",
     },
     {
-      title: "Outdoor FWA trials",
+      title: "Rethinking spectral efficiency in modern networks",
       description:
-        "Real-world trials measuring per-UE throughput, cell-edge speed, and sector capacity improvements.",
+        "A high-level look at why traditional modulation leaves capacity unused-and how smarter symbol utilization can help",
     },
     {
-      title: "Joint publications",
+      title: "Capacity challenges in FWA deployments",
       description:
-        "ANSpect supports joint research publications and sharing of test results with operators and vendors.",
+        "What breaks first as FWA scales, and where software-based efficiency gains can deliver fast impact",
+    },
+    {
+      title: "Extending infrastructure life through smarter modulation",
+      description:
+        "How efficiency improvements can extend ROI without requiring disruptive network rebuilds.",
     },
   ];
 
@@ -76,23 +75,23 @@ export default function About() {
 
   const team = [
     {
-      name: "Dr. Ahsan Naim",
-      role: "Founder & Chief Scientist",
+      name: "Surya Panditi",
+      role: "CEO",
       img: "https://static.vecteezy.com/system/resources/thumbnails/041/641/689/small/3d-character-people-close-up-portrait-smiling-nice-3d-avartar-or-icon-png.png",
-      desc: "Inventor on 150+ patents, former CTO, expert in multi-RAT PHY design.",
+      desc: "Leads strategy, partnerships, and commercialization with a track record of scaling companies through global growth and IPO.",
     },
     {
-      name: "Sarah Malik",
-      role: "Lead Systems Engineer",
+      name: "Dr. Muhammad Ahsan Naim",
+      role: "CTO",
       img: "https://static.vecteezy.com/system/resources/thumbnails/041/641/689/small/3d-character-people-close-up-portrait-smiling-nice-3d-avartar-or-icon-png.png",
-      desc: "Specializes in RF optimization and testbed validation for real-world deployments.",
+      desc: "Inventor of BOMA and technical architect of ANSpect’s PHY-layer innovations. Leads research, architecture, and technical roadmap.",
     },
-    {
-      name: "Daniel Lee",
-      role: "Senior PHY Developer",
-      img: "https://static.vecteezy.com/system/resources/thumbnails/041/641/689/small/3d-character-people-close-up-portrait-smiling-nice-3d-avartar-or-icon-png.png",
-      desc: "Works on SD-PHY modules for 4G/5G and mmWave platforms.",
-    },
+    // {
+    //   name: "Daniel Lee",
+    //   role: "Senior PHY Developer",
+    //   img: "https://static.vecteezy.com/system/resources/thumbnails/041/641/689/small/3d-character-people-close-up-portrait-smiling-nice-3d-avartar-or-icon-png.png",
+    //   desc: "Works on SD-PHY modules for 4G/5G and mmWave platforms.",
+    // },
   ];
 
   const location = useLocation();
@@ -107,7 +106,7 @@ export default function About() {
   return (
     <div className="min-h-screen bg-white text-slate-900 antialiased font-body">
       {/* HERO */}
-      <section className="relative w-full h-[70vh] overflow-hidden">
+      <section className="relative w-full h-[50vh] top-3.5 overflow-hidden">
         {/* Background Video */}
         <video autoPlay muted loop className="absolute w-full h-full object-cover">
           <source src={techVideo} type="video/mp4" />
@@ -117,19 +116,19 @@ export default function About() {
         <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
 
         {/* Neon Accent Circles */}
-        <div className="absolute -bottom-10 right-10 w-40 h-40 rounded-full bg-gradient-to-br from-blue-200/40 to-transparent blur-3xl pointer-events-none" />
-        <div className="absolute -top-10 left-8 w-32 h-32 rounded-full bg-gradient-to-br from-indigo-300/30 to-transparent blur-2xl pointer-events-none" />
+        <div className="absolute -bottom-10 right-10 w-40 h-40 rounded-full bg-linear-to-br from-blue-200/40 to-transparent blur-3xl pointer-events-none" />
+        <div className="absolute -top-10 left-8 w-32 h-32 rounded-full bg-linear-to-br from-indigo-300/30 to-transparent blur-2xl pointer-events-none" />
 
         {/* Text Content */}
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-8 max-w-5xl mx-auto gap-4">
-          {/* Small Green Label */}
+          {/* Small Green Label 
           <motion.span
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-sm bg-aramcoGreen px-4 py-1 rounded-full mb-3 inline-block shadow-md"
           >
-            About ANSpect
-          </motion.span>
+            Deep research meets real-world execution—built to translate advanced theory into practical deployment.
+          </motion.span>*/}
 
           {/* Heading */}
           <motion.h1
@@ -138,23 +137,169 @@ export default function About() {
             transition={{ duration: 0.8 }}
             className="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight"
           >
-            Our Mission
+            ANSpect at a Glance
           </motion.h1>
 
-          {/* Paragraph */}
+          {/* Paragraph 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, duration: 0.8 }}
             className="mt-4 text-lg md:text-xl text-left text-gray-200 max-w-3xl"
           >
-            ANSpect, led by Dr. Ahsan Naim — inventor on 150+ patents — brings research-grade PHY techniques into production-grade software. We push spectrum and hardware to new capacity limits using intelligent PHY algorithms.
-          </motion.p>
+            Deep research meets real-world execution—built to translate advanced theory into practical deployment.
+          </motion.p>*/}
         </div>
+
+        {/* Scroll Indicator */}
+        
       </section>
 
       <main className="space-y-24 px-6 md:px-12 lg:px-24 py-16">
-        {/* STATS */}
+
+
+        {/* Our Story*/}
+        <section
+          id="ourstory"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center bg-gradient-to-br from-white to-[#F6FBFF] rounded-3xl p-8 border border-blue-50 shadow-sm"
+        >
+          <div className="rounded-2xl overflow-hidden border border-gray-100 shadow-md">
+            <ImageCard title="Dr. Ahsan Naim with Surya Panditi" src={ahsan} />
+          </div>
+          <div className="rounded-2xl p-6 bg-white border border-gray-100 shadow-md">
+            <h2 className="text-2xl font-bold">Origin</h2>
+            <div className="mt-4 space-y-4">
+              <span className="block">
+                <strong>ANSpect</strong> was born at the intersection of deep research and real-world execution.
+                The journey began years earlier with <strong>Dr. Ahsan Naim</strong>, whose doctoral research explored the fundamental limits of wireless capacity and spectrum efficiency.
+              </span>
+
+              <span className="block">
+                That work led to the invention of <strong>BOMA (Building Block Orthogonal Multiple Access)</strong>—unlocking capacity gains in existing networks without requiring new spectrum or disruptive hardware changes.
+              </span>
+
+              <span className="block">
+                Recognizing the broader potential of the technology, Ahsan refined BOMA through his research company, <strong>AhsanLabs</strong>, with a long-term vision of translating theory into deployable solutions.
+              </span>
+
+              {isExpanded && (
+                <>
+                  <span className="block">
+                    Realizing full impact required technical excellence plus experienced leadership and a scalable go-to-market strategy.
+                  </span>
+
+                  <span className="block">
+                    This led to a partnership with <strong>Surya Panditi</strong>, a seasoned executive with proven track record of building and leading technology companies.
+                  </span>
+
+                  <span className="block">
+                    Together, they co-founded <strong>ANSpect Technologies</strong>—Ahsan as CTO, Surya as CEO—bridging innovation and commercial deployment.
+                  </span>
+
+                  <span className="block">
+                    Their complementary backgrounds form the foundation of ANSpect’s approach: deep technical innovation meets executive execution.
+                  </span>
+
+                  <span className="block">
+                    ANSpect focuses on collaboration between research and industry, theory and practice, enabling higher network efficiency without costly overhauls.
+                  </span>
+                </>
+              )}
+
+              <div className="mt-6 flex gap-3">
+                <button
+                  onClick={() => setIsExpanded(!isExpanded)}
+                  className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r from-gray-600 to-gray-800 text-white shadow-lg hover:scale-105 transition"
+                >
+                  {isExpanded ? "Read Less" : "Read More"}
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* TECHNOLOGY */}
+        <section id="technology" className="space-y-10">
+          <div className="flex flex-col lg:flex-row justify-between gap-6">
+            <h2 className="text-3xl md:text-4xl font-bold">Technology</h2>
+            <p className="text-sm text-gray-600 max-w-xl">
+              Layered explanation: clear at the top, deeper as you scroll—without oversharing.
+            </p>
+          </div>
+
+          {/* Top Cards */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="rounded-2xl p-6 bg-linear-to-br from-slate-900 to-slate-800 text-white shadow-lg">
+              <span className="inline-block mb-3 px-3 py-1 text-xs rounded-full bg-white/10">
+                The Core Idea
+              </span>
+              <p className="text-sm leading-relaxed text-gray-200">
+                Traditional modulation schemes can leave measurable capacity on the table
+                due to rigid symbol structures and conservative design assumptions. ANSpect
+                rethinks how symbols are constructed, mapped, and utilized—unlocking
+                additional capacity within the same spectral footprint.
+              </p>
+            </div>
+
+            <div className="rounded-2xl p-6 bg-linear-to-br from-indigo-900 to-indigo-800 text-white shadow-lg">
+              <span className="inline-block mb-3 px-3 py-1 text-xs rounded-full bg-white/10">
+                How It Works (High Level)
+              </span>
+              <p className="text-sm leading-relaxed text-gray-200">
+                ANSpect operates at the PHY layer, enhancing symbol utilization and mapping
+                efficiency. The approach is adaptable to channel conditions and can be
+                implemented through software or firmware updates, designed to integrate
+                into existing modem and baseband architectures.
+              </p>
+            </div>
+          </div>
+
+          {/* Comparison Table */}
+          <div className="rounded-2xl overflow-hidden border border-gray-200 shadow-md">
+            <div className="grid grid-cols-2 bg-gray-50">
+              <div className="p-4 font-semibold">Traditional Approaches</div>
+              <div className="p-4 font-semibold text-blue-700">ANSpect</div>
+            </div>
+
+            {[
+              ["Fixed modulation structures", "Adaptive, intelligent symbol design"],
+              ["Spectrum expansion required", "Uses existing spectrum more efficiently"],
+              ["Hardware-centric upgrades", "Software-centric deployment path"],
+              ["Long upgrade cycles", "Faster time to value"],
+            ].map(([left, right], i) => (
+              <div key={i} className="grid grid-cols-2 border-t">
+                <div className="p-4 text-sm text-gray-700">{left}</div>
+                <div className="p-4 text-sm text-gray-900 font-medium">{right}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* Bottom Cards */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="rounded-2xl p-6 bg-white border border-gray-100 shadow-md">
+              <span className="inline-block mb-3 px-3 py-1 text-xs rounded-full bg-blue-50 text-blue-700">
+                Built for Real-World Networks
+              </span>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                Designed with existing standards in mind (e.g., 3GPP, DOCSIS), backward-compatible
+                deployment paths, and a focus on operator-grade performance.
+              </p>
+            </div>
+
+            <div className="rounded-2xl p-6 bg-white border border-gray-100 shadow-md">
+              <span className="inline-block mb-3 px-3 py-1 text-xs rounded-full bg-indigo-50 text-indigo-700">
+                Intellectual Property & Standards Awareness
+              </span>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                ANSpect’s technology is protected by a strong and growing patent portfolio and
+                developed with awareness of established standards frameworks. The goal is not
+                to disrupt ecosystems—but to enhance them.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* STATS 
         <section className="grid grid-cols-1 md:grid-cols-4 gap-6">
           {stats.map((s, i) => (
             <motion.div
@@ -174,14 +319,9 @@ export default function About() {
               />
             </motion.div>
           ))}
-        </section>
+        </section>*/}
 
-        {/* Our Story
-        <section
-          id="ourstory"
-          className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center bg-gradient-to-br from-white to-[#F6FBFF] rounded-3xl p-8 border border-blue-50 shadow-sm"
-        >
-          <div className="w-full">
+        {/*<div className="w-full">
             {[...Array(1)].map((_, idx) => (
               <motion.div
                 key={idx}
@@ -223,10 +363,10 @@ export default function About() {
         <section id="team" className="space-y-8">
           <div className="flex items-center justify-between">
             <h2 className="text-3xl md:text-4xl font-bold">Meet The Team</h2>
-            <div className="text-sm text-gray-600">We hire curious domain experts — remotely and globally</div>
+            <div className="text-sm text-gray-600">Leadership brings together deep technical innovation and proven executive execution.</div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6">
             {team.map((m, i) => (
               <motion.div
                 key={i}
@@ -254,8 +394,8 @@ export default function About() {
           </div>
         </section>
 
-        {/* How It Works + LAB */}
-        <section id = "phyengine" className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+        {/* How It Works + LAB
+        <section id="phyengine" className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
           <div className="rounded-2xl p-6 bg-white border border-gray-100 shadow-md">
             <h2 className="text-2xl font-bold">How it Works</h2>
             <div className="mt-4 space-y-4">
@@ -275,51 +415,32 @@ export default function About() {
             </div>
           </div>
 
-          <div className="rounded-2xl overflow-hidden border border-gray-100 shadow-md">
-            <VideoCard title="Inside the LAB — testbeds & trials" src={ansVid} />
-          </div>
-        </section>
 
-        {/* Results */}
-        <section id="results" className="space-y-6">
-          <div className="flex items-center justify-between">
-            <h2 className="text-3xl font-bold">Results That Matter</h2>
-            <div className="text-sm text-gray-600">Measured improvements on real deployments</div>
+        </section>*/}
+
+        {/* Insights */}
+        <section id="insights" className="space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+            <h2 className="text-3xl font-bold">Insights</h2>
+            <p className="text-sm text-gray-600">
+              Thought leadership and technical perspectives—non-confidential, credibility-building content.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              { stat: "+45%", title: "Sector Capacity Gain", color: "from-blue-600 to-indigo-400" },
-              { stat: "30%", title: "Higher Spectral Efficiency", color: "from-cyan-500 to-blue-600" },
-              { stat: "22%", title: "Improved Cell-edge Speeds", color: "from-indigo-500 to-violet-500" },
-            ].map((r, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className={`rounded-2xl p-8 bg-white border border-gray-100 shadow-md relative overflow-hidden`}
-              >
-                <div className={`absolute -right-8 -top-12 w-56 h-56 rounded-full blur-3xl bg-gradient-to-br ${r.color} opacity-20`} />
-                <p className="text-4xl font-extrabold text-slate-900">{r.stat}</p>
-                <p className="text-gray-600 mt-2">{r.title}</p>
-              </motion.div>
+          <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-10">
+            {documents.map((d, index) => (
+              <aside key={index} className="space-y-4">
+                <DocumentCard
+                  title={d.title}
+                  description={d.description}
+                />
+              </aside>
             ))}
           </div>
         </section>
 
-        {/* Stories + Documents */}
-        <section className="grid grid-cols-1 lg:grid-cols-1 gap-10">
-          
-          <aside className="space-y-4">
-            <h3 className="text-3xl text-center font-bold mb-8 text-slate-900">Proven on Real 5G Testbeds</h3>
-            {documents.map((d, i) => (
-              <DocumentCard key={i} title={d.title} description={d.description} />
-            ))}
-          </aside>
-        </section>
 
-        {/* Timeline */}
+        {/* Timeline 
         <section>
           <h2 className="text-3xl font-bold text-center mb-8">Our History</h2>
           <div className="max-w-4xl mx-auto space-y-6">
@@ -327,13 +448,9 @@ export default function About() {
               <TimelineItem key={i} year={t.year} title={t.title} description={t.description} />
             ))}
           </div>
-        </section>
+        </section>*/}
 
-        {/* CTA */}
-        <section className="mt-8 p-10 rounded-2xl bg-gradient-to-r from-gray-50 to-blue-50 border-gray-100 shadow-md text-center">
-          <h3 className="text-2xl font-bold text-shadow-slate-950 mb-2">Join Us on Our Mission</h3>
-          <p className="text-gray-900">We build the next generation of high-capacity software-defined networks.</p>
-        </section>
+
       </main>
 
       <Footer />

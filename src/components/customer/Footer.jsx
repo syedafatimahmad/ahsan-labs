@@ -7,7 +7,7 @@ export default function Footer() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Handle scrolling to hash when navigating
+  // Scroll to hash on navigation
   useEffect(() => {
     if (location.hash) {
       const id = location.hash.replace("#", "");
@@ -17,7 +17,6 @@ export default function Footer() {
   }, [location]);
 
   const scrollToSection = (path, id) => {
-    // Navigate with hash, the useEffect will handle scrolling
     navigate(`${path}#${id}`);
   };
 
@@ -28,60 +27,50 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row md:justify-between items-center md:items-start text-center md:text-left gap-12">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <img src={logo} alt="ANSpect Logo" className="h-20 " />
+            <img src={logo} alt="ANSpect Logo" className="h-20" />
           </div>
 
           {/* Links */}
-          <div className="flex flex-wrap justify-center md:justify-end gap-12 md:gap-20">
-            {/* Technology */}
-            <div>
-              <h5 className="text-black font-semibold mb-4 text-base md:text-lg">Technology</h5>
-              <ul className="space-y-2 text-sm text-black">
-                <li>
-                  <button onClick={() => scrollToSection("/about", "how-it-works")} className="hover:text-aramcoGreen transition">
-                    How It Works
-                  </button>
-                </li>
-                <li>
-                  <button onClick={() => scrollToSection("/about", "phyengine")} className="hover:text-aramcoGreen transition">
-                    PHY Engine
-                  </button>
-                </li>
-              </ul>
+          <div className="flex flex-wrap justify-center md:justify-end gap-12 md:gap-20 text-sm md:text-base">
+            {/* Column 1 */}
+            <div className="flex flex-col space-y-2">
+              <button onClick={() => navigate("/")} className="hover:text-aramcoGreen transition">
+                Home
+              </button>
+              <button onClick={() => scrollToSection("/", "industries")} className="hover:text-aramcoGreen transition">
+                Industries
+              </button>
+              
             </div>
 
-            {/* Company */}
-            <div>
-              <h5 className="text-black font-semibold mb-4 text-base md:text-lg">Company</h5>
-              <ul className="space-y-2 text-sm text-black">
-                <li>
-                  <button onClick={() => navigate("/about")} className="hover:text-aramcoGreen transition">
-                    About Us
-                  </button>
-                </li>
-                <li>
-                  <button onClick={() => scrollToSection("/about", "careers")} className="hover:text-aramcoGreen transition">
-                    Careers
-                  </button>
-                </li>
-              </ul>
+            {/* Column 2 */}
+            <div className="flex flex-col space-y-2">
+              <button onClick={() => scrollToSection("/", "ourstory")} className="hover:text-aramcoGreen transition">
+                Our Story
+              </button>
+              <button onClick={() => navigate("/about")} className="hover:text-aramcoGreen transition">
+                Company
+              </button>
             </div>
 
-            {/* Support */}
-            <div>
-              <h5 className="text-black font-semibold mb-4 text-base md:text-lg">Support</h5>
-              <ul className="space-y-2 text-sm text-black">
-                <li>
-                  <button onClick={() => scrollToSection("/", "contact")} className="hover:text-aramcoGreen transition">
-                    Contact Us
-                  </button>
-                </li>
-                <li>
-                  <button onClick={() => navigate("/newsletter#faq")} className="hover:text-aramcoGreen transition">
-                    FAQ
-                  </button>
-                </li>
-              </ul>
+            {/* Column 3 */}
+            <div className="flex flex-col space-y-2">
+              <button onClick={() => scrollToSection("/about", "team")} className="hover:text-aramcoGreen transition">
+                Team
+              </button>
+              <button onClick={() => scrollToSection("/about", "technology")} className="hover:text-aramcoGreen transition">
+                Technology
+              </button>
+            </div>
+
+            {/* Column 4 */}
+            <div className="flex flex-col space-y-2">
+              <button onClick={() => scrollToSection("/about", "insights")} className="hover:text-aramcoGreen transition">
+                Insights
+              </button>
+              <button onClick={() => scrollToSection("/", "contact")} className="hover:text-aramcoGreen transition">
+                Contact Us
+              </button>
             </div>
           </div>
         </div>

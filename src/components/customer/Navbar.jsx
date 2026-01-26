@@ -70,58 +70,43 @@ export default function Navbar() {
 
   const desktopMenu = (
     <div className="hidden md:flex items-center gap-8 ml-auto">
-      {/* Home + Solutions */}
-      <div className="relative group">
-        <Link to="/" className={`${underline(isPathActive("/"))} text-black`}>
-          Home
-        </Link>
-
-        {/* Changed to use Link (anchor-like) instead of button on desktop.
-            Also reduced the vertical gap (mt-1 instead of mt-2) to avoid a
-            tiny hover gap that can make the submenu disappear when moving the cursor
-            from the parent item to the dropdown. Added pointer-events-auto and a higher z-index. */}
-        <div className="absolute hidden group-hover:flex flex-col bg-white/90 backdrop-blur-md rounded-md mt-1 p-3 w-40 gap-2 shadow-lg z-[60] pointer-events-auto">
-          <Link
-            to="/#solutions"
-            className={`text-black hover:text-[#7cb5ff] text-left ${isHashActive("solutions") ? "font-semibold" : ""}`}
-          >
-            Solutions
-          </Link>
-          <Link
-            to="/#ourstory"
-            className={`text-black hover:text-[#7cb5ff] text-left ${isHashActive("ourstory") ? "font-semibold" : ""}`}
-          >
-            Our Story
-          </Link>
-        </div>
-      </div>
-
-      <Link to="/services" className={`${underline(isPathActive("/services"))} text-black`}>
-        Products
+      {/* Home */}
+      <Link to="/" className={`${underline(isPathActive("/"))} text-black`}>
+        Home
       </Link>
 
-      {/* Company + submenu */}
-      <div className="relative group">
-        <Link to="/about" className={`${underline(isPathActive("/about"))} text-black`}>
-          Company
-        </Link>
-        <div className="absolute hidden group-hover:flex flex-col bg-white/90 backdrop-blur-md rounded-md mt-1 p-3 w-40 gap-2 shadow-lg z-[60] pointer-events-auto">
-          {["team", "phyengine", "results"].map((id) => (
-            <Link
-              key={id}
-              to={`/about#${id}`}
-              className={`text-black hover:text-[#7cb5ff] text-left ${isHashActive(id) ? "font-semibold" : ""}`}
-            >
-              {id === "phyengine" ? "LAB" : id.charAt(0).toUpperCase() + id.slice(1)}
-            </Link>
-          ))}
-        </div>
-      </div>
-
-      <Link to="/newsletter" className={`${underline(isPathActive("/newsletter"))} text-black`}>
-        News
+      {/* Industries + Our Story directly visible */}
+      <Link
+        to="/#industries"
+        className={`text-black hover:text-[#7cb5ff] ${isHashActive("industries") ? "font-semibold" : ""}`}
+      >
+        Industries
+      </Link>
+      <Link
+        to="/#ourstory"
+        className={`text-black hover:text-[#7cb5ff] ${isHashActive("ourstory") ? "font-semibold" : ""}`}
+      >
+        Our Story
       </Link>
 
+      {/* Company + sublinks directly visible */}
+      <Link
+        to="/about"
+        className={`${underline(isPathActive("/about"))} text-black`}
+      >
+        Company
+      </Link>
+      {["team", "technology", "insights"].map((id) => (
+        <Link
+          key={id}
+          to={`/about#${id}`}
+          className={`text-black hover:text-[#7cb5ff] ${isHashActive(id) ? "font-semibold" : ""}`}
+        >
+          {id.charAt(0).toUpperCase() + id.slice(1)}
+        </Link>
+      ))}
+
+      {/* Contact button */}
       <Link
         to="/#contact"
         className="ml-3 inline-flex items-center rounded-full bg-gradient-to-r from-blue-600 to-slate-900 px-4 py-2 text-white font-semibold shadow hover:scale-[1.02] transition transform"
@@ -131,142 +116,98 @@ export default function Navbar() {
     </div>
   );
 
-  const mobileMenu = (
-    <div
-      className={`absolute top-full left-0 w-full md:hidden shadow-xl z-50 transform transition-all duration-300 ${
-        open ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"
-      } bg-gradient-to-r from-blue-900 to-gray-900`}
+{/* Mobile Menu */ }
+const mobileMenu = (
+  <div
+    className={`fixed inset-0 bg-white/95 backdrop-blur-md z-50 flex flex-col p-6 md:hidden transform transition-transform duration-300 ${
+      open ? "translate-x-0" : "translate-x-full"
+    }`}
+    ref={navRef}
+  >
+    {/* Close button */}
+    <button
+      onClick={() => setOpen(false)}
+      className="self-end mb-4 text-black text-2xl font-bold"
     >
-      <div className="flex flex-col px-6 py-4 gap-2 text-lg">
-        {/* Home + Solutions */}
-        <button
-          onClick={() => setMobileDropdown(mobileDropdown === "home" ? null : "home")}
-          className={`py-2 text-left flex justify-between items-center ${
-            isPathActive("/") ? "border-l-4 border-[#7cb5ff] pl-3 text-[#cfe2ff]" : "text-white"
-          }`}
-        >
-          Home
-          <span className="ml-2 transform transition-transform duration-300">
-            {mobileDropdown === "home" ? "▲" : "▼"}
-          </span>
-        </button>
-        {mobileDropdown === "home" && (
-          <div className="flex flex-col pl-4 gap-1">
-            <button
-              onClick={() => {
-                goTo("/", "solutions");
-                setOpen(false);
-                setMobileDropdown(null);
-              }}
-              className={`text-white hover:text-[#7cb5ff] ${isHashActive("solutions") ? "font-semibold" : ""}`}
-            >
-              Solutions
-            </button>
-            <button
-              onClick={() => {
-                goTo("/", "ourstory");
-                setOpen(false);
-                setMobileDropdown(null);
-              }}
-              className={`text-white hover:text-[#7cb5ff] ${isHashActive("ourstory") ? "font-semibold" : ""}`}
-            >
-              Our Story
-            </button>
-          </div>
-        )}
+      ×
+    </button>
 
-        <Link
-          to="/services"
-          onClick={() => setOpen(false)}
-          className={`py-2 ${
-            isPathActive("/services")
-              ? "border-l-4 border-[#7cb5ff] pl-3 text-[#cfe2ff]"
-              : "text-white"
-          }`}
-        >
-          Products
-        </Link>
+    {/* All links displayed directly */}
+    <Link
+      to="/"
+      onClick={() => setOpen(false)}
+      className={`mb-3 text-black text-lg ${isPathActive("/") ? "font-semibold" : ""}`}
+    >
+      Home
+    </Link>
 
-        {/* Company + submenu */}
-        <button
-          onClick={() => setMobileDropdown(mobileDropdown === "company" ? null : "company")}
-          className={`py-2 text-left flex justify-between items-center ${
-            isPathActive("/about") ? "border-l-4 border-[#7cb5ff] pl-3 text-[#cfe2ff]" : "text-white"
-          }`}
-        >
-          Company
-          <span className="ml-2 transform transition-transform duration-300">
-            {mobileDropdown === "company" ? "▲" : "▼"}
-          </span>
-        </button>
-        {mobileDropdown === "company" && (
-          <div className="flex flex-col pl-4 gap-1">
-            {["team", "phyengine", "results"].map((id) => (
-              <button
-                key={id}
-                onClick={() => {
-                  goTo("/about", id);
-                  setOpen(false);
-                  setMobileDropdown(null);
-                }}
-                className={`text-white hover:text-[#7cb5ff] ${isHashActive(id) ? "font-semibold" : ""}`}
-              >
-                {id === "phyengine" ? "LAB" : id.charAt(0).toUpperCase() + id.slice(1)}
-              </button>
-            ))}
-          </div>
-        )}
+    <Link
+      to="/#industries"
+      onClick={() => setOpen(false)}
+      className={`mb-3 text-black text-lg ${isHashActive("industries") ? "font-semibold" : ""}`}
+    >
+      Industries
+    </Link>
+    <Link
+      to="/#ourstory"
+      onClick={() => setOpen(false)}
+      className={`mb-3 text-black text-lg ${isHashActive("ourstory") ? "font-semibold" : ""}`}
+    >
+      Our Story
+    </Link>
 
-        <Link
-          to="/newsletter"
-          onClick={() => setOpen(false)}
-          className={`py-2 ${
-            isPathActive("/newsletter")
-              ? "border-l-4 border-[#7cb5ff] pl-3 text-[#cfe2ff]"
-              : "text-white"
-          }`}
-        >
-          News
-        </Link>
+    <Link
+      to="/about"
+      onClick={() => setOpen(false)}
+      className={`mb-3 text-black text-lg ${isPathActive("/about") ? "font-semibold" : ""}`}
+    >
+      Company
+    </Link>
 
-        <button
-          onClick={() => {
-            goTo("/", "contact");
-            setOpen(false);
-            setMobileDropdown(null);
-          }}
-          className={`py-2 text-left ${
-            isHashActive("contact") ? "border-l-4 border-[#7cb5ff] pl-3 text-[#cfe2ff]" : "text-white"
-          }`}
-        >
-          Contact Us
-        </button>
-      </div>
-    </div>
-  );
+    {["team", "technology", "insights"].map((id) => (
+      <Link
+        key={id}
+        to={`/about#${id}`}
+        onClick={() => setOpen(false)}
+        className={`mb-3 text-black text-lg ${isHashActive(id) ? "font-semibold" : ""}`}
+      >
+        {id.charAt(0).toUpperCase() + id.slice(1)}
+      </Link>
+    ))}
 
-  return (
-    <header ref={navRef} className="fixed top-0 left-0 w-full z-50 bg-white shadow-md">
-      <nav className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 h-16">
-        <Link to="/" className="flex items-center shrink-0" aria-label="Home">
-          <img src={logo} alt="ANSpect logo" className="h-10 md:h-12 w-auto object-contain" />
-        </Link>
+    <Link
+      to="/#contact"
+      onClick={() => setOpen(false)}
+      className="mt-4 inline-flex items-center rounded-full bg-gradient-to-r from-blue-600 to-slate-900 px-4 py-2 text-white font-semibold shadow"
+    >
+      Contact Us
+    </Link>
+  </div>
+);
 
-        {desktopMenu}
 
-        {/* Mobile toggle */}
-        <button
-          className="md:hidden relative w-10 h-10 flex items-center justify-center"
-          onClick={() => setOpen(!open)}
-          aria-label="Toggle menu"
-        >
-          <span className={`block absolute h-[2px] w-6 bg-black transition duration-300 ${open ? "rotate-45" : "-translate-y-2"}`} />
-          <span className={`block absolute h-[2px] w-6 bg-black transition duration-300 ${open ? "opacity-0" : ""}`} />
-          <span className={`block absolute h-[2px] w-6 bg-black transition duration-300 ${open ? "-rotate-45" : "translate-y-2"}`} />
-        </button>
+return (
+  <header ref={navRef} className="fixed top-0 left-0 w-full z-50 bg-white shadow-md">
+    <nav className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 h-16">
+      <Link to="/" className="flex items-center shrink-0" aria-label="Home">
+        <img src={logo} alt="ANSpect logo" className="h-10 md:h-12 w-auto object-contain" />
+      </Link>
 
-        {mobileMenu}
-      </nav>
-    </header>
-  );
+      {desktopMenu}
+
+      {/* Mobile toggle */}
+      <button
+        className="md:hidden relative w-10 h-10 flex items-center justify-center"
+        onClick={() => setOpen(!open)}
+        aria-label="Toggle menu"
+      >
+        <span className={`block absolute h-[2px] w-6 bg-black transition duration-300 ${open ? "rotate-45" : "-translate-y-2"}`} />
+        <span className={`block absolute h-[2px] w-6 bg-black transition duration-300 ${open ? "opacity-0" : ""}`} />
+        <span className={`block absolute h-[2px] w-6 bg-black transition duration-300 ${open ? "-rotate-45" : "translate-y-2"}`} />
+      </button>
+
+      {mobileMenu}
+    </nav>
+  </header>
+);
 }

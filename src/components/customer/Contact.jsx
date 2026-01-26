@@ -82,8 +82,7 @@ export default function Contact() {
           <p className="text-blue-400 mb-2 font-semibold">Contact Us</p>
           <h2 className="text-3xl font-bold mb-4">Need More Information?<br />Get in Touch</h2>
           <p className="text-gray-300 mb-8">
-            Contact us today for tailored marketing strategies and expert advice.
-            We’re eager to help your business grow!
+            Reach out for technical discussions, partnership inquiries, or investor relations. We’re happy to schedule a working session and share appropriate non-confidential materials.
           </p>
 
           <div className="space-y-5">
@@ -94,12 +93,12 @@ export default function Contact() {
 
             <div>
               <p className="text-sm text-gray-400">Email Address</p>
-              <p className="font-medium">info@example.com</p>
+              <p className="font-medium">info@anspect.com</p>
             </div>
 
             <div>
               <p className="text-sm text-gray-400">Office Location</p>
-              <p className="font-medium">7164 Barton Terrace, North Penlake, Vermont - 97879, USA</p>
+              <p className="font-medium">Your address, USA</p>
             </div>
           </div>
         </div>
