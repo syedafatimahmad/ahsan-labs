@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useLocation, Link } from "react-router-dom";
+import Button from "../../components/customer/Button";
 
 import Footer from "../../components/customer/Footer";
 import ImageCard from "../../components/customer/ImageCard";
@@ -76,22 +77,55 @@ export default function About() {
   const team = [
     {
       name: "Surya Panditi",
-      role: "CEO",
+      role: "Co-Founder & Chief TExecutive Officer",
       img: "https://static.vecteezy.com/system/resources/thumbnails/041/641/689/small/3d-character-people-close-up-portrait-smiling-nice-3d-avartar-or-icon-png.png",
-      desc: "Leads strategy, partnerships, and commercialization with a track record of scaling companies through global growth and IPO.",
+      desc: "Senior executive with successful start-up to large company experience. Career highlights include successfully managing a $4B business for profitability and growing a business from zero to a $100M run rate, followed by a successful IPO. Strong track record of operational excellence, business growth and profitability, inspirational leadership, customer engagement, product development and thought leadership.",
     },
     {
-      name: "Dr. Muhammad Ahsan Naim",
-      role: "CTO",
+      name: "Dr. Ahsan Naim",
+      role: "Co-Founder & Chief Technology Officer",
       img: "https://static.vecteezy.com/system/resources/thumbnails/041/641/689/small/3d-character-people-close-up-portrait-smiling-nice-3d-avartar-or-icon-png.png",
-      desc: "Inventor of BOMA and technical architect of ANSpect’s PHY-layer innovations. Leads research, architecture, and technical roadmap.",
+      desc: (
+    <>
+      Dr. Ahsan Naim obtained his MS and PhD in Electrical Engineering in 2007 and 2014 from The University of Texas at Dallas. 
+      He co-founded the startup{" "}
+      <a href="https://www.welink.com/" target="_blank" rel="noopener noreferrer">
+        <strong>WeLink</strong>
+      </a>{" "}
+      in 2018 that has raised $200M+ to date. He is a domain expert with 15+ years of industry experience working for tier-1 wireless equipment vendor Ericsson, tier-1 network operator Sprint (Now T-Mobile), and regional wireless internet service providers (Vivint Wireless & WeLink). He is an inventor of 150+ issued US and International patents, multiple research publications, and received several business awards.
+    </>
+  )
     },
-    // {
-    //   name: "Daniel Lee",
-    //   role: "Senior PHY Developer",
-    //   img: "https://static.vecteezy.com/system/resources/thumbnails/041/641/689/small/3d-character-people-close-up-portrait-smiling-nice-3d-avartar-or-icon-png.png",
-    //   desc: "Works on SD-PHY modules for 4G/5G and mmWave platforms.",
-    // },
+    {
+      name: "Salman Farooqui",
+      role: "Vice President of Engineering",
+      img: "https://static.vecteezy.com/system/resources/thumbnails/041/641/689/small/3d-character-people-close-up-portrait-smiling-nice-3d-avartar-or-icon-png.png",
+      desc: "Embedded Engineer with 15+ years of experience in software and firmware development for diverse electronic devices, including medical equipment, mobile devices, security systems, printers, and consumer products. Skilled in real-time embedded environments (RTOS), full Software Development Life-Cycle (SDLC), hardware design, troubleshooting, and cross-functional collaboration with R&D, manufacturing, marketing, and QA teams.",
+    },
+    {
+      name: "Luca Martini",
+      role: "Senior Vice President System Engineering",
+      img: "https://static.vecteezy.com/system/resources/thumbnails/041/641/689/small/3d-character-people-close-up-portrait-smiling-nice-3d-avartar-or-icon-png.png",
+      desc: "Senior leader with extensive experience in large-scale distributed systems and platform services. Known for creating industry-leading technology solutions that scale to millions of users, while maintaining engineering excellence and cross-functional collaboration. Proven track record of leading globally distributed engineering teams and delivering customer-facing platforms that drive business results.  Revolutionized Layer 2 Virtual Private Network (VPN) market by invention of “draft-martini” technology.",
+    },
+    {
+      name: "Dave Island",
+      role: "Senior Vice President Sales",
+      img: "https://static.vecteezy.com/system/resources/thumbnails/041/641/689/small/3d-character-people-close-up-portrait-smiling-nice-3d-avartar-or-icon-png.png",
+      desc: "Dave has over three decades of sales leadership experience specializing in complex networking products and technologies. Before Ketsen, he led sales organizations at Cambium Networks, Radware, Avaya and Alcatel-Lucent (now Nokia) among others. During his time at Cambium, Dave was responsible for over $50 million in revenue, secured the company’s first Tier 1 PTP backhaul business with Sprint/T-Mobile and drove 15% year-over-year growth four years in a row. Throughout his career, Dave has managed major sales accounts, including Google, Cisco, Intel, AT&T and Verizon. He is a proud alumnus of the U.S. Naval Academy. Go Navy!",
+    },
+    {
+      name: "John Chapman",
+      role: "Advisor",
+      img: "https://static.vecteezy.com/system/resources/thumbnails/041/641/689/small/3d-character-people-close-up-portrait-smiling-nice-3d-avartar-or-icon-png.png",
+      desc: "WJohn is the former CTO Broadband and Fellow at Cisco. With over 130 patents and 50 published papers, John is a prolific inventor, a primary author of DOCSIS, and the inventor of HSSI and Remote PHY. John was inducted into the Cable TV Pioneer society in 2015 and into the SCTE Hall of Fame in 2012.",
+    },
+    {
+      name: "John Fonseka",
+      role: "Advisor",
+      img: "https://static.vecteezy.com/system/resources/thumbnails/041/641/689/small/3d-character-people-close-up-portrait-smiling-nice-3d-avartar-or-icon-png.png",
+      desc: "Dr. John Fonseka obtained his MS in Electrical Engineering from Memorial University of Newfoundland, Canada in 1985 and PhD in Electrical Engineering from Arizona State University in 1988. He is an author of 80+ journal research publications and multiple issued US patents. He is currently a Professor of Electrical Engineering at The University of Texas at Dallas.",
+    },
   ];
 
   const location = useLocation();
@@ -161,58 +195,56 @@ export default function About() {
         {/* Our Story*/}
         <section
           id="ourstory"
-          className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center bg-gradient-to-br from-white to-[#F6FBFF] rounded-3xl p-8 border border-blue-50 shadow-sm"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center bg-gradient-to-br from-white to-[#F6FBFF]  p-8 border border-blue-50 shadow-sm"
         >
-          <div className="rounded-2xl overflow-hidden border border-gray-100 shadow-md">
+          <div className=" overflow-hidden border rounded-2xl border-gray-100 shadow-md">
             <ImageCard title="Dr. Ahsan Naim with Surya Panditi" src={ahsan} />
           </div>
-          <div className="rounded-2xl p-6 bg-white border border-gray-100 shadow-md">
-            <h2 className="text-2xl font-bold">Origin</h2>
+          <div className=" p-6 bg-white border border-gray-100 shadow-md">
+            <h2 className="text-2xl font-bold">Our Story</h2>
             <div className="mt-4 space-y-4">
               <span className="block">
-                <strong>ANSpect</strong> was born at the intersection of deep research and real-world execution.
+                <strong>ANSpect</strong> was born at the intersection of deep research and real-world execution.</span>
+                
+                <span className="block">
                 The journey began years earlier with <strong>Dr. Ahsan Naim</strong>, whose doctoral research explored the fundamental limits of wireless capacity and spectrum efficiency.
               </span>
 
               <span className="block">
-                That work led to the invention of <strong>BOMA (Building Block Orthogonal Multiple Access)</strong>—unlocking capacity gains in existing networks without requiring new spectrum or disruptive hardware changes.
+                That work led to the invention of <strong>BOMA (Building Block Orthogonal Multiple Access)</strong>—a breakthrough approach designed to unlock significant capacity gains in existing networks without requiring new spectrum or disruptive hardware changes.
               </span>
 
               <span className="block">
-                Recognizing the broader potential of the technology, Ahsan refined BOMA through his research company, <strong>AhsanLabs</strong>, with a long-term vision of translating theory into deployable solutions.
+                Recognizing the broader potential of the technology, Ahsan continued to refine and expand BOMA through his research company, <strong><a href="https://ahsanlabs.net" target="_blank" rel="noopener noreferrer">AhsanLabs</a></strong>, with a long-term vision of translating advanced theory into deployable, operator-grade solutions.
+
               </span>
 
               {isExpanded && (
                 <>
                   <span className="block">
-                    Realizing full impact required technical excellence plus experienced leadership and a scalable go-to-market strategy.
+                    As the technology matured, it became clear that realizing its full impact would require more than technical excellence alone. It would need experienced leadership, a strong go-to-market strategy, and the ability to scale across global telecom ecosystems. That realization led to a partnership with
+                     <strong> Surya Panditi</strong>, a seasoned executive with a proven track record of building and leading technology companies—from early growth stages through large-scale commercialization, including successfully guiding a company to IPO.
                   </span>
 
                   <span className="block">
-                    This led to a partnership with <strong>Surya Panditi</strong>, a seasoned executive with proven track record of building and leading technology companies.
+                    Together, Ahsan and Surya  co-founded <strong>ANSpect Technologies</strong> to bridge the gap between cutting-edge wireless innovation and commercial deployment. Today, 
+                    <strong> Surya serves as CEO</strong>, leading strategy, partnerships, and market execution, while <strong>Ahsan serves as CTO</strong>, 
+                    driving the technical vision, architecture, and continued evolution of the core technology. Their complementary backgrounds—one rooted in deep technical innovation, the other in executive leadership and commercialization—form the foundation of ANSpect’s approach.
                   </span>
 
                   <span className="block">
-                    Together, they co-founded <strong>ANSpect Technologies</strong>—Ahsan as CTO, Surya as CEO—bridging innovation and commercial deployment.
-                  </span>
-
-                  <span className="block">
-                    Their complementary backgrounds form the foundation of ANSpect’s approach: deep technical innovation meets executive execution.
-                  </span>
-
-                  <span className="block">
-                    ANSpect focuses on collaboration between research and industry, theory and practice, enabling higher network efficiency without costly overhauls.
+                    ANSpect’s story is ultimately about collaboration: between research and industry, theory and practice, innovation and execution. It reflects a shared belief that transformative advances in connectivity don’t always require rebuilding networks from scratch—but rather, rethinking how intelligently we use what already exists.
                   </span>
                 </>
               )}
 
               <div className="mt-6 flex gap-3">
-                <button
+                <Button
                   onClick={() => setIsExpanded(!isExpanded)}
-                  className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r from-gray-600 to-gray-800 text-white shadow-lg hover:scale-105 transition"
+                  className="inline-flex items-center gap-2 px-5 py-2 text-white shadow-lg hover:scale-105 transition"
                 >
                   {isExpanded ? "Read Less" : "Read More"}
-                </button>
+                </Button>
               </div>
             </div>
           </div>
@@ -299,65 +331,6 @@ export default function About() {
           </div>
         </section>
 
-        {/* STATS 
-        <section className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          {stats.map((s, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <StatsCard
-                title={s.title}
-                value={s.value}
-                icon={
-                  <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" aria-hidden>
-                    <path d="M3 12h18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                  </svg>
-                }
-              />
-            </motion.div>
-          ))}
-        </section>*/}
-
-        {/*<div className="w-full">
-            {[...Array(1)].map((_, idx) => (
-              <motion.div
-                key={idx}
-                whileHover={{ scale: 1.03 }}
-                className="rounded-xl overflow-hidden shadow-[0_10px_40px_rgba(59,130,246,0.5)]"
-              >
-                <video
-                  src={ansVid}
-                  controls
-                  className="w-full h-full object-cover"
-                />
-              </motion.div>
-
-
-            ))}
-          </div>
-
-          <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 inline-block">Our Story</h2>
-            <div className="mt-3 w-16 h-1 rounded-full bg-gradient-to-r from-blue-600 to-indigo-400" />
-            <p className="mt-6 text-gray-700 leading-relaxed">
-              From early academic work to real-world testbeds, our story is about converting theory into deployable software that delivers measurable capacity gains for networks worldwide.
-            </p>
-            <div className="mt-6 flex gap-3">
-              <button className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r from-blue-600 to-indigo-500 text-white shadow-lg hover:scale-105 transition">
-                View Research
-              </button>
-              <Link
-                to="/#contact"
-                className="px-5 py-2 rounded-full border border-gray-200 text-slate-900 hover:bg-blue-50 transition"
-              >
-                Contact Us
-              </Link>
-            </div>
-          </div>
-        </section>*/}
 
         {/* Team */}
         <section id="team" className="space-y-8">
@@ -383,40 +356,17 @@ export default function About() {
                   <p className="text-gray-600 mt-3 text-sm">{m.desc}</p>
                 </div>
 
-                <div className="mt-4 flex gap-2">
-                  <button className="text-sm px-3 py-1 rounded-full border border-blue-100 text-blue-700">
+                {/* <div className="mt-4 flex gap-2">
+                  <button className="text-sm px-3 py-1 border border-blue-100 text-blue-700">
                     Profile
                   </button>
-                  <button className="text-sm px-3 py-1 rounded-full border border-gray-100">Message</button>
-                </div>
+                  <button className="text-sm px-3 py-1 border border-gray-100">Message</button>
+                </div> */}
               </motion.div>
             ))}
           </div>
         </section>
 
-        {/* How It Works + LAB
-        <section id="phyengine" className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-          <div className="rounded-2xl p-6 bg-white border border-gray-100 shadow-md">
-            <h2 className="text-2xl font-bold">How it Works</h2>
-            <div className="mt-4 space-y-4">
-              {[
-                { title: "PHY-Layer Optimization", desc: "Mapping & modulation that cooperates with RF limits." },
-                { title: "Simulation & Validation", desc: "From link-level to multi-cell system testbeds." },
-                { title: "Deployment", desc: "Drop-in software that integrates with existing stacks." },
-              ].map((it, idx) => (
-                <div key={idx} className="flex gap-4 items-start">
-                  <div className="w-3 h-3 rounded-full bg-gradient-to-r from-blue-500 to-indigo-400 mt-2 shadow-[0_6px_18px_rgba(59,130,246,0.12)]" />
-                  <div>
-                    <h4 className="font-semibold text-slate-900">{it.title}</h4>
-                    <p className="text-gray-600 text-sm">{it.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-
-        </section>*/}
 
         {/* Insights */}
         <section id="insights" className="space-y-6">
@@ -438,18 +388,6 @@ export default function About() {
             ))}
           </div>
         </section>
-
-
-        {/* Timeline 
-        <section>
-          <h2 className="text-3xl font-bold text-center mb-8">Our History</h2>
-          <div className="max-w-4xl mx-auto space-y-6">
-            {timeline.map((t, i) => (
-              <TimelineItem key={i} year={t.year} title={t.title} description={t.description} />
-            ))}
-          </div>
-        </section>*/}
-
 
       </main>
 

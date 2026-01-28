@@ -1,6 +1,6 @@
 export default function VideoCard({title, src }) {
   return (
-    <div className="relative h-64 sm:h-80 md:h-96 overflow-hidden rounded-2xl shadow-lg border border-gray-200 group">
+    <div className="relative h-64 sm:h-80 md:h-96 overflow-hidden shadow-lg border border-gray-200 group">
       <video
         src={src}
         

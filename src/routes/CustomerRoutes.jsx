@@ -2,7 +2,7 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "../pages/customer/Home";
 import About from "../pages/customer/About";
-import Services from "../pages/customer/Services";
+import Industries from "../pages/customer/Industries";
 import Newsletter from "../pages/customer/Newsletter";
 
 import ScrollToTop from "../components/customer/ScrollToTop";
@@ -19,7 +19,7 @@ export default function CustomerRoutes() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/services" element={<Services />} />
+          <Route path="/industries" element={<Industries />} />
           <Route path="/newsletter" element={<Newsletter />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

@@ -5,7 +5,7 @@ export default function Card({ data, isOpen, onClick }) {
     <motion.div
       layout
       onClick={onClick}
-      className={`relative rounded-3xl overflow-hidden shadow-xl cursor-pointer
+      className={`relative overflow-hidden shadow-xl cursor-pointer
       ${isOpen ? "h-[450px]" : "h-[300px]"}
       transition-all duration-500 flex items-end`}
     >

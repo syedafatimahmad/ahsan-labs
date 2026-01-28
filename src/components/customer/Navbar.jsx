@@ -69,7 +69,7 @@ export default function Navbar() {
      ${active ? "after:opacity-100" : "after:opacity-0 hover:after:opacity-100"}`;
 
   const desktopMenu = (
-    <div className="hidden md:flex items-center gap-8 ml-auto">
+    <div className="hidden md:flex flex-wrap items-center justify-end gap-4 lg:gap-8 ml-auto">
       {/* Home */}
       <Link to="/" className={`${underline(isPathActive("/"))} text-black`}>
         Home
@@ -77,16 +77,10 @@ export default function Navbar() {
 
       {/* Industries + Our Story directly visible */}
       <Link
-        to="/#industries"
-        className={`text-black hover:text-[#7cb5ff] ${isHashActive("industries") ? "font-semibold" : ""}`}
+        to="/industries"
+        className={`${underline(isPathActive("/industries"))} text-black`}
       >
         Industries
-      </Link>
-      <Link
-        to="/#ourstory"
-        className={`text-black hover:text-[#7cb5ff] ${isHashActive("ourstory") ? "font-semibold" : ""}`}
-      >
-        Our Story
       </Link>
 
       {/* Company + sublinks directly visible */}
@@ -106,10 +100,10 @@ export default function Navbar() {
         </Link>
       ))}
 
-      {/* Contact button */}
+      {/* Contact Button */}
       <Link
         to="/#contact"
-        className="ml-3 inline-flex items-center rounded-full bg-gradient-to-r from-blue-600 to-slate-900 px-4 py-2 text-white font-semibold shadow hover:scale-[1.02] transition transform"
+        className="ml-2 md:ml-4 inline-flex items-center bg-gradient-to-r from-blue-600 to-slate-900 px-4 py-2 text-white font-semibold shadow hover:scale-[1.02] transition transform whitespace-nowrap"
       >
         Contact Us
       </Link>
@@ -119,12 +113,11 @@ export default function Navbar() {
 
 const mobileMenu = (
   <div
-    className={`fixed inset-0 bg-white/95 backdrop-blur-md z-50 flex flex-col p-6 md:hidden transform transition-transform duration-300 ${
-      open ? "translate-x-0" : "translate-x-full"
-    }`}
+    className={`fixed top-0 right-0 h-full w-3/4 max-w-sm bg-white/95 backdrop-blur-md z-50 flex flex-col p-6 md:hidden transform transition-transform duration-300 ease-in-out
+      ${open ? "translate-x-0" : "translate-x-full"}`}
     ref={navRef}
   >
-    {/* Close button */}
+    {/* Close Button */}
     <button
       onClick={() => setOpen(false)}
       className="self-end mb-4 text-black text-2xl font-bold"
@@ -148,13 +141,7 @@ const mobileMenu = (
     >
       Industries
     </Link>
-    <Link
-      to="/#ourstory"
-      onClick={() => setOpen(false)}
-      className={`mb-3 text-black text-lg ${isHashActive("ourstory") ? "font-semibold" : ""}`}
-    >
-      Our Story
-    </Link>
+
 
     <Link
       to="/about"
@@ -178,7 +165,7 @@ const mobileMenu = (
     <Link
       to="/#contact"
       onClick={() => setOpen(false)}
-      className="mt-4 inline-flex items-center rounded-full bg-gradient-to-r from-blue-600 to-slate-900 px-4 py-2 text-white font-semibold shadow"
+      className="mt-3 w-30 inline-flex items-center bg-gradient-to-r from-blue-600 to-slate-900 hover:scale-[1.02] px-4 py-2 text-white font-semibold shadow"
     >
       Contact Us
     </Link>

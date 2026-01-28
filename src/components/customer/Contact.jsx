@@ -98,7 +98,7 @@ export default function Contact() {
 
             <div>
               <p className="text-sm text-gray-400">Office Location</p>
-              <p className="font-medium">Your address, USA</p>
+              <p className="font-medium">Suite B206, 4322 N Belt Line Rd, Irving, TX 75038</p>
             </div>
           </div>
         </div>
@@ -168,7 +168,7 @@ export default function Contact() {
 
           <Button
             type="submit"
-            className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-md font-semibold"
+            className=" text-white px-6 py-3 font-semibold"
           >
             Send Message
           </Button>
@@ -185,7 +185,7 @@ export default function Contact() {
           height="100%"
           loading="lazy"
           allowFullScreen
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19825.077328253568!2d-0.12574!3d51.50853!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTHCqDMwJzMwLjciTiAwwrAwNyc0NS4zIlc!5e0!3m2!1sen!2sus!4v1700000000000"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3350.8995154610825!2d-96.99329272449131!3d32.87437797362308!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864e820dd88004d5%3A0xf1174569f420157b!2supen%20enterprise!5e0!3m2!1sen!2s!4v1769635141744!5m2!1sen!2s"
         ></iframe>
       </div>
     </div>
