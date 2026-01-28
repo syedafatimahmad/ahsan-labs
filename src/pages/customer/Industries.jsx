@@ -104,10 +104,7 @@ export default function Industries() {
             transition={{ delay: 0.1, duration: 0.8 }}
             className="mt-4 text-lg md:text-xl text-left text-gray-200 max-w-3xl"
           >
-            ANSpect builds software and firmware that push networks beyond
-            their expected limits — WiFi, Cellular, IoT, satellite or cable.
-            We unlock spectral efficiency so operators deliver more capacity at
-            a lower cost-per-bit.
+            ANSpect enables significant capacity and spectral-efficiency gains through advanced PHY-layer innovation— deployable via software and firmware, without new spectrum or disruptive hardware upgrades.
           </motion.p>
         </div>
       </section>
