@@ -6,7 +6,7 @@ import Button from "../../components/customer/Button";
 import Footer from "../../components/customer/Footer";
 import techVideo from "../../assets/tech.mp4";
 
-import Image from "../../assets/images/logo.png";
+//import Image from "../../assets/images/logo.png";
 
 import ansVid from "../../assets/videos/femaleanspect.mp4";
 
@@ -150,7 +150,7 @@ export default function Home() {
   
 
                   {/* Decorative placeholder illustration */}
-                  <img src={Image} alt="ANSpect Technology" className="w-full max-w-xs sm:max-w-sm md:max-w-md" />
+                  <img src="/logo.png" alt="ANSpect Technology" className="w-full max-w-xs sm:max-w-sm md:max-w-md" />
 
                 </div>
 
