@@ -112,7 +112,7 @@ export default function Home() {
             <div>
                 <h2
                   id="anspect-overview-heading"
-                  className="text-2xl sm:text-2xl md:text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3"
+                  className="text-2xl sm:text-2xl md:text-3xl font-semibold text-gray-900 mb-3"
                 >
                   ANSpect Overview
                 </h2>
