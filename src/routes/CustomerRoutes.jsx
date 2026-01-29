@@ -4,6 +4,8 @@ import Home from "../pages/customer/Home";
 import About from "../pages/customer/About";
 import Industries from "../pages/customer/Industries";
 import Newsletter from "../pages/customer/Newsletter";
+import Insights from "../pages/customer/Insights";
+import Technology from "../pages/customer/Technology";
 import SearchResults from "../pages/customer/SearchResults";
 
 import ScrollToTop from "../components/customer/ScrollToTop";
@@ -23,6 +25,8 @@ export default function CustomerRoutes() {
           <Route path="/industries" element={<Industries />} />
           <Route path="/newsletter" element={<Newsletter />} />
           <Route path="/search" element={<SearchResults />} />
+          <Route path="/insights" element={<Insights />} />
+          <Route path="/technology" element={<Technology />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </div>

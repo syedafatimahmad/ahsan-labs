@@ -9,16 +9,11 @@ import DocumentCard from "../../components/customer/DocumentCard";
 
 import ansVid from "../../assets/videos/femaleanspect.mp4";
 import ahsan from "../../assets/images/ahsan.jpeg";
-import techVideo from "../../assets/tech.mp4";
+// import techVideo from "../../assets/tech.mp4";
 
 export default function About() {
   const [isExpanded, setIsExpanded] = useState(false);
-  const stats = [
-    { title: "Issued US & international patents", value: "150+" },
-    { title: "Years in wireless systems design", value: "20+" },
-    { title: "Cellular, WiFi, DOCSIS, mmWave", value: "Multi-RAT roadmap" },
-    { title: "Across Tier-1 operators & vendors", value: "Experience" },
-  ];
+
 
   const videos = [
     { title: "Our Mission", src: ansVid },
@@ -47,44 +42,19 @@ export default function About() {
     },
   ];
 
-  const timeline = [
-    {
-      year: "Early Work",
-      title: "Foundations in Wireless Engineering",
-      description:
-        "Initial research in modulation, channel estimation, and PHY-layer innovation begins.",
-    },
-    {
-      year: "Breakthroughs",
-      title: "Advanced PHY Techniques",
-      description:
-        "Development of block-sparse constellation mapping and cross-user capacity embedding.",
-    },
-    {
-      year: "Collaboration",
-      title: "Academic & Industry Testbeds",
-      description:
-        "Indoor & outdoor 5G trials validating throughput gains and scheduler behavior.",
-    },
-    {
-      year: "Today",
-      title: "Scaling Next-Gen Wireless",
-      description:
-        "ANSpect advances PHY-layer software for cellular, WiFi, DOCSIS, and mmWave systems.",
-    },
-  ];
+  
 
   const team = [
     {
       name: "Surya Panditi",
       role: "Co-Founder & Chief TExecutive Officer",
-      img: "https://static.vecteezy.com/system/resources/thumbnails/041/641/689/small/3d-character-people-close-up-portrait-smiling-nice-3d-avartar-or-icon-png.png",
+      img: "./1.jpeg",
       desc: "Senior executive with successful start-up to large company experience. Career highlights include successfully managing a $4B business for profitability and growing a business from zero to a $100M run rate, followed by a successful IPO. Strong track record of operational excellence, business growth and profitability, inspirational leadership, customer engagement, product development and thought leadership.",
     },
     {
       name: "Dr. Ahsan Naim",
       role: "Co-Founder & Chief Technology Officer",
-      img: "https://static.vecteezy.com/system/resources/thumbnails/041/641/689/small/3d-character-people-close-up-portrait-smiling-nice-3d-avartar-or-icon-png.png",
+      img: "./2.jpeg",
       desc: (
     <>
       Dr. Ahsan Naim obtained his MS and PhD in Electrical Engineering in 2007 and 2014 from The University of Texas at Dallas. 
@@ -99,31 +69,31 @@ export default function About() {
     {
       name: "Salman Farooqui",
       role: "Vice President of Engineering",
-      img: "https://static.vecteezy.com/system/resources/thumbnails/041/641/689/small/3d-character-people-close-up-portrait-smiling-nice-3d-avartar-or-icon-png.png",
+      img: "./7.jpeg",
       desc: "Embedded Engineer with 15+ years of experience in software and firmware development for diverse electronic devices, including medical equipment, mobile devices, security systems, printers, and consumer products. Skilled in real-time embedded environments (RTOS), full Software Development Life-Cycle (SDLC), hardware design, troubleshooting, and cross-functional collaboration with R&D, manufacturing, marketing, and QA teams.",
     },
     {
       name: "Luca Martini",
       role: "Senior Vice President System Engineering",
-      img: "https://static.vecteezy.com/system/resources/thumbnails/041/641/689/small/3d-character-people-close-up-portrait-smiling-nice-3d-avartar-or-icon-png.png",
+      img: "./6.jpeg",
       desc: "Senior leader with extensive experience in large-scale distributed systems and platform services. Known for creating industry-leading technology solutions that scale to millions of users, while maintaining engineering excellence and cross-functional collaboration. Proven track record of leading globally distributed engineering teams and delivering customer-facing platforms that drive business results.  Revolutionized Layer 2 Virtual Private Network (VPN) market by invention of “draft-martini” technology.",
     },
     {
       name: "Dave Island",
       role: "Senior Vice President Sales",
-      img: "https://static.vecteezy.com/system/resources/thumbnails/041/641/689/small/3d-character-people-close-up-portrait-smiling-nice-3d-avartar-or-icon-png.png",
+      img: "./33.jpeg",
       desc: "Dave has over three decades of sales leadership experience specializing in complex networking products and technologies. Before Ketsen, he led sales organizations at Cambium Networks, Radware, Avaya and Alcatel-Lucent (now Nokia) among others. During his time at Cambium, Dave was responsible for over $50 million in revenue, secured the company’s first Tier 1 PTP backhaul business with Sprint/T-Mobile and drove 15% year-over-year growth four years in a row. Throughout his career, Dave has managed major sales accounts, including Google, Cisco, Intel, AT&T and Verizon. He is a proud alumnus of the U.S. Naval Academy. Go Navy!",
     },
     {
       name: "John Chapman",
       role: "Advisor",
-      img: "https://static.vecteezy.com/system/resources/thumbnails/041/641/689/small/3d-character-people-close-up-portrait-smiling-nice-3d-avartar-or-icon-png.png",
+      img: "./4.jpeg",
       desc: "WJohn is the former CTO Broadband and Fellow at Cisco. With over 130 patents and 50 published papers, John is a prolific inventor, a primary author of DOCSIS, and the inventor of HSSI and Remote PHY. John was inducted into the Cable TV Pioneer society in 2015 and into the SCTE Hall of Fame in 2012.",
     },
     {
       name: "John Fonseka",
       role: "Advisor",
-      img: "https://static.vecteezy.com/system/resources/thumbnails/041/641/689/small/3d-character-people-close-up-portrait-smiling-nice-3d-avartar-or-icon-png.png",
+      img: "./5.jpeg",
       desc: "Dr. John Fonseka obtained his MS in Electrical Engineering from Memorial University of Newfoundland, Canada in 1985 and PhD in Electrical Engineering from Arizona State University in 1988. He is an author of 80+ journal research publications and multiple issued US patents. He is currently a Professor of Electrical Engineering at The University of Texas at Dallas.",
     },
   ];
@@ -138,40 +108,23 @@ export default function About() {
   }, [location]);
 
   return (
-    <div className="min-h-screen bg-white text-slate-900 antialiased font-body">
+    <div className="min-h-screen text-slate-900 antialiased font-body">
       {/* HERO */}
       <section className="relative w-full h-[50vh] top-3.5 overflow-hidden">
-        {/* Background Video */}
-        <video autoPlay muted loop className="absolute w-full h-full object-cover">
-          <source src={techVideo} type="video/mp4" />
-        </video>
 
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
-
-        {/* Neon Accent Circles */}
-        <div className="absolute -bottom-10 right-10 w-40 h-40 rounded-full bg-linear-to-br from-blue-200/40 to-transparent blur-3xl pointer-events-none" />
-        <div className="absolute -top-10 left-8 w-32 h-32 rounded-full bg-linear-to-br from-indigo-300/30 to-transparent blur-2xl pointer-events-none" />
 
         {/* Text Content */}
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-8 max-w-5xl mx-auto gap-4">
-          {/* Small Green Label 
-          <motion.span
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-sm bg-aramcoGreen px-4 py-1 rounded-full mb-3 inline-block shadow-md"
-          >
-            Deep research meets real-world execution—built to translate advanced theory into practical deployment.
-          </motion.span>*/}
+
 
           {/* Heading */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight"
+            className="text-6xl text-black md:text-6xl lg:text-7xl font-extrabold leading-tight"
           >
-            ANSpect at a Glance
+            Team
           </motion.h1>
 
           {/* Paragraph 
@@ -189,7 +142,7 @@ export default function About() {
         
       </section>
 
-      <main className="space-y-24 px-6 md:px-12 lg:px-24 py-16">
+      <main className="space-y-24 px-6 md:px-12 lg:px-24">
 
 
         {/* Our Story*/}
@@ -201,7 +154,7 @@ export default function About() {
             <ImageCard title="Dr. Ahsan Naim with Surya Panditi" src={ahsan} />
           </div>
           <div className=" p-6 bg-white border border-gray-100 shadow-md">
-            <h2 className="text-2xl font-bold">Our Story</h2>
+            <h2 className="text-2xl text-center font-bold">Our Story</h2>
             <div className="mt-4 space-y-4">
               <span className="block">
                 <strong>ANSpect</strong> was born at the intersection of deep research and real-world execution.</span>
@@ -250,92 +203,13 @@ export default function About() {
           </div>
         </section>
 
-        {/* TECHNOLOGY */}
-        <section id="technology" className="space-y-10">
-          <div className="flex flex-col lg:flex-row justify-between gap-6">
-            <h2 className="text-3xl md:text-4xl font-bold">Technology</h2>
-            <p className="text-sm text-gray-600 max-w-xl">
-              Layered explanation: clear at the top, deeper as you scroll—without oversharing.
-            </p>
-          </div>
-
-          {/* Top Cards */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <div className="rounded-2xl p-6 bg-linear-to-br from-slate-900 to-slate-800 text-white shadow-lg">
-              <span className="inline-block mb-3 px-3 py-1 text-xs rounded-full bg-white/10">
-                The Core Idea
-              </span>
-              <p className="text-sm leading-relaxed text-gray-200">
-                Traditional modulation schemes can leave measurable capacity on the table
-                due to rigid symbol structures and conservative design assumptions. ANSpect
-                rethinks how symbols are constructed, mapped, and utilized—unlocking
-                additional capacity within the same spectral footprint.
-              </p>
-            </div>
-
-            <div className="rounded-2xl p-6 bg-linear-to-br from-indigo-900 to-indigo-800 text-white shadow-lg">
-              <span className="inline-block mb-3 px-3 py-1 text-xs rounded-full bg-white/10">
-                How It Works (High Level)
-              </span>
-              <p className="text-sm leading-relaxed text-gray-200">
-                ANSpect operates at the PHY layer, enhancing symbol utilization and mapping
-                efficiency. The approach is adaptable to channel conditions and can be
-                implemented through software or firmware updates, designed to integrate
-                into existing modem and baseband architectures.
-              </p>
-            </div>
-          </div>
-
-          {/* Comparison Table */}
-          <div className="rounded-2xl overflow-hidden border border-gray-200 shadow-md">
-            <div className="grid grid-cols-2 bg-gray-50">
-              <div className="p-4 font-semibold">Traditional Approaches</div>
-              <div className="p-4 font-semibold text-blue-700">ANSpect</div>
-            </div>
-
-            {[
-              ["Fixed modulation structures", "Adaptive, intelligent symbol design"],
-              ["Spectrum expansion required", "Uses existing spectrum more efficiently"],
-              ["Hardware-centric upgrades", "Software-centric deployment path"],
-              ["Long upgrade cycles", "Faster time to value"],
-            ].map(([left, right], i) => (
-              <div key={i} className="grid grid-cols-2 border-t">
-                <div className="p-4 text-sm text-gray-700">{left}</div>
-                <div className="p-4 text-sm text-gray-900 font-medium">{right}</div>
-              </div>
-            ))}
-          </div>
-
-          {/* Bottom Cards */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <div className="rounded-2xl p-6 bg-white border border-gray-100 shadow-md">
-              <span className="inline-block mb-3 px-3 py-1 text-xs rounded-full bg-blue-50 text-blue-700">
-                Built for Real-World Networks
-              </span>
-              <p className="text-sm text-gray-600 leading-relaxed">
-                Designed with existing standards in mind (e.g., 3GPP, DOCSIS), backward-compatible
-                deployment paths, and a focus on operator-grade performance.
-              </p>
-            </div>
-
-            <div className="rounded-2xl p-6 bg-white border border-gray-100 shadow-md">
-              <span className="inline-block mb-3 px-3 py-1 text-xs rounded-full bg-indigo-50 text-indigo-700">
-                Intellectual Property & Standards Awareness
-              </span>
-              <p className="text-sm text-gray-600 leading-relaxed">
-                ANSpect’s technology is protected by a strong and growing patent portfolio and
-                developed with awareness of established standards frameworks. The goal is not
-                to disrupt ecosystems—but to enhance them.
-              </p>
-            </div>
-          </div>
-        </section>
+        
 
 
         {/* Team */}
         <section id="team" className="space-y-8">
           <div className="flex items-center justify-between">
-            <h2 className="text-3xl md:text-4xl font-bold">Meet The Team</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-5">Meet The Team</h2>
             <div className="text-sm text-gray-600">Leadership brings together deep technical innovation and proven executive execution.</div>
           </div>
 
@@ -344,7 +218,7 @@ export default function About() {
               <motion.div
                 key={i}
                 whileHover={{ scale: 1.02, translateY: -6 }}
-                className="relative bg-white rounded-2xl p-6 border border-gray-100 shadow-md"
+                className="relative bg-white rounded-2xl p-6 border border-gray-100 mt-5 shadow-md"
               >
                 <div className="absolute -top-8 left-6 w-[72px] h-[72px] rounded-full overflow-hidden shadow-lg ring-2 ring-white">
                   <img src={m.img} alt={m.name} className="w-full h-full object-cover" />
@@ -368,26 +242,6 @@ export default function About() {
         </section>
 
 
-        {/* Insights */}
-        <section id="insights" className="space-y-6">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-            <h2 className="text-3xl font-bold">Insights</h2>
-            <p className="text-sm text-gray-600">
-              Thought leadership and technical perspectives—non-confidential, credibility-building content.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-10">
-            {documents.map((d, index) => (
-              <aside key={index} className="space-y-4">
-                <DocumentCard
-                  title={d.title}
-                  description={d.description}
-                />
-              </aside>
-            ))}
-          </div>
-        </section>
 
       </main>
 

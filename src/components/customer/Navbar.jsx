@@ -8,7 +8,7 @@ export default function Navbar() {
   const navRef = useRef(null);
 
   const [open, setOpen] = useState(false); // mobile menu
-  const aboutSublinks = ["team", "technology", "insights"];
+  
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -75,16 +75,10 @@ export default function Navbar() {
     <div className="hidden md:flex flex-wrap items-center justify-end gap-4 lg:gap-8 ml-auto">
       <Link to="/" className={`${underline(isPathActive("/"))} text-black`}>Home</Link>
       <Link to="/industries" className={`${underline(isPathActive("/industries"))} text-black`}>Industries</Link>
-      <Link to="/about" className={`${underline(isPathActive("/about"))} text-black`}>Company</Link>
-      {aboutSublinks.map((id) => (
-        <Link
-          key={id}
-          to={`/about#${id}`}
-          className={`text-black hover:text-[#7cb5ff] ${isHashActive(id) ? "font-semibold" : ""}`}
-        >
-          {id.charAt(0).toUpperCase() + id.slice(1)}
-        </Link>
-      ))}
+      <Link to="/insights" className={`${underline(isPathActive("/insights"))} text-black`}>Insights</Link>
+      <Link to="/technology" className={`${underline(isPathActive("/technology"))} text-black`}>Technology</Link>
+      <Link to="/about" className={`${underline(isPathActive("/about"))} text-black`}>Team</Link>
+      
       <Link to="/#contact" className="ml-2 md:ml-4 inline-flex items-center bg-gradient-to-r from-blue-600 to-slate-900 px-4 py-2 text-white font-semibold shadow hover:scale-[1.02] transition transform whitespace-nowrap">
         Contact Us
       </Link>
@@ -101,13 +95,10 @@ export default function Navbar() {
       <button onClick={() => setOpen(false)} className="self-end mb-4 text-black text-2xl font-bold">×</button>
       <SearchBar onSearch={handleSearch} placeholder="Search ANSpect..." />
       <Link to="/" onClick={() => setOpen(false)} className={`mb-3 text-black text-lg ${isPathActive("/") ? "font-semibold" : ""}`}>Home</Link>
-      <Link to="/#industries" onClick={() => setOpen(false)} className={`mb-3 text-black text-lg ${isHashActive("industries") ? "font-semibold" : ""}`}>Industries</Link>
-      <Link to="/about" onClick={() => setOpen(false)} className={`mb-3 text-black text-lg ${isPathActive("/about") ? "font-semibold" : ""}`}>Company</Link>
-      {aboutSublinks.map((id) => (
-        <Link key={id} to={`/about#${id}`} onClick={() => setOpen(false)} className={`mb-3 text-black text-lg ${isHashActive(id) ? "font-semibold" : ""}`}>
-          {id.charAt(0).toUpperCase() + id.slice(1)}
-        </Link>
-      ))}
+      <Link to="/industries" onClick={() => setOpen(false)} className={`mb-3 text-black text-lg ${isPathActive("/industries") ? "font-semibold" : ""}`}>Industries</Link> 
+      <Link to="/technology" onClick={() => setOpen(false)} className={`mb-3 text-black text-lg ${isPathActive("/technology") ? "font-semibold" : ""}`}>Technology</Link>
+      <Link to="/insights" onClick={() => setOpen(false)} className={`mb-3 text-black text-lg ${isPathActive("/insights") ? "font-semibold" : ""}`}>Insights</Link>
+      <Link to="/about" onClick={() => setOpen(false)} className={`mb-3 text-black text-lg ${isPathActive("/about") ? "font-semibold" : ""}`}>Team</Link>
       <Link to="/#contact" onClick={() => setOpen(false)} className="mt-3 w-30 inline-flex items-center bg-gradient-to-r from-blue-600 to-slate-900 hover:scale-[1.02] px-4 py-2 text-white font-semibold shadow">
         Contact Us
       </Link>

@@ -32,33 +32,24 @@ export default function Footer() {
 
           {/* Links */}
           <div className="flex flex-col sm:flex-row flex-wrap justify-center md:justify-end gap-6 sm:gap-12 text-sm md:text-base">
+
             {/* Column 1 */}
             <div className="flex flex-col space-y-2">
-              <button onClick={() => navigate("/")} className="hover:text-blue-800 transition">
-                Home
+
+              <button onClick={() => scrollToSection("/about")} className="hover:text-blue-800 transition">
+                Team
               </button>
-              <button onClick={() => scrollToSection("/", "industries")} className="hover:text-blue-800 transition">
+              <button onClick={() => scrollToSection("/industries")} className="hover:text-blue-800 transition">
                 Industries
               </button>
-              
             </div>
 
             {/* Column 2 */}
             <div className="flex flex-col space-y-2">
-              <button onClick={() => navigate("/about")} className="hover:text-blue-800 transition">
-                Company
-              </button>
-              <button onClick={() => scrollToSection("/about", "team")} className="hover:text-blue-800 transition">
-                Team
-              </button>
-            </div>
-
-            {/* Column 3 */}
-            <div className="flex flex-col space-y-2">
-              <button onClick={() => scrollToSection("/about", "technology")} className="hover:text-blue-800 transition">
+              <button onClick={() => scrollToSection("/technology")} className="hover:text-blue-800 transition">
                 Technology
               </button>
-              <button onClick={() => scrollToSection("/about", "insights")} className="hover:text-blue-800 transition">
+              <button onClick={() => scrollToSection("/insights")} className="hover:text-blue-800 transition">
                 Insights
               </button>
             </div>
