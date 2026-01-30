@@ -1,16 +1,40 @@
-# React + Vite
+🚀 Overview
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ANSpect develops standards-aware, backward-compatible PHY-layer technologies that deliver meaningful capacity and efficiency gains without requiring new spectrum or disruptive hardware upgrades.
+This repository contains the frontend web application showcasing ANSpect’s:
+Technology vision
+Industry applications
+Thought leadership
+Team and company story
 
-Currently, two official plugins are available:
+🧩 Key Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🎥 Video-driven hero and content sections
+✨ Smooth animations using Framer Motion
+📱 Fully responsive design (mobile → desktop)
+🔍 Built-in site search
+🧭 Hash-based smooth scrolling navigation
+🧱 Reusable UI components
+⚡ Optimized for performance and SEO
 
-## React Compiler
+| Category   | Technology    |
+| ---------- | ------------- |
+| Framework  | React         |
+| Build Tool | Vite          |
+| Styling    | Tailwind CSS  |
+| Animations | Framer Motion |
+| Icons      | Lucide React  |
+| Routing    | React Router  |
+| Deployment | Vercel        |
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| Route         | Description          |
+| ------------- | -------------------- |
+| `/`           | Home / Hero          |
+| `/industries` | Industry verticals   |
+| `/technology` | Technology overview  |
+| `/insights`   | Thought leadership   |
+| `/about`      | Team & company story |
+| `/search?q=`  | Search results       |
 
-## Expanding the ESLint configuration
+https://anspect.vercel.app/
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
