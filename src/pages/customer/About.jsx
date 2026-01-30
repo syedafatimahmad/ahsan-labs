@@ -47,7 +47,7 @@ export default function About() {
   const team = [
     {
       name: "Surya Panditi",
-      role: "Co-Founder & Chief TExecutive Officer",
+      role: "Co-Founder & Chief Executive Officer",
       img: "./1.jpeg",
       desc: "Senior executive with successful start-up to large company experience. Career highlights include successfully managing a $4B business for profitability and growing a business from zero to a $100M run rate, followed by a successful IPO. Strong track record of operational excellence, business growth and profitability, inspirational leadership, customer engagement, product development and thought leadership.",
     },
@@ -122,9 +122,9 @@ export default function About() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-6xl text-black md:text-6xl lg:text-7xl font-extrabold leading-tight"
+            className="text-6xl text-blue-900 md:text-6xl lg:text-7xl font-extrabold leading-tight"
           >
-            Team
+            TEAM
           </motion.h1>
 
           {/* Paragraph 
@@ -154,7 +154,7 @@ export default function About() {
             <ImageCard title="Dr. Ahsan Naim with Surya Panditi" src={ahsan} />
           </div>
           <div className=" p-6 bg-white border border-gray-100 shadow-md">
-            <h2 className="text-2xl text-center font-bold">Our Story</h2>
+            <h2 className="text-4xl text-center text-blue-900 font-bold">Our Story</h2>
             <div className="mt-4 space-y-4">
               <span className="block">
                 <strong>ANSpect</strong> was born at the intersection of deep research and real-world execution.</span>
@@ -209,7 +209,7 @@ export default function About() {
         {/* Team */}
         <section id="team" className="space-y-8">
           <div className="flex items-center justify-between">
-            <h2 className="text-3xl md:text-4xl font-bold mb-5">Meet The Team</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-5">Meet The Team</h2>
             <div className="text-sm text-gray-600">Leadership brings together deep technical innovation and proven executive execution.</div>
           </div>
 
@@ -218,13 +218,13 @@ export default function About() {
               <motion.div
                 key={i}
                 whileHover={{ scale: 1.02, translateY: -6 }}
-                className="relative bg-white rounded-2xl p-6 border border-gray-100 mt-5 shadow-md"
+                className="relative bg-white p-6 border border-gray-100 mt-5 shadow-md"
               >
-                <div className="absolute -top-8 left-6 w-[72px] h-[72px] rounded-full overflow-hidden shadow-lg ring-2 ring-white">
+                <div className="absolute -top-8 left-6 w-28 h-28 overflow-hidden shadow-lg ring-2 ring-white">
                   <img src={m.img} alt={m.name} className="w-full h-full object-cover" />
                 </div>
 
-                <div className="mt-8 pt-2">
+                <div className="mt-8 pt-12">
                   <h3 className="text-lg font-semibold text-slate-900">{m.name}</h3>
                   <p className="text-sm text-blue-700">{m.role}</p>
                   <p className="text-gray-600 mt-3 text-sm">{m.desc}</p>

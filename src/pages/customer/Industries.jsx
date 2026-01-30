@@ -88,16 +88,16 @@ export default function Industries() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-6xl md:text-6xl lg:text-7xl mt-6 font-extrabold leading-tight"
+            className="text-6xl md:text-6xl lg:text-7xl mt-6 font-extrabold text-blue-900 leading-tight"
           >
-            Industries
+            INDUSTRIES
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, duration: 0.8 }}
-            className="mt-4 text-lg md:text-xl text-left text-gray-700 max-w-3xl"
+            className="mt-4 md:text-2xl text-left text-gray-700 max-w-6xl"
           >
             ANSpect enables significant capacity and spectral-efficiency gains through advanced PHY-layer innovation— deployable via software and firmware, without new spectrum or disruptive hardware upgrades.
           </motion.p>

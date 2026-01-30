@@ -31,7 +31,7 @@ export default function Footer() {
           </div>
 
           {/* Links */}
-          <div className="flex flex-col sm:flex-row flex-wrap justify-center md:justify-end gap-6 sm:gap-12 text-sm md:text-base">
+          <div className="flex flex-col sm:flex-row flex-wrap justify-center md:justify-end gap-6 sm:gap-12 text-sm md:text-lg">
 
             {/* Column 1 */}
             <div className="flex flex-col space-y-2">
@@ -39,6 +39,8 @@ export default function Footer() {
               <button onClick={() => scrollToSection("/about")} className="hover:text-blue-800 transition">
                 Team
               </button>
+              </div>
+              <div className="flex flex-col space-y-2">
               <button onClick={() => scrollToSection("/industries")} className="hover:text-blue-800 transition">
                 Industries
               </button>
@@ -49,6 +51,9 @@ export default function Footer() {
               <button onClick={() => scrollToSection("/technology")} className="hover:text-blue-800 transition">
                 Technology
               </button>
+            </div>
+            {/* Column 3 */}
+            <div className="flex flex-col space-y-2">
               <button onClick={() => scrollToSection("/insights")} className="hover:text-blue-800 transition">
                 Insights
               </button>

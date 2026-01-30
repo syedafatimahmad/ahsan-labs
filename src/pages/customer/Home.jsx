@@ -61,7 +61,7 @@ export default function Home() {
           </motion.h1>
 
           <motion.p
-            className="max-w-3xl text-gray-100 text-left sm:text-left leading-relaxed"
+            className="w-full text-gray-100 text-2xl md:text-center leading-relaxed"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.8 }}
@@ -92,6 +92,18 @@ export default function Home() {
         className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center px-8 py-20 border shadow-sm"
       >
         {/* Video */}
+        <div>
+          <h2 className="text-5xl font-bold text-blue-900 drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)] ">ANSpect Overview</h2>
+          <div className="mt-6 text-2xl space-y-4 text-gray-700">
+            <p>
+              ANSpect delivers significant capacity and spectral-efficiency gains through advanced PHY-layer innovation.
+            </p>
+            <p>
+              It is deployable via software and firmware updates, without requiring new spectrum or disruptive hardware upgrades.
+            </p>
+          </div>
+        </div>
+
         <div className="w-full max-w-4xl mx-auto">
           <motion.div
             whileHover={{ scale: 1.03 }}
@@ -106,17 +118,7 @@ export default function Home() {
         </div>
 
         {/* Text */}
-        <div>
-          <h2 className="text-5xl font-bold drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)] ">ANSpect Overview</h2>
-          <div className="mt-6 text-xl space-y-4 text-gray-700">
-            <p>
-              ANSpect delivers significant capacity and spectral-efficiency gains through advanced PHY-layer innovation.
-            </p>
-            <p>
-              It is deployable via software and firmware updates, without requiring new spectrum or disruptive hardware upgrades.
-            </p>
-          </div>
-        </div>
+        
       </section>
 
 
@@ -133,10 +135,10 @@ export default function Home() {
       {/* Dark overlay so text doesn’t die */}
       <div className="absolute inset-0 bg-black/60"></div>
 
-      <div className="relative max-w-7xl mx-auto text-white">
+      <div className="relative w-full mx-auto text-white">
         
-        <h2 className="text-6xl text-center font-bold mb-5">What We Do</h2>
-        <p className="max-w-md ml-auto mb-6 text-sm text-white/80">
+        <h2 className="text-6xl text-center font-bold mb-5 mt-5">What We Do</h2>
+        <p className="text-center mx-auto mb-10 text-2xl whitespace-nowrap text-white/80">
   Increase spectral efficiency and network capacity using software-defined
   physical-layer technologies.
 </p>
@@ -147,7 +149,7 @@ export default function Home() {
             <span className="inline-block mb-3 px-3 py-1 text-sm bg-white/10 rounded-full">
               Overview
             </span>
-            <p className="text-sm leading-relaxed">
+            <p className="text-lg leading-relaxed">
               Modern communication networks are under constant pressure—traffic growth
               continues to outpace available spectrum, while hardware refresh cycles remain
               slow and capital-intensive. ANSpect develops{" "}
@@ -161,7 +163,7 @@ export default function Home() {
             <span className="inline-block mb-3 px-3 py-1 text-sm bg-white/10 rounded-full">
               Why Now
             </span>
-            <p className="text-sm leading-relaxed">
+            <p className="text-lg leading-relaxed">
               Spectrum is scarce, demand keeps growing, and hardware alone can’t close the
               gap. ANSpect bridges this gap with a practical path to higher throughput,
               higher user density, and better utilization of deployed infrastructure.
@@ -172,8 +174,8 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl p-6">
           <Waves className="w-7 h-7 mb-3 text-white/80" />
-            <h3 className="font-semibold mb-2">Spectrum Is Finite</h3>
-            <p className="text-sm">
+            <h3 className="font-semibold text-lg mb-2">Spectrum Is Finite</h3>
+            <p className="text-lg">
               New spectrum is scarce, expensive, and slow to deploy—efficiency matters
               more than ever.
             </p>
@@ -181,16 +183,16 @@ export default function Home() {
 
           <div className="backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl p-6">
           <TrendingUp className="w-7 h-7 mb-3 text-white/80" />
-            <h3 className="font-semibold mb-2">Demand Keeps Growing</h3>
-            <p className="text-sm">
+            <h3 className="font-semibold text-lg mb-2">Demand Keeps Growing</h3>
+            <p className="text-lg">
               Video, cloud, AI, and connected devices continue driving network load upward.
             </p>
           </div>
 
           <div className="backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl p-6">
           <Cpu className="w-7 h-7 mb-3 text-white/80" />
-            <h3 className="font-semibold mb-2">Hardware Isn’t the Only Answer</h3>
-            <p className="text-sm">
+            <h3 className="font-semibold text-lg mb-2">Hardware Isn’t the Only Answer</h3>
+            <p className="text-lg">
               Upgrade cycles take years and significant capital—ANSpect targets faster time-to-value.
             </p>
           </div>

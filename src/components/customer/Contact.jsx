@@ -72,7 +72,7 @@ export default function Contact() {
           playsInline
           className="absolute inset-0 w-full h-full object-cover opacity-40"
         />
-        <h1 className="text-4xl font-bold text-white relative">Contact Us</h1>
+        <h1 className="text-5xl font-bold text-white relative">Contact Us</h1>
       </div>
 
       {/* Contact + Form */}

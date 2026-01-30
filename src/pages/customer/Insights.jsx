@@ -34,21 +34,21 @@ export default function Insights() {
         id="insights"
         className="relative w-full h-100 top-3.5 flex items-center justify-center text-center px-8"
       >
-        <div className="max-w-3xl">
+        <div className="w-full">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-6xl md:text-6xl lg:text-7xl font-extrabold leading-tight text-gray-800"
+            className="text-6xl md:text-6xl lg:text-7xl font-extrabold leading-tight text-blue-900"
           >
-            Insights
+            INSIGHTS
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, duration: 0.8 }}
-            className="mt-4 text-lg text-left md:text-xl text-gray-700"
+            className="mt-4 md:text-2xl text-gray-700 whitespace-nowrap text-center"
           >
             Thought leadership and technical perspectives—non-confidential, credibility-building content.
           </motion.p>
