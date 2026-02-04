@@ -7,7 +7,7 @@ import Button from "../../components/customer/Button";
 import Footer from "../../components/customer/Footer";
 import techVideo from "../../assets/tech.mp4";
 
-import ansVid from "../../assets/videos/femaleanspect.mp4";
+import ansVid from "../../assets/videos/femaleanspectt.mp4";
 
 import Contact from "../../components/customer/Contact";
 

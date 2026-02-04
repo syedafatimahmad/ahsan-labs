@@ -7,7 +7,7 @@ import Footer from "../../components/customer/Footer";
 import ImageCard from "../../components/customer/ImageCard";
 import DocumentCard from "../../components/customer/DocumentCard";
 
-import ansVid from "../../assets/videos/femaleanspect.mp4";
+import ansVid from "../../assets/videos/femaleanspectt.mp4";
 import ahsan from "../../assets/images/ahsan.jpeg";
 // import techVideo from "../../assets/tech.mp4";
 
