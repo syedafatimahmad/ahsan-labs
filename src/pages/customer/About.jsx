@@ -5,19 +5,12 @@ import Button from "../../components/customer/Button";
 
 import Footer from "../../components/customer/Footer";
 import ImageCard from "../../components/customer/ImageCard";
-import DocumentCard from "../../components/customer/DocumentCard";
 
-import ansVid from "../../assets/videos/femaleanspectrevised.mp4";
 import ahsan from "../../assets/images/ahsan.jpeg";
 // import techVideo from "../../assets/tech.mp4";
 
 export default function About() {
   const [isExpanded, setIsExpanded] = useState(false);
-
-
-  const videos = [
-    { title: "Our Mission", src: ansVid },
-  ];
 
   const documents = [
     {
