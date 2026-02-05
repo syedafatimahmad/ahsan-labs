@@ -88,12 +88,12 @@ export default function Contact() {
           <div className="space-y-5">
             <div>
               <p className="text-sm text-gray-400">Phone Number</p>
-              <p className="font-medium">+1 (123) 456 7890</p>
+              <p className="font-medium">+1 (415) 462 4224</p>
             </div>
 
             <div>
               <p className="text-sm text-gray-400">Email Address</p>
-              <p className="font-medium">info@anspect.com</p>
+              <p className="font-medium">contact@anspect-technologies.com</p>
             </div>
 
             <div>

@@ -68,7 +68,7 @@ export default function About() {
     },
     {
       name: "Luca Martini",
-      role: "Senior Vice President System Engineering",
+      role: "Senior Vice President Systems Engineering",
       img: "./6.jpeg",
       desc: "Senior leader with extensive experience in large-scale distributed systems and platform services. Known for creating industry-leading technology solutions that scale to millions of users, while maintaining engineering excellence and cross-functional collaboration. Proven track record of leading globally distributed engineering teams and delivering customer-facing platforms that drive business results.  Revolutionized Layer 2 Virtual Private Network (VPN) market by invention of “draft-martini” technology.",
     },
@@ -80,7 +80,7 @@ export default function About() {
     },
     {
       name: "John Chapman",
-      role: "Advisor",
+      role: "Chief Architect - Cable",
       img: "./4.jpeg",
       desc: "John is the former CTO Broadband and Fellow at Cisco. With over 130 patents and 50 published papers, John is a prolific inventor, a primary author of DOCSIS, and the inventor of HSSI and Remote PHY. John was inducted into the Cable TV Pioneer society in 2015 and into the SCTE Hall of Fame in 2012.",
     },
