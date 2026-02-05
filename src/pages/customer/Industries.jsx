@@ -79,25 +79,33 @@ export default function Industries() {
   return (
     <>
       {/* Hero */}
-      <section id="industries" className="relative w-full h-100 top-3.5 overflow-hidden">
-
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-gray-800 px-8">
+      <section id="industries" className="relative w-full h-100 top-3.5 bg-blue-950 overflow-hidden">
+        {/* Background Video */}
+              <video
+                src={tech}
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="absolute inset-0 w-full h-full object-cover opacity-40"
+              /> 
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center  text-gray-800 px-8">
           
 
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-6xl md:text-6xl lg:text-7xl mt-6 font-extrabold text-blue-900 leading-tight"
+            className="relative z-10 text-6xl md:text-6xl lg:text-7xl mt-6 font-extrabold text-white leading-tight"
           >
-            INDUSTRIES
+            Industries
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, duration: 0.8 }}
-            className="mt-4 md:text-2xl text-left text-gray-700 max-w-6xl"
+            className="relative z-10 mt-4 md:text-2xl text-left text-gray-200 max-w-6xl"
           >
             ANSpect enables significant capacity and spectral-efficiency gains through advanced PHY-layer innovation— deployable via software and firmware, without new spectrum or disruptive hardware upgrades.
           </motion.p>
@@ -105,7 +113,7 @@ export default function Industries() {
       </section>
 
       {/* Industries grid */}
-      <section className="py-2">
+      <section className="py-2 mt-10">
         <div className="max-w-8xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-1">
           {industries.map((s, idx) => (
             <Card

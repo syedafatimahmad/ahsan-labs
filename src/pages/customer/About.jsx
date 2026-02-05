@@ -5,6 +5,7 @@ import Button from "../../components/customer/Button";
 
 import Footer from "../../components/customer/Footer";
 import ImageCard from "../../components/customer/ImageCard";
+import tech from "../../assets/tech.mp4";
 
 import ahsan from "../../assets/images/ahsan.jpeg";
 // import techVideo from "../../assets/tech.mp4";
@@ -35,7 +36,7 @@ export default function About() {
     },
   ];
 
-  
+
 
   const team = [
     {
@@ -49,15 +50,15 @@ export default function About() {
       role: "Co-Founder & Chief Technology Officer",
       img: "./2.jpeg",
       desc: (
-    <>
-      Dr. Ahsan Naim obtained his MS and PhD in Electrical Engineering in 2007 and 2014 from The University of Texas at Dallas. 
-      He co-founded the startup{" "}
-      <a href="https://www.welink.com/" target="_blank" rel="noopener noreferrer">
-        <strong>WeLink</strong>
-      </a>{" "}
-      in 2018 that has raised $200M+ to date. He is a domain expert with 15+ years of industry experience working for tier-1 wireless equipment vendor Ericsson, tier-1 network operator Sprint (Now T-Mobile), and regional wireless internet service providers (Vivint Wireless & WeLink). He is an inventor of 150+ issued US and International patents, multiple research publications, and received several business awards.
-    </>
-  )
+        <>
+          Dr. Ahsan Naim obtained his MS and PhD in Electrical Engineering in 2007 and 2014 from The University of Texas at Dallas.
+          He co-founded the startup{" "}
+          <a href="https://www.welink.com/" target="_blank" rel="noopener noreferrer">
+            <strong>WeLink</strong>
+          </a>{" "}
+          in 2018 that has raised $200M+ to date. He is a domain expert with 15+ years of industry experience working for tier-1 wireless equipment vendor Ericsson, tier-1 network operator Sprint (Now T-Mobile), and regional wireless internet service providers (Vivint Wireless & WeLink). He is an inventor of 150+ issued US and International patents, multiple research publications, and received several business awards.
+        </>
+      )
     },
     {
       name: "Salman Farooqui",
@@ -100,40 +101,40 @@ export default function About() {
     }
   }, [location]);
 
-  return (
-    <div className="min-h-screen text-slate-900 antialiased font-body">
-      {/* HERO */}
-      <section className="relative w-full h-[40vh] top-3.5 flex items-center justify-center overflow-hidden">
+return (
+  <div className="min-h-screen text-slate-900 antialiased font-body">
+    {/* HERO */}
+    <section className="relative w-full h-[40vh] top-3.5 flex bg-blue-950 items-center justify-center overflow-hidden">
+
+      {/* Background Video */}
+      <video
+        src={tech}
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover opacity-40"
+      />
+
+      {/* Text Content */}
+      <div className="relative z-10 flex flex-col items-center justify-center text-center text-white px-10 max-w-5xl mx-auto gap-4">
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-6xl md:text-6xl lg:text-7xl font-extrabold leading-tight"
+        >
+          Team
+        </motion.h1>
+      </div>
+
+   
 
 
-        {/* Text Content */}
-        <div className="absolute inset-0 mt-13 flex flex-col items-center justify-center text-center text-white px-10 max-w-5xl mx-auto gap-4">
 
-
-          {/* Heading */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-6xl text-blue-900 md:text-6xl lg:text-7xl font-extrabold leading-tight"
-          >
-            TEAM
-          </motion.h1>
-
-          {/* Paragraph 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1, duration: 0.8 }}
-            className="mt-4 text-lg md:text-xl text-left text-gray-200 max-w-3xl"
-          >
-            Deep research meets real-world execution—built to translate advanced theory into practical deployment.
-          </motion.p>*/}
-        </div>
-
-        {/* Scroll Indicator */}
+        {/* Scroll Indicator */ }
         
-      </section>
+      </section >
 
       <main className="space-y-24 px-6 md:px-12 lg:px-24">
 
@@ -239,6 +240,6 @@ export default function About() {
       </main>
 
       <Footer />
-    </div>
+    </div >
   );
 } 

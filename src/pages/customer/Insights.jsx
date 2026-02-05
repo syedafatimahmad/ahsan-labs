@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import DocumentCard from "../../components/customer/DocumentCard";
 import Footer from "../../components/customer/Footer";
+import tech from "../../assets/tech.mp4";
 
 export default function Insights() {
   const documents = [
@@ -82,23 +83,33 @@ export default function Insights() {
       {/* Hero Section */}
       <section
         id="insights"
-        className="relative w-full h-100 top-3.5 mt-12 flex items-center justify-center text-center px-8"
+        className="relative w-full h-100 top-3.5 mt-12 flex items-center bg-blue-950 justify-center text-center px-8"
       >
+        {/* Background Video */}
+              <video
+                src={tech}
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="absolute inset-0 w-full h-full object-cover opacity-40"
+              />
+
         <div className="w-full">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-6xl md:text-6xl lg:text-7xl font-extrabold leading-tight text-blue-900"
+            className="relative z-10 text-6xl md:text-6xl lg:text-7xl font-extrabold leading-tight text-white"
           >
-            INSIGHTS
+            Insights
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, duration: 0.8 }}
-            className="mt-4 md:text-2xl text-gray-700 text-center max-w-6xl mx-auto"
+            className="relative z-10 mt-4 md:text-2xl text-gray-200 text-center max-w-6xl mx-auto"
           >
             <p className="mb-4">Thought leadership and technical perspectives from ANSpect Technologies.</p>
             This section features non-confidential analysis and forward-looking viewpoints on network efficiency,
@@ -109,7 +120,7 @@ export default function Insights() {
       </section>
 
       {/* Documents Section */}
-      <section className=" px-6">
+      <section className=" px-6 mt-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           {documents.map((d, index) => (
             <aside key={index} className="space-y-4">

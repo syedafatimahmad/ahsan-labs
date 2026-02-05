@@ -1,25 +1,36 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Footer from "../../components/customer/Footer";
+import tech from "../../assets/tech.mp4";
 
 export default function Technology() {
     return (
         <>
             {/* TECHNOLOGY */}
-            <section id="technology" className="relative w-full h-80 top-8 flex items-center justify-center text-center px-8">
+            <section id="technology" className="relative w-full h-80 top-8 flex items-center bg-blue-950 justify-center text-center px-8">
+                {/* Background Video */}
+                      <video
+                        src={tech}
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        className="absolute inset-0 w-full h-full object-cover opacity-40"
+                      />
+
                 <div className="max-w-3xl">
                     <motion.h1
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
-                        className="text-6xl md:text-6xl lg:text-7xl font-extrabold leading-tight text-blue-900"
+                        className="relative z-10 text-6xl md:text-6xl lg:text-7xl font-extrabold leading-tight text-white"
                     >
-                        TECHNOLOGY
+                        Technology
                     </motion.h1>
                 </div>
             </section>
 
-            <section className="w-full mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+            <section className="w-full mx-auto px-4 sm:px-6 lg:px-8 mt-15 space-y-12">
 
                 {/* Top Cards */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
