@@ -40,6 +40,7 @@ export default function SearchBar({
   const doSearch = (q) => {
     const trimmed = q.trim();
     if (!trimmed) return;
+    
     if (typeof onSearch === "function") onSearch(trimmed);
     else navigate(`/search?q=${encodeURIComponent(trimmed)}`);
     setOpen(false);
