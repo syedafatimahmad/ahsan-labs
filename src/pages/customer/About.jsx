@@ -81,7 +81,7 @@ export default function About() {
       name: "John Chapman",
       role: "Advisor",
       img: "./4.jpeg",
-      desc: "WJohn is the former CTO Broadband and Fellow at Cisco. With over 130 patents and 50 published papers, John is a prolific inventor, a primary author of DOCSIS, and the inventor of HSSI and Remote PHY. John was inducted into the Cable TV Pioneer society in 2015 and into the SCTE Hall of Fame in 2012.",
+      desc: "John is the former CTO Broadband and Fellow at Cisco. With over 130 patents and 50 published papers, John is a prolific inventor, a primary author of DOCSIS, and the inventor of HSSI and Remote PHY. John was inducted into the Cable TV Pioneer society in 2015 and into the SCTE Hall of Fame in 2012.",
     },
     {
       name: "John Fonseka",
@@ -103,11 +103,11 @@ export default function About() {
   return (
     <div className="min-h-screen text-slate-900 antialiased font-body">
       {/* HERO */}
-      <section className="relative w-full h-[50vh] top-3.5 overflow-hidden">
+      <section className="relative w-full h-[40vh] top-3.5 flex items-center justify-center overflow-hidden">
 
 
         {/* Text Content */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-8 max-w-5xl mx-auto gap-4">
+        <div className="absolute inset-0 mt-13 flex flex-col items-center justify-center text-center text-white px-10 max-w-5xl mx-auto gap-4">
 
 
           {/* Heading */}
@@ -203,7 +203,7 @@ export default function About() {
         <section id="team" className="space-y-8">
           <div className="flex items-center justify-between">
             <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-5">Meet The Team</h2>
-            <div className="text-sm text-gray-600">Leadership brings together deep technical innovation and proven executive execution.</div>
+          
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6">

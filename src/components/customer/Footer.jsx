@@ -2,6 +2,8 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
+import { FaLinkedin, FaYoutube } from "react-icons/fa";
+
 
 export default function Footer() {
   const navigate = useNavigate();
@@ -39,8 +41,8 @@ export default function Footer() {
               <button onClick={() => scrollToSection("/about")} className="hover:text-blue-800 transition">
                 Team
               </button>
-              </div>
-              <div className="flex flex-col space-y-2">
+            </div>
+            <div className="flex flex-col space-y-2">
               <button onClick={() => scrollToSection("/industries")} className="hover:text-blue-800 transition">
                 Industries
               </button>
@@ -69,9 +71,23 @@ export default function Footer() {
           </div>
 
           <div className="flex justify-center gap-4 sm:gap-6 mt-4 md:mt-0 text-black">
-            <a href="https://twitter.com/ANSpect" target="_blank" rel="noopener noreferrer" className="hover:text-blue-800 transition">Twitter</a>
-            <a href="https://www.linkedin.com/company/ANSpect" target="_blank" rel="noopener noreferrer" className="hover:text-blue-800 transition">LinkedIn</a>
-            <a href="https://www.youtube.com/@ANSpect" target="_blank" rel="noopener noreferrer" className="hover:text-blue-800 transition">YouTube</a>
+            <a
+              href="https://www.linkedin.com/company/anspect-technologies-inc/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-blue-800 transition text-2xl"
+            >
+              <FaLinkedin />
+            </a>
+
+            <a
+              href="https://youtube.com/@anspecttechnologies?si=l3UyDBnFFPddibwB"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-red-600 transition text-2xl"
+            >
+              <FaYoutube />
+            </a>
           </div>
         </div>
       </div>
