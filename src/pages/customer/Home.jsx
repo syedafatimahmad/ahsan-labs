@@ -138,7 +138,7 @@ export default function Home() {
       <div className="relative w-full mx-auto text-white">
         
         <h2 className="text-6xl text-center font-bold mb-5 mt-5">What We Do</h2>
-        <p className="text-center mx-auto mb-10 text-2xl whitespace-nowrap text-white/80">
+        <p className="text-center mx-auto mb-10 text-2xl lg:whitespace-nowrap text-white/80">
   Increase spectral efficiency and network capacity using software-defined
   physical-layer technologies.
 </p>
