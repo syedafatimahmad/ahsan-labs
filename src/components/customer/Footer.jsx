@@ -75,7 +75,7 @@ export default function Footer() {
               href="https://www.linkedin.com/company/anspect-technologies-inc/"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-blue-800 transition text-2xl"
+              className="text-blue-800 hover:text-blue-600 transition text-2xl"
             >
               <FaLinkedin />
             </a>
@@ -84,7 +84,7 @@ export default function Footer() {
               href="https://youtube.com/@anspecttechnologies?si=l3UyDBnFFPddibwB"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-red-600 transition text-2xl"
+              className="text-red-600 hover:text-red-400 transition text-2xl"
             >
               <FaYoutube />
             </a>
