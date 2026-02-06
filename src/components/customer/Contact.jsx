@@ -2,8 +2,6 @@ import { useState } from "react";
 import tech from "../../assets/tech.mp4";
 import Button from "../customer/Button";
 
-import Swal from 'sweetalert2'
-
 export default function Contact() {
   const [form, setForm] = useState({
     firstName: "",
@@ -12,7 +10,9 @@ export default function Contact() {
     phone: "",
     message: "",
   });
-  const [result, setResult] = useState("");
+
+  const [status, setStatus] = useState(""); // success/error message
+  const [loading, setLoading] = useState(false); // loading state
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -20,43 +20,29 @@ export default function Contact() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setStatus("");
 
     try {
-      const formData = new FormData();
-      formData.append("firstName", form.firstName);
-      formData.append("lastName", form.lastName);
-      formData.append("email", form.email);
-      formData.append("phone", form.phone);
-      formData.append("message", form.message);
-      formData.append("access_key", "1e42bcb0-96fc-44ba-b49a-9dfcfac354dc");
-
-      const response = await fetch("https://api.web3forms.com/submit", {
+      const response = await fetch("/api/contact", {
         method: "POST",
-        body: formData,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
       });
 
       const data = await response.json();
+
       if (data.success) {
-        Swal.fire({
-          title: "Success!",
-          text: "Message sent Successfully!",
-          icon: "success"
-        });
+        setStatus("Message sent successfully!");
         setForm({ firstName: "", lastName: "", email: "", phone: "", message: "" });
       } else {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Something went wrong!",
-        });
+        setStatus("Something went wrong. Please try again.");
       }
     } catch (error) {
       console.error(error);
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Network Error!",
-      });
+      setStatus("Network error. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -80,9 +66,13 @@ export default function Contact() {
         {/* Left Card */}
         <div className="bg-gray-900 text-white p-10 rounded-xl shadow-lg">
           <p className="text-blue-400 mb-2 font-semibold">Contact Us</p>
-          <h2 className="text-3xl font-bold mb-4">Need More Information?<br />Get in Touch</h2>
+          <h2 className="text-3xl font-bold mb-4">
+            Need More Information?<br />
+            Get in Touch
+          </h2>
           <p className="text-gray-300 mb-8">
-            Reach out for technical discussions, partnership inquiries, or investor relations. We’re happy to schedule a working session and share appropriate non-confidential materials.
+            Reach out for technical discussions, partnership inquiries, or investor relations. 
+            We’re happy to schedule a working session and share appropriate non-confidential materials.
           </p>
 
           <div className="space-y-5">
@@ -104,10 +94,7 @@ export default function Contact() {
         </div>
 
         {/* Right Form */}
-        <form
-          onSubmit={handleSubmit}
-          className="bg-white p-10 rounded-xl shadow-lg border"
-        >
+        <form onSubmit={handleSubmit} className="bg-white p-10 rounded-xl shadow-lg border">
           <p className="text-blue-600 font-semibold mb-1">Get in touch</p>
           <h2 className="text-3xl font-bold mb-6">Send Message</h2>
           <p className="text-gray-600 mb-6">
@@ -168,12 +155,17 @@ export default function Contact() {
 
           <Button
             type="submit"
-            className=" text-white px-6 py-3 font-semibold"
+            className={`text-white px-6 py-3 font-semibold ${loading ? "opacity-50 cursor-not-allowed" : ""}`}
+            disabled={loading}
           >
-            Send Message
+            {loading ? "Sending..." : "Send Message"}
           </Button>
 
-          {result && <p className="mt-3 text-sm">{result}</p>}
+          {status && (
+            <p className={`mt-3 text-sm ${status.includes("success") ? "text-green-600" : "text-red-600"}`}>
+              {status}
+            </p>
+          )}
         </form>
       </div>
 
