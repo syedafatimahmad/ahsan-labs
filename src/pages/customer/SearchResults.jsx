@@ -1,31 +1,46 @@
-// src/pages/SearchResults.jsx
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-//import products from "../data/products"; // example dataset
+import { useLocation, useNavigate } from "react-router-dom";
+import { searchIndex } from "../../data/searchIndex";
 
 export default function SearchResults() {
   const location = useLocation();
+  const navigate = useNavigate();
   const [results, setResults] = useState([]);
+
   const query = new URLSearchParams(location.search).get("q") || "";
 
   useEffect(() => {
-    if (!query) return setResults([]);
-    // Example: filter your products or items
-    const filtered = products.filter((p) =>
-      p.name.toLowerCase().includes(query.toLowerCase())
+    if (!query) {
+      setResults([]);
+      return;
+    }
+
+    const q = query.toLowerCase();
+
+    const filtered = searchIndex.filter(item =>
+      item.title.toLowerCase().includes(q) ||
+      item.content.toLowerCase().includes(q)
     );
+
     setResults(filtered);
   }, [query]);
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
-      <h2 className="text-2xl font-semibold mb-4">Search Results for "{query}"</h2>
+      <h2 className="text-2xl font-semibold mb-4">
+        Search Results for "{query}"
+      </h2>
+
       {results.length ? (
-        <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-          {results.map((item) => (
-            <li key={item.id} className="p-4 border rounded-md shadow-sm hover:shadow-md">
-              <h3 className="font-semibold">{item.name}</h3>
-              <p>{item.description}</p>
+        <ul className="space-y-4">
+          {results.map((item, i) => (
+            <li
+              key={i}
+              onClick={() => navigate(item.url)}
+              className="p-4 border rounded-md cursor-pointer hover:shadow-md"
+            >
+              <h3 className="font-semibold">{item.title}</h3>
+              <p>{item.content}</p>
             </li>
           ))}
         </ul>

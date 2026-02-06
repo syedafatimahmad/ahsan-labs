@@ -126,6 +126,7 @@ export default function Home() {
 
       {/* What We do */}
       <section
+      id="whatwedo"
       className="relative min-h-screen w-full bg-cover bg-center py-15 px-6 mb-24"
       style={{
         backgroundImage:

@@ -8,7 +8,7 @@ export default function Navbar() {
   const navRef = useRef(null);
 
   const [open, setOpen] = useState(false); // mobile menu
-  
+
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -41,11 +41,7 @@ export default function Navbar() {
   }, []);
 
   const handleSearch = (q) => {
-    // Open Google search in a new tab
-    window.open(
-      `https://www.google.com/search?q=site:anspect.vercel.app+${encodeURIComponent(q)}`,
-      "_blank"
-    );
+    navigate(`/search?q=${encodeURIComponent(q)}`);
   };
 
 
@@ -78,7 +74,7 @@ export default function Navbar() {
       <Link to="/insights" className={`${underline(isPathActive("/insights"))} text-black`}>Insights</Link>
       <Link to="/technology" className={`${underline(isPathActive("/technology"))} text-black`}>Technology</Link>
       <Link to="/about" className={`${underline(isPathActive("/about"))} text-black`}>Team</Link>
-      
+
       <Link to="/#contact" className="ml-2 md:ml-4 inline-flex items-center bg-gradient-to-r from-blue-600 to-slate-900 px-4 py-2 text-white font-semibold shadow hover:scale-[1.02] transition transform whitespace-nowrap">
         Contact Us
       </Link>
@@ -95,7 +91,7 @@ export default function Navbar() {
       <button onClick={() => setOpen(false)} className="self-end mb-4 text-black text-2xl font-bold">×</button>
       <SearchBar onSearch={handleSearch} placeholder="Search ANSpect..." />
       <Link to="/" onClick={() => setOpen(false)} className={`mb-3 text-black text-lg ${isPathActive("/") ? "font-semibold" : ""}`}>Home</Link>
-      <Link to="/industries" onClick={() => setOpen(false)} className={`mb-3 text-black text-lg ${isPathActive("/industries") ? "font-semibold" : ""}`}>Industries</Link> 
+      <Link to="/industries" onClick={() => setOpen(false)} className={`mb-3 text-black text-lg ${isPathActive("/industries") ? "font-semibold" : ""}`}>Industries</Link>
       <Link to="/technology" onClick={() => setOpen(false)} className={`mb-3 text-black text-lg ${isPathActive("/technology") ? "font-semibold" : ""}`}>Technology</Link>
       <Link to="/insights" onClick={() => setOpen(false)} className={`mb-3 text-black text-lg ${isPathActive("/insights") ? "font-semibold" : ""}`}>Insights</Link>
       <Link to="/about" onClick={() => setOpen(false)} className={`mb-3 text-black text-lg ${isPathActive("/about") ? "font-semibold" : ""}`}>Team</Link>
