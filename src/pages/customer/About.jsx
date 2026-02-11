@@ -158,11 +158,11 @@ return (
               </span>
 
               <span className="block">
-                That work led to the invention of <strong>BOMA (Building Block Orthogonal Multiple Access)</strong>—a breakthrough approach designed to unlock significant capacity gains in existing networks without requiring new spectrum or disruptive hardware changes.
+                That work led to the invention of <strong>O-EMA (Orthogonal - Enhanced Multiple Access)</strong>—a breakthrough approach designed to unlock significant capacity gains in existing networks without requiring new spectrum or disruptive hardware changes.
               </span>
 
               <span className="block">
-                Recognizing the broader potential of the technology, Ahsan continued to refine and expand BOMA through his research company, <strong><a href="https://ahsanlabs.net" target="_blank" rel="noopener noreferrer">AhsanLabs</a></strong>, with a long-term vision of translating advanced theory into deployable, operator-grade solutions.
+                Recognizing the broader potential of the technology, Ahsan continued to refine and expand O-EMA through his research company, <strong><a href="https://ahsanlabs.net" target="_blank" rel="noopener noreferrer">AhsanLabs</a></strong>, with a long-term vision of translating advanced theory into deployable, operator-grade solutions.
 
               </span>
 
