@@ -61,10 +61,10 @@ export default function About() {
       )
     },
     {
-      name: "Salman Farooqui",
-      role: "Vice President of Engineering",
-      img: "./7.jpeg",
-      desc: "Embedded Engineer with 15+ years of experience in software and firmware development for diverse electronic devices, including medical equipment, mobile devices, security systems, printers, and consumer products. Skilled in real-time embedded environments (RTOS), full Software Development Life-Cycle (SDLC), hardware design, troubleshooting, and cross-functional collaboration with R&D, manufacturing, marketing, and QA teams.",
+      name: "John Chapman",
+      role: "Senior Vice President, Chief Strategy Officer, Cable",
+      img: "./4.jpeg",
+      desc: "John is the former CTO Broadband and Fellow at Cisco. With over 130 patents and 50 published papers, John is a prolific inventor, a primary author of DOCSIS, and the inventor of HSSI and Remote PHY. John was inducted into the Cable TV Pioneer society in 2015 and into the SCTE Hall of Fame in 2012.",
     },
     {
       name: "Luca Martini",
@@ -79,10 +79,10 @@ export default function About() {
       desc: "Dave has over three decades of sales leadership experience specializing in complex networking products and technologies. Before Ketsen, he led sales organizations at Cambium Networks, Radware, Avaya and Alcatel-Lucent (now Nokia) among others. During his time at Cambium, Dave was responsible for over $50 million in revenue, secured the company’s first Tier 1 PTP backhaul business with Sprint/T-Mobile and drove 15% year-over-year growth four years in a row. Throughout his career, Dave has managed major sales accounts, including Google, Cisco, Intel, AT&T and Verizon. He is a proud alumnus of the U.S. Naval Academy. Go Navy!",
     },
     {
-      name: "John Chapman",
-      role: "Chief Architect - Cable",
-      img: "./4.jpeg",
-      desc: "John is the former CTO Broadband and Fellow at Cisco. With over 130 patents and 50 published papers, John is a prolific inventor, a primary author of DOCSIS, and the inventor of HSSI and Remote PHY. John was inducted into the Cable TV Pioneer society in 2015 and into the SCTE Hall of Fame in 2012.",
+      name: "Salman Farooqui",
+      role: "Vice President of Engineering",
+      img: "./7.jpeg",
+      desc: "Embedded Engineer with 15+ years of experience in software and firmware development for diverse electronic devices, including medical equipment, mobile devices, security systems, printers, and consumer products. Skilled in real-time embedded environments (RTOS), full Software Development Life-Cycle (SDLC), hardware design, troubleshooting, and cross-functional collaboration with R&D, manufacturing, marketing, and QA teams.",
     },
     {
       name: "John Fonseka",
