@@ -85,10 +85,52 @@ export default function About() {
       desc: "Embedded Engineer with 15+ years of experience in software and firmware development for diverse electronic devices, including medical equipment, mobile devices, security systems, printers, and consumer products. Skilled in real-time embedded environments (RTOS), full Software Development Life-Cycle (SDLC), hardware design, troubleshooting, and cross-functional collaboration with R&D, manufacturing, marketing, and QA teams.",
     },
     {
+      name: "Fahim Bashar",
+      role: "Layer 1 Software Engineer",
+      img: "./34.jpeg",
+      desc: "Fahim Bashar is a wireless systems engineer specializing in 5G, Open RAN, and software-defined radio platforms, with hands-on experience developing and validating advanced wireless technologies in over-the-air testbeds. At ANSpect, he focuses on the implementation, integration, and experimental validation of ANSpect’s technology on 5G platforms, helping translate innovative wireless concepts into practical, deployable solutions.",
+    },
+    {
+      name: "Kariem Zakaria",
+      role: "Head of Business Development, MEA",
+      img: "./35.jpeg",
+      desc: "Kariem Zakaria is an accomplished telecommunications and business development leader with more than 25 years of experience introducing transformational technologies across the Middle East and Africa. At ANSpect, he leads business development across the MEA region, leveraging his deep experience with telecom operators, technology vendors, regulators, and strategic partners to drive customer engagement and commercial adoption of ANSpect’s technology.",
+    },
+    {
+      name: "Daniel Etman",
+      role: "Head of Business Development, Europe",
+      img: "./36.jpeg",
+      desc: "Daniel Etman is an experienced sales and business development leader with a strong background in the technology sector, including roles at Cisco and other leading organizations. At ANSpect, he leads business development in Europe, focused on building strategic partnerships, strengthening customer relationships, and driving the commercial adoption of ANSpect’s technology across the region.",
+    },
+    {
       name: "John Fonseka",
       role: "Advisor",
       img: "./5.jpeg",
       desc: "Dr. John Fonseka obtained his MS in Electrical Engineering from Memorial University of Newfoundland, Canada in 1985 and PhD in Electrical Engineering from Arizona State University in 1988. He is an author of 80+ journal research publications and multiple issued US patents. He is currently a Professor of Electrical Engineering at The University of Texas at Dallas.",
+    },
+    {
+      name: "Ken Klaer",
+      role: "Advisor",
+      img: "./37.jpeg",
+      desc: "Ken Klaer is a veteran cable and technology executive who retired from Comcast after more than 11 years, most recently serving as Executive Vice President and President of Comcast Technology Solutions. His career also includes leadership roles supporting the cable industry at Scientific-Atlanta, Antec/ARRIS, and Cisco Systems, and he was inducted into the Cable TV Pioneers in 2015. Ken currently serves as President and Chair of the SCTE Foundation and on the Georgia Tech College of Engineering Advisory Board, and was recognized with Georgia Tech’s Academy of Distinguished Engineering Alumni Award in 2025. He also serves on the board of Georgia FIRST Robotics.",
+    },
+    {
+      name: "Sandy Howe",
+      role: "Advisor",
+      img: "./38.jpeg",
+      desc: "Sandy Howe is a seasoned technology executive and board director with more than 25 years of leadership experience across broadband, wireless, 5G, cybersecurity, and digital infrastructure. A former C-level executive and current board director, she brings deep expertise in scaling technology businesses, strategic transformation, and connecting innovators with industry leaders, investors, and partners.",
+    },
+    {
+      name: "Chetan Sharma",
+      role: "Advisor",
+      img: "./39.jpeg",
+      desc: "Chetan Sharma is a recognized wireless industry strategist and advisor with extensive experience in mobile technologies, product strategy, intellectual property, and emerging wireless business models. He has advised senior executives at leading global technology and telecommunications companies, including NTT DoCoMo, AT&T, Sprint Nextel, Qualcomm, SAP, HP, and others, as well as major financial institutions and U.S. government agencies. Chetan serves on the advisory boards of several technology companies and is a trusted advisor to CEOs and CTOs on wireless innovation, product strategy, and IP development. He holds an M.S. in Electrical Engineering from Kansas State University and a B.E. from the Indian Institute of Technology Roorkee.",
+    },
+    {
+      name: "William (Bill) McCarthy",
+      role: "Advisor",
+      img: "./40.jpeg",
+      desc: "Bill McCarthy is a seasoned technology executive with extensive leadership experience across networking, telecommunications, and enterprise technology. He previously served as Chief Revenue Officer at Infoblox and held senior leadership roles at Cisco, where he led major service provider and digital-content businesses, bringing deep expertise in scaling technology companies, go-to-market strategy, and global customer engagement.",
     },
   ];
 
@@ -201,40 +243,110 @@ return (
 
 
         {/* Team */}
-        <section id="team" className="space-y-8">
-          <div className="flex items-center justify-between">
-            <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-5">Meet The Team</h2>
-          
-          </div>
+<section id="team" className="space-y-8">
+  <div className="flex items-center justify-between">
+    <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-5">
+      Meet The Team
+    </h2>
+  </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6">
-            {team.map((m, i) => (
-              <motion.div
-                key={i}
-                whileHover={{ scale: 1.02, translateY: -6 }}
-                className="relative bg-white p-6 border border-gray-100 mt-5 shadow-md"
-              >
-                <div className="absolute -top-8 left-6 w-28 h-28 overflow-hidden shadow-lg ring-2 ring-white">
-                  <img src={m.img} alt={m.name} className="w-full h-full object-cover" />
-                </div>
+  <div className="space-y-12">
+    {/* Main Team */}
+    <div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6">
+        {team.slice(0, 7).map((m, i) => (
+          <motion.div
+            key={i}
+            whileHover={{ scale: 1.02, translateY: -6 }}
+            className="relative bg-white p-6 border border-gray-100 mt-5 shadow-md"
+          >
+            <div className="absolute -top-8 left-6 w-28 h-28 overflow-hidden shadow-lg ring-2 ring-white">
+              <img
+                src={m.img}
+                alt={m.name}
+                className="w-full h-full object-cover"
+              />
+            </div>
 
-                <div className="mt-8 pt-12">
-                  <h3 className="text-lg font-semibold text-slate-900">{m.name}</h3>
-                  <p className="text-sm text-blue-700">{m.role}</p>
-                  <p className="text-gray-600 mt-3 text-sm">{m.desc}</p>
-                </div>
+            <div className="mt-8 pt-12">
+              <h3 className="text-lg font-semibold text-slate-900">
+                {m.name}
+              </h3>
+              <p className="text-sm text-blue-700">{m.role}</p>
+              <p className="text-gray-600 mt-3 text-sm">{m.desc}</p>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </div>
 
-                {/* <div className="mt-4 flex gap-2">
-                  <button className="text-sm px-3 py-1 border border-blue-100 text-blue-700">
-                    Profile
-                  </button>
-                  <button className="text-sm px-3 py-1 border border-gray-100">Message</button>
-                </div> */}
-              </motion.div>
-            ))}
-          </div>
-        </section>
+    {/* Business Development */}
+    <div>
+      <h2 className="text-2xl md:text-3xl font-bold text-blue-900 mb-8">
+        Business Development
+      </h2>
 
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6">
+        {team.slice(7, 9).map((m, i) => (
+          <motion.div
+            key={i}
+            whileHover={{ scale: 1.02, translateY: -6 }}
+            className="relative bg-white p-6 border border-gray-100 mt-5 shadow-md"
+          >
+            <div className="absolute -top-8 left-6 w-28 h-28 overflow-hidden shadow-lg ring-2 ring-white">
+              <img
+                src={m.img}
+                alt={m.name}
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            <div className="mt-8 pt-12">
+              <h3 className="text-lg font-semibold text-slate-900">
+                {m.name}
+              </h3>
+              <p className="text-sm text-blue-700">{m.role}</p>
+              <p className="text-gray-600 mt-3 text-sm">{m.desc}</p>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+
+    {/* Advisors */}
+    <div>
+      <h2 className="text-2xl md:text-3xl font-bold text-blue-900 mb-8">
+        Advisor
+      </h2>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6">
+        {team.slice(9).map((m, i) => (
+          <motion.div
+            key={i}
+            whileHover={{ scale: 1.02, translateY: -6 }}
+            className="relative bg-white p-6 border border-gray-100 mt-5 shadow-md"
+          >
+            <div className="absolute -top-8 left-6 w-28 h-28 overflow-hidden shadow-lg ring-2 ring-white">
+              <img
+                src={m.img}
+                alt={m.name}
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            <div className="mt-8 pt-12">
+              <h3 className="text-lg font-semibold text-slate-900">
+                {m.name}
+              </h3>
+              <p className="text-sm text-blue-700">{m.role}</p>
+              <p className="text-gray-600 mt-3 text-sm">{m.desc}</p>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
 
 
       </main>
